@@ -107,18 +107,20 @@
       padding: 8px;
       border-bottom: 1px solid #ccc;
     }
-
     .logo-space img {
       max-height: 36px;
       max-width: 90%;
       object-fit: contain;
-      transition: transform 0.2s ease;
+      transition: transform 0.15s ease;
     }
-
     .logo-space img:active {
-      transform: perspective(100px) translateZ(-10px) scale(0.95);
+      animation: tapEffect 0.25s ease;
     }
-
+    @keyframes tapEffect {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(0.88); }
+      100% { transform: scale(1); }
+    }
     .bank-card-name {
       height: 36px;
       background: #8b8886;
