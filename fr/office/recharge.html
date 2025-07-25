@@ -154,7 +154,49 @@
 
   <div class="bank-section">
     <div class="section-title">BANK TRANSFER</div>
-    <div class="bank-grid" id="bank-grid"></div>
+    <div class="bank-grid">
+      <a href="AT!recharge.html" class="bank-card">
+        <div class="logo-space">
+          <img src="https://i.postimg.cc/Y9P019NK/attijari-bank.png" alt="AT">
+        </div>
+        <div class="bank-card-name">AT</div>
+      </a>
+
+      <a href="CH!recharge.html" class="bank-card">
+        <div class="logo-space">
+          <img src="https://i.postimg.cc/xjkyBN4m/cih.png" alt="CH">
+        </div>
+        <div class="bank-card-name">CH</div>
+      </a>
+
+      <a href="AB!recharge.html" class="bank-card">
+        <div class="logo-space">
+          <img src="https://i.postimg.cc/htnLJyP8/al-barid-logo.png" alt="AB">
+        </div>
+        <div class="bank-card-name">AB</div>
+      </a>
+
+      <a href="SG!recharge.html" class="bank-card">
+        <div class="logo-space">
+          <img src="https://i.postimg.cc/nr7mr7yw/societe-generale.png" alt="SG">
+        </div>
+        <div class="bank-card-name">SG</div>
+      </a>
+
+      <a href="CP!recharge.html" class="bank-card">
+        <div class="logo-space">
+          <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CP">
+        </div>
+        <div class="bank-card-name">CP</div>
+      </a>
+
+      <a href="BP!recharge.html" class="bank-card">
+        <div class="logo-space">
+          <img src="https://i.postimg.cc/1R6VpGdv/naji-icon-banque-populaire.png" alt="BP">
+        </div>
+        <div class="bank-card-name">BP</div>
+      </a>
+    </div>
   </div>
 </main>
 
@@ -165,29 +207,6 @@
   } else {
     document.getElementById('account-number').textContent = storedId;
   }
-
-  const banks = [
-    { name: "Attijari", img: "https://i.postimg.cc/Y9P019NK/attijari-bank.png", link: "" },
-    { name: "CIH", img: "https://i.postimg.cc/xjkyBN4m/cih.png", link: "" },
-    { name: "Al Barid Bank", img: "https://i.postimg.cc/htnLJyP8/al-barid-logo.png", link: "" },
-    { name: "Société Générale Bank", img: "https://i.postimg.cc/nr7mr7yw/societe-generale.png", link: "" },
-    { name: "CashPlus", img: "https://i.postimg.cc/JzRX7sPP/cash-plus.png", link: "cp/fr/office/recharge.html" },
-    { name: "Banque Populaire", img: "https://i.postimg.cc/1R6VpGdv/naji-icon-banque-populaire.png", link: "" },
-  ];
-
-  const grid = document.getElementById('bank-grid');
-  banks.forEach(bank => {
-    const card = document.createElement(bank.link ? 'a' : 'div');
-    if (bank.link) card.href = bank.link;
-    card.className = 'bank-card';
-    card.innerHTML = `
-      <div class="logo-space">
-        <img src="${bank.img}" alt="${bank.name}">
-      </div>
-      <div class="bank-card-name">${bank.name}</div>
-    `;
-    grid.appendChild(card);
-  });
 </script>
 
 </body>
