@@ -263,12 +263,12 @@
 
     <div class="input-label">
       <label for="player-id-1">معرّف اللاعب</label>
-      <span class="info-icon" title="رقم مكوَّن من 10 أرقام">?</span>
+      <span class="info-icon" title="رقم مكوَّن من 7 إلى 15 رقمًا">?</span>
     </div>
 
     <div class="input-group">
       <div class="input-wrapper">
-        <input id="player-id-1" type="text" placeholder="أدخل المعرّف" maxlength="10" />
+        <input id="player-id-1" type="text" placeholder="أدخل المعرّف" maxlength="15" />
         <div class="status-icon" id="status-icon"></div>
       </div>
       <div class="error-message" id="error-message"></div>
@@ -293,7 +293,7 @@
   const icons = document.querySelectorAll('.icon');
   const statusIcon = document.getElementById('status-icon');
   let platform = null;
-  const repReg = /^(\d)\1{9}$/;
+  const repReg = /^(\d)\1{6,}$/;
 
   input.addEventListener('keydown', e => {
     const ok = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
@@ -317,7 +317,7 @@
     errMsg.textContent = '';
     btn.disabled = true;
 
-    if (val.length < 10) {
+    if (val.length < 7) {
       statusIcon.style.display = 'none';
       statusIcon.className = 'status-icon';
       statusIcon.innerHTML = '';
