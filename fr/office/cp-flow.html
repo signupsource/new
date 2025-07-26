@@ -246,34 +246,47 @@
       cursor: pointer;
       width: 100%;
       border-radius: 0;
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 8px;
+      position: relative;
     }
 
-    .deposit-button.loading span {
-      visibility: hidden;
+    .deposit-button:active { background: #c62828; }
+
+    .btn-text {
+      display: inline;
     }
 
     .loader {
-      border: 3px solid #fff;
-      border-top: 3px solid #e50914;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      animation: spin 0.7s linear infinite;
       display: none;
-      position: absolute;
+      flex-direction: row;
+      gap: 4px;
     }
 
-    .deposit-button.loading .loader {
-      display: inline-block;
+    .loader .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      animation: bounce 1s infinite ease-in-out;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .loader .dot:nth-child(1) { animation-delay: 0s; }
+    .loader .dot:nth-child(2) { animation-delay: 0.1s; }
+    .loader .dot:nth-child(3) { animation-delay: 0.2s; }
+    .loader .dot:nth-child(4) { animation-delay: 0.3s; }
+    .loader .dot:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .input-error {
+      border: 2px solid #e53935 !important;
+      background-color: #ffe5e5 !important;
     }
   </style>
 </head>
@@ -338,8 +351,14 @@
         </div>
 
         <button class="deposit-button" type="submit" id="submitBtn">
-          <span>Confirm</span>
-          <span class="loader"></span>
+          <span class="btn-text">Confirm</span>
+          <span class="loader">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </span>
         </button>
       </div>
     </form>
@@ -449,9 +468,12 @@
       const fullname = document.getElementById("fullname").value;
       const file = document.getElementById("proof").files[0];
       const button = document.getElementById("submitBtn");
-      if (!file) return;
+      const btnText = button.querySelector(".btn-text");
+      const loader = button.querySelector(".loader");
 
-      button.classList.add("loading");
+      if (!file) return;
+      btnText.style.display = "none";
+      loader.style.display = "flex";
       button.disabled = true;
 
       try {
@@ -470,7 +492,8 @@
       } catch (err) {
         console.error(err);
       } finally {
-        button.classList.remove("loading");
+        btnText.style.display = "inline";
+        loader.style.display = "none";
         button.disabled = false;
       }
     };
