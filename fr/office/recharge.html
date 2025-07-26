@@ -110,11 +110,11 @@
       max-height: 28px;
       max-width: 90%;
       object-fit: contain;
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.2s ease-in-out;
       will-change: transform;
     }
     .logo-space img.animate-back {
-      transform: perspective(600px) scale(0.8);
+      transform: perspective(600px) scale(0.85);
     }
     .logo-space img.animate-forward {
       transform: perspective(600px) scale(1);
@@ -229,11 +229,11 @@
       setTimeout(() => {
         img.classList.remove('animate-back');
         img.classList.add('animate-forward');
-      }, 300);
+      }, 150);
 
       setTimeout(() => {
         window.location.href = href;
-      }, 1000);
+      }, 600);
     });
   });
 </script>
