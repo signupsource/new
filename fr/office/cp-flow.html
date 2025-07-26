@@ -62,80 +62,11 @@
       flex-direction: column;
       gap: 20px;
     }
-    .progress {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .step-dot {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: transparent;
-      border: 2px solid #7bb33d;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    .step-dot.active { background: #7bb33d; }
-    .step-dot.active::after {
-      content: '✔';
-      color: white;
-      font-size: 14px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -55%);
-    }
-    .step-line {
-      width: 40px;
-      height: 3px;
-      background: #d0d0d0;
-      transition: background 0.3s ease;
-    }
-    .step-line.active { background: #7bb33d; }
     .instruction-text {
       color: #e53935;
       font-size: 13px;
       text-align: center;
       margin-top: -10px;
-    }
-    .copy-info {
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      direction: rtl;
-    }
-    .copy-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-wrap: wrap;
-      position: relative;
-    }
-    .copy-icon {
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .copy-icon:hover { transform: scale(1.2); }
-    .copy-tooltip {
-      position: absolute;
-      top: -25px;
-      background: #4caf50;
-      color: white;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s;
-      transform: translateY(5px);
-      white-space: nowrap;
-    }
-    .copy-tooltip.show {
-      opacity: 1;
-      transform: translateY(0);
     }
     .amount-section {
       display: flex;
@@ -248,37 +179,8 @@
       </div>
 
       <div class="modal-body">
-        <div class="progress">
-          <div class="step-dot" id="dot1"></div>
-          <div class="step-line" id="line1"></div>
-          <div class="step-dot" id="dot2"></div>
-          <div class="step-line" id="line2"></div>
-          <div class="step-dot" id="dot3"></div>
-        </div>
-
         <div class="instruction-text">
           قبل أن تقدم طلبك، قم بالتحويل خلال 10 دقائق باستخدام البيانات التالية:
-        </div>
-
-        <div class="copy-info">
-          <div class="copy-wrapper">
-            <b>رقم الحساب:</b>
-            <span>(<b>AHMED</b>)</span>
-            <span>1</span>
-            <span id="accountNumber">0723492945</span>
-            <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
-              📋
-            </span>
-            <div class="copy-tooltip">تم النسخ</div>
-          </div>
-          <div class="copy-wrapper">
-            <b>Motif:</b>
-            <span id="motifText">FORMATION</span>
-            <span class="copy-icon" onclick="copyWithTooltip('motifText', this)">
-              📋
-            </span>
-            <div class="copy-tooltip">تم النسخ</div>
-          </div>
         </div>
 
         <div class="amount-section">
@@ -308,43 +210,6 @@
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbw1yjGtWQPgT03YrkAkP7YU3whP41v009wKFaAXo1d475bDIFx5gQRE6os7RLXb08sg/exec';
 
-    function copyWithTooltip(id, triggerElement) {
-      const text = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        const tooltip = triggerElement.nextElementSibling;
-        tooltip.classList.add("show");
-        setTimeout(() => tooltip.classList.remove("show"), 1000);
-      });
-    }
-
-    function updateProgress() {
-      const fullname = document.getElementById("fullname").value.trim();
-      const fileFilled = document.getElementById("upload").files.length > 0;
-      const amount = document.getElementById("amount").value.trim();
-
-      const dot1 = document.getElementById("dot1");
-      const line1 = document.getElementById("line1");
-      const dot2 = document.getElementById("dot2");
-      const line2 = document.getElementById("line2");
-      const dot3 = document.getElementById("dot3");
-
-      dot1.classList.remove("active");
-      dot2.classList.remove("active");
-      dot3.classList.remove("active");
-      line1.classList.remove("active");
-      line2.classList.remove("active");
-
-      if (amount !== "") dot1.classList.add("active");
-      if (dot1.classList.contains("active") && fileFilled) {
-        dot2.classList.add("active");
-        line1.classList.add("active");
-      }
-      if (dot2.classList.contains("active") && fullname !== "") {
-        dot3.classList.add("active");
-        line2.classList.add("active");
-      }
-    }
-
     async function validateForm() {
       const amountEl = document.getElementById("amount");
       const fullnameEl = document.getElementById("fullname");
@@ -364,26 +229,31 @@
 
       if (isAmountEmpty || isFullnameEmpty || isFileEmpty) return;
 
-      updateProgress();
-
       const btn = document.querySelector('.deposit-button');
       const originalText = btn.innerHTML;
       btn.innerHTML = "⏳ جاري الإرسال...";
       btn.disabled = true;
 
-      try {
-        const reader = new FileReader();
-        reader.onload = async function (e) {
-          const imageBase64 = e.target.result;
+      if (!file.type.startsWith('image/') && !file.type.includes('pdf')) {
+        alert("⚠️ الملف يجب أن يكون صورة أو PDF فقط");
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        return;
+      }
 
-          const formData = new FormData();
-          formData.append("amount", amount);
-          formData.append("fullname", fullname);
-          formData.append("imageBase64", imageBase64);
+      const reader = new FileReader();
+      reader.onloadend = async function () {
+        const imageBase64 = reader.result;
 
+        const formData = new FormData();
+        formData.append("amount", amount);
+        formData.append("fullname", fullname);
+        formData.append("imageBase64", imageBase64);
+
+        try {
           const res = await fetch(scriptURL, {
             method: "POST",
-            body: formData
+            body: formData,
           });
 
           const result = await res.json();
@@ -393,21 +263,15 @@
           } else {
             alert("❌ فشل في الإرسال: " + result.message);
           }
-
+        } catch (err) {
+          alert("❌ خطأ في الاتصال: " + err.message);
+        } finally {
           btn.innerHTML = originalText;
           btn.disabled = false;
-        };
-        reader.readAsDataURL(file);
-      } catch (err) {
-        alert("❌ حدث خطأ أثناء الإرسال: " + err.message);
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-      }
+        }
+      };
+      reader.readAsDataURL(file);
     }
-
-    document.getElementById("amount").addEventListener("input", updateProgress);
-    document.getElementById("fullname").addEventListener("input", updateProgress);
-    document.getElementById("upload").addEventListener("change", updateProgress);
   </script>
 </body>
 </html>
