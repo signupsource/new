@@ -87,22 +87,15 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
-
     .bank-card {
       background-color: #f9f9f9;
       display: flex;
       flex-direction: column;
       width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       overflow: hidden;
-      transition: transform 0.2s ease;
+      border: 1px solid #ccc;
+      border-radius: 0; /* حواف حادة */
     }
-
-    .bank-card:hover {
-      transform: scale(1.02);
-    }
-
     .logo-space {
       height: 60px;
       background-color: #fff;
@@ -112,24 +105,11 @@
       padding: 8px;
       border-bottom: 1px solid #eee;
     }
-
     .logo-space img {
       max-height: 28px;
       max-width: 90%;
       object-fit: contain;
-      transition: transform 0.15s ease;
     }
-
-    .logo-space img:active {
-      animation: tapEffect 0.25s ease;
-    }
-
-    @keyframes tapEffect {
-      0%   { transform: scale(1); }
-      50%  { transform: scale(0.88); }
-      100% { transform: scale(1); }
-    }
-
     .bank-card-name {
       height: 36px;
       background: #0a4010;
@@ -140,22 +120,12 @@
       align-items: center;
       justify-content: center;
     }
-
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .bank-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 12px;
       }
-
-      .logo-space {
-        height: 56px;
-      }
-
-      .logo-space img {
-        max-height: 26px;
-      }
     }
-
     a {
       text-decoration: none;
       color: inherit;
@@ -182,6 +152,7 @@
     <div class="container">
       <div class="section-title">BANK TRANSFER</div>
       <div class="bank-grid">
+
         <a href="a1-access.html" class="bank-card">
           <div class="logo-space">
             <img src="https://i.postimg.cc/Y9P019NK/attijari-bank.png" alt="Attijari">
@@ -223,6 +194,7 @@
           </div>
           <div class="bank-card-name">Banque Populaire</div>
         </a>
+
       </div>
     </div>
   </div>
