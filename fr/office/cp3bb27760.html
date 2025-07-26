@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <title>تم الإيداع</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Tajawal', sans-serif;
+      font-family: sans-serif;
       background: #f0f0f0;
       min-height: 100vh;
       overflow: hidden;
+      direction: rtl;
     }
 
     header {
@@ -33,7 +33,7 @@
     .idbet {
       color: #e50914;
       font-weight: bold;
-      font-size: 1.25rem;
+      font-size: 20px;
     }
 
     .separator {
@@ -42,7 +42,7 @@
 
     .slogan {
       color: #444;
-      font-size: 0.95rem;
+      font-size: 15px;
       font-weight: 500;
     }
 
@@ -69,9 +69,10 @@
       position: relative;
     }
 
-    .popup-header img {
-      max-width: 70px;
-      height: auto;
+    .popup-header .secure-icon {
+      width: 70px;
+      height: 70px;
+      margin: auto;
     }
 
     .close-btn {
@@ -102,17 +103,25 @@
 </head>
 <body>
 
+  <!-- الهيدر -->
   <header>
     <span class="idbet">funded</span>
     <span class="separator">|</span>
     <span class="slogan">وكيل شحن</span>
   </header>
 
+  <!-- البطاقة -->
   <div class="popup-wrapper">
     <div class="popup-card">
       <div class="popup-header">
         <a href="recharge.html" class="close-btn">×</a>
-        <img src="https://i.postimg.cc/Wpy5653Y/securepay.png" alt="تم بنجاح">
+
+        <!-- SVG آمن ومحلي بدل صورة خارجية -->
+        <svg class="secure-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="30" fill="#4CAF50"/>
+          <path d="M20 34l8 8 16-18" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
       </div>
       <div class="popup-footer">
         تم إنشاء طلب الإيداع بنجاح.
