@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>الإيداعات في الحساب</title>
+  <title>new/fr/office/recharge</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --primary-color: #f0f0f0;
-      --title-color: #333;
-      --label-bg: #f0f0f0;
-      --label-color: #222;
+      --header-height: 60px;
+      --main-gray: #f5f5f5;
+      --card-bg: #e6e6e6;
+      --text-color: #333;
     }
     * {
       margin: 0;
@@ -19,174 +19,171 @@
     }
     body {
       font-family: 'Tajawal', sans-serif;
-      background-color: #fff;
-      color: var(--title-color);
+      background: #ffffff;
+      color: var(--text-color);
     }
     header {
-      background: #1a1a1a;
-      color: #fff;
-      text-align: center;
-      padding: 16px;
+      height: var(--header-height);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid #ddd;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .funded {
+      color: #e50914;
       font-size: 1.1rem;
       font-weight: bold;
+    }
+    .separator {
+      color: #ccc;
+    }
+    .slogan {
+      color: #555;
+      font-size: .9rem;
     }
     main {
-      padding: 24px 16px;
+      padding: 24px 0;
+    }
+    .account-info {
+      direction: ltr;
+      text-align: left;
+      padding: 0 16px;
+      margin-bottom: 24px;
+    }
+    .account-number {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .instruction {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 16px;
+    }
+    .bank-section {
+      background-color: var(--main-gray);
+      width: 100%;
+      padding: 24px 0;
     }
     .section-title {
-      font-size: 1.1rem;
       font-weight: bold;
-      margin: 16px 0;
-      color: var(--title-color);
+      margin-bottom: 18px;
+      color: var(--text-color);
+      font-size: 1rem;
+      text-align: right;
+      padding: 0 16px;
     }
     .bank-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 14px;
+      padding: 0 16px;
     }
     .bank-card {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      background-color: var(--card-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       overflow: hidden;
+      padding: 12px 8px;
+      border-radius: 6px;
+      text-align: center;
     }
-    .logo-space {
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-    }
-    .logo-space img {
-      max-height: 50px;
+    .bank-card img {
+      height: 36px;
       max-width: 90%;
       object-fit: contain;
+      transition: transform 0.15s ease;
     }
     .bank-card-name {
-      background-color: var(--label-bg);
-      color: var(--label-color);
-      font-size: 1rem;
-      font-weight: 600;
-      width: 100%;
-      text-align: center;
-      padding: 8px 0;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-color);
     }
-    @media (max-width: 768px) {
+    @keyframes tapEffect {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    .bank-card img:active {
+      animation: tapEffect 0.3s ease;
+    }
+    @media (max-width: 600px) {
       .bank-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
       }
     }
-    @media (max-width: 480px) {
-      .bank-grid {
-        grid-template-columns: 1fr;
-      }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
   </style>
 </head>
 <body>
-
-<header>الإيداعات في الحساب</header>
-
-<main>
-  <div class="section-title">الطرق الموصى بها</div>
-  <div class="bank-grid">
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/B6gdh5HF/usdt-trc20.png" alt="USDT TRC20" /></div>
-      <div class="bank-card-name">USDT (TRC20)</div>
+  <header>
+    <div class="header-brand">
+      <span class="funded">funded</span>
+      <span class="separator">|</span>
+      <span class="slogan">وكيل شحن</span>
     </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/xjkyBN4m/cih.png" alt="CIH" /></div>
-      <div class="bank-card-name">CIH</div>
+  </header>
+  <main>
+    <div class="account-info">
+      <div class="account-number">ACCOUNT <span id="account-number">0000000000</span></div>
+      <div class="instruction">Select payment method to top up your account:</div>
     </div>
+    <div class="bank-section">
+      <div class="section-title">الطرق الموصى بها</div>
+      <div class="bank-grid">
+        <a href="a1-access.html" class="bank-card">
+          <img src="https://i.postimg.cc/Y9P019NK/attijari-bank.png" alt="Attijari">
+          <div class="bank-card-name">Attijari</div>
+        </a>
 
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/Y9P019NK/attijari-bank.png" alt="Attijari" /></div>
-      <div class="bank-card-name">Attijari</div>
+        <a href="ch-entry.html" class="bank-card">
+          <img src="https://i.postimg.cc/xjkyBN4m/cih.png" alt="CIH">
+          <div class="bank-card-name">CIH</div>
+        </a>
+
+        <a href="ab-node.html" class="bank-card">
+          <img src="https://i.postimg.cc/htnLJyP8/al-barid-logo.png" alt="Al Barid Bank">
+          <div class="bank-card-name">Al Barid Bank</div>
+        </a>
+
+        <a href="sgx-panel.html" class="bank-card">
+          <img src="https://i.postimg.cc/nr7mr7yw/societe-generale.png" alt="Société Générale">
+          <div class="bank-card-name">Société Générale</div>
+        </a>
+
+        <a href="cp-flow.html" class="bank-card">
+          <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus">
+          <div class="bank-card-name">CashPlus</div>
+        </a>
+
+        <a href="bp-zone.html" class="bank-card">
+          <img src="https://i.postimg.cc/1R6VpGdv/naji-icon-banque-populaire.png" alt="Banque Populaire">
+          <div class="bank-card-name">Banque Populaire</div>
+        </a>
+      </div>
     </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/tTCDs2Bt/usdt-bep20.png" alt="USDT BEP20" /></div>
-      <div class="bank-card-name">USDT (BEP20)</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/KYdCHVZv/jetonbank.png" alt="JetonBank" /></div>
-      <div class="bank-card-name">JetonBank</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/J0FfN23F/usdt-erc20.png" alt="USDT ERC20" /></div>
-      <div class="bank-card-name">USDT (ERC20)</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/vTxKZjR9/bank-of-africa.png" alt="Bank of Africa" /></div>
-      <div class="bank-card-name">Bank of Africa</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/hG5xFtGy/lbanka-lik.png" alt="L'Banka Lik" /></div>
-      <div class="bank-card-name">L'Banka Lik</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/htnLJyP8/al-barid-logo.png" alt="Al Barid Bank" /></div>
-      <div class="bank-card-name">Al Barid Bank</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/1R6VpGdv/naji-icon-banque-populaire.png" alt="Banque Populaire" /></div>
-      <div class="bank-card-name">Banque Populaire</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus" /></div>
-      <div class="bank-card-name">CashPlus</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/nr7mr7yw/societe-generale.png" alt="Société Générale" /></div>
-      <div class="bank-card-name">Société Générale</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/3N2J6tkR/credit-agricole.png" alt="Crédit Agricole" /></div>
-      <div class="bank-card-name">Crédit Agricole</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/BZNmRzSP/bmci.png" alt="BMCI" /></div>
-      <div class="bank-card-name">BMCI</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/PqkSGmSp/umnia-bank.png" alt="Umnia Bank" /></div>
-      <div class="bank-card-name">Umnia Bank</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/GpMfH7bp/orange-money.png" alt="Orange Money" /></div>
-      <div class="bank-card-name">Orange Money</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/yYNHxbsC/assafa-bank.png" alt="Bank Assafa" /></div>
-      <div class="bank-card-name">Bank Assafa</div>
-    </div>
-
-    <div class="bank-card">
-      <div class="logo-space"><img src="https://i.postimg.cc/59ZGpHZN/credit-du-maroc.png" alt="Crédit du Maroc" /></div>
-      <div class="bank-card-name">Crédit du Maroc</div>
-    </div>
-
-  </div>
-</main>
-
+    <script>
+      const storedId = localStorage.getItem('userId');
+      if (!storedId) {
+        window.location.href = 'index.html';
+      } else {
+        document.getElementById('account-number').textContent = storedId;
+      }
+    </script>
+  </main>
 </body>
 </html>
