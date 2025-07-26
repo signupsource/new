@@ -153,6 +153,7 @@
     <div class="instruction">Select payment method to top up your account:</div>
   </div>
 
+  <!-- القسم الأصلي -->
   <div class="bank-section">
     <div class="container">
       <div class="section-title">BANK TRANSFER</div>
@@ -203,6 +204,71 @@
       </div>
     </div>
   </div>
+
+  <!-- القسم الجديد -->
+  <div class="bank-section">
+    <div class="container">
+      <div class="section-title">خدمات إضافية</div>
+      <div class="bank-grid">
+        <!-- 3 بطاقات فارغة -->
+        <div class="bank-card">
+          <div class="logo-space"><!-- فارغ --></div>
+          <div class="bank-card-name">قابلة للملء</div>
+        </div>
+        <div class="bank-card">
+          <div class="logo-space"><!-- فارغ --></div>
+          <div class="bank-card-name">قابلة للملء</div>
+        </div>
+        <div class="bank-card">
+          <div class="logo-space"><!-- فارغ --></div>
+          <div class="bank-card-name">قابلة للملء</div>
+        </div>
+
+        <!-- 6 بطاقات مكررة بترتيب مختلف -->
+        <div class="bank-card" data-href="cp-flow.html">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus">
+          </div>
+          <div class="bank-card-name">CashPlus</div>
+        </div>
+
+        <div class="bank-card" data-href="ch-entry.html">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/xjkyBN4m/cih.png" alt="CIH">
+          </div>
+          <div class="bank-card-name">CIH</div>
+        </div>
+
+        <div class="bank-card" data-href="a1-access.html">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/Y9P019NK/attijari-bank.png" alt="Attijari">
+          </div>
+          <div class="bank-card-name">Attijari</div>
+        </div>
+
+        <div class="bank-card" data-href="bp-zone.html">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/1R6VpGdv/naji-icon-banque-populaire.png" alt="Banque Populaire">
+          </div>
+          <div class="bank-card-name">Banque Populaire</div>
+        </div>
+
+        <div class="bank-card" data-href="sgx-panel.html">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/nr7mr7yw/societe-generale.png" alt="Société Générale">
+          </div>
+          <div class="bank-card-name">Société Générale</div>
+        </div>
+
+        <div class="bank-card" data-href="ab-node.html">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/htnLJyP8/al-barid-logo.png" alt="Al Barid Bank">
+          </div>
+          <div class="bank-card-name">Al Barid Bank</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <script>
@@ -216,10 +282,10 @@
   document.querySelectorAll('.bank-card').forEach(card => {
     const img = card.querySelector('.logo-space img');
     const href = card.getAttribute('data-href');
+    if (!href || !img) return;
 
     card.addEventListener('click', (e) => {
       e.preventDefault();
-
       img.classList.remove('animate-forward');
       img.classList.add('animate-back');
 
