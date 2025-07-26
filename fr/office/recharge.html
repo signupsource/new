@@ -236,6 +236,13 @@
       }, 600);
     });
   });
+
+  // إعادة ضبط الصور عند الرجوع من الصفحة
+  window.addEventListener('pageshow', () => {
+    document.querySelectorAll('.logo-space img').forEach(img => {
+      img.classList.remove('animate-back', 'animate-forward');
+    });
+  });
 </script>
 
 </body>
