@@ -28,6 +28,7 @@
     .idbet { color: var(--idbet-color); font-weight: bold; font-size: 1.1rem; }
     .separator { color: #ccc; }
     .slogan { color: #555; font-size: .9rem; }
+
     .container {
       flex: 1;
       display: flex;
@@ -35,6 +36,7 @@
       align-items: center;
       padding: 30px 16px;
     }
+
     .modal {
       width: 340px;
       background: #f3f3f3;
@@ -43,6 +45,7 @@
       display: flex;
       flex-direction: column;
     }
+
     .modal-header {
       background: #fff;
       height: 80px;
@@ -51,10 +54,12 @@
       justify-content: center;
       border-bottom: 1px solid #ddd;
     }
+
     .modal-header img {
       height: 40px;
       object-fit: contain;
     }
+
     .modal-body {
       background: #f3f3f3;
       padding: 20px;
@@ -62,112 +67,64 @@
       flex-direction: column;
       gap: 20px;
     }
+
     .progress {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
     }
+
     .step-dot {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      background: transparent;
-      border: 2px solid #7bb33d;
+      background-color: #d3dbe3;
+      border: 2px solid #d3dbe3;
       position: relative;
       transition: all 0.3s ease;
     }
-    .step-dot.active { background: #7bb33d; }
+
+    .step-dot.active {
+      background-color: #7bb33d;
+      border-color: #7bb33d;
+    }
+
     .step-dot.active::after {
       content: '✔';
       color: white;
-      font-size: 14px;
+      font-size: 12px;
+      font-weight: bold;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -55%);
+      transform: translate(-50%, -50%);
     }
+
+    .step-dot.in-progress {
+      background-color: white;
+      border-color: #7bb33d;
+    }
+
     .step-line {
       width: 40px;
       height: 3px;
-      background: #d0d0d0;
-      transition: background 0.3s ease;
+      background: #d3dbe3;
     }
-    .step-line.active { background: #7bb33d; }
+
     .instruction-text {
       color: #e53935;
       font-size: 13px;
       text-align: center;
       margin-top: -10px;
     }
-    .copy-info {
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      direction: rtl;
-    }
-    .copy-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-wrap: wrap;
-      position: relative;
-    }
-    .copy-icon {
-      cursor: pointer;
-    }
-    .copy-tooltip {
-      position: absolute;
-      top: -25px;
-      background: #4caf50;
-      color: white;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s;
-      transform: translateY(5px);
-      white-space: nowrap;
-    }
-    .copy-tooltip.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .amount-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .amount-label {
-      font-size: 13px;
-      color: #333;
-      font-weight: bold;
-      line-height: 1.4;
-    }
-    .amount-input {
-      width: 100px;
-      height: 32px;
-      padding: 4px 8px;
-      font-size: 14px;
-      text-align: center;
-      border: 1px solid #ccc;
-      outline: none;
-    }
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    input[type=number] {
-      -moz-appearance: textfield;
-    }
+
     .form-label {
       font-size: 13px;
       color: #333;
     }
-    .form-input {
+
+    .form-input, .amount-input {
       height: 32px;
       padding: 4px 8px;
       font-size: 14px;
@@ -175,6 +132,7 @@
       outline: none;
       width: 100%;
     }
+
     .upload-box {
       width: 50px;
       height: 50px;
@@ -186,6 +144,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .upload-box::before {
       content: "+";
       font-size: 26px;
@@ -197,10 +156,12 @@
       pointer-events: none;
       z-index: 1;
     }
+
     .upload-box input,
     .upload-box img {
       z-index: 2;
     }
+
     .upload-box input {
       position: absolute;
       opacity: 0;
@@ -210,6 +171,7 @@
       top: 0;
       left: 0;
     }
+
     .upload-box img {
       width: 100%;
       height: 100%;
@@ -218,23 +180,7 @@
       top: 0;
       left: 0;
     }
-    .delete-image-btn {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+
     .deposit-button {
       background: #e53935;
       color: #fff;
@@ -248,9 +194,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 8px;
-      position: relative;
     }
+
     .deposit-button:active { background: #c62828; }
 
     .wave-loader {
@@ -260,13 +205,15 @@
       gap: 6px;
       height: 20px;
     }
+
     .wave-loader .dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #e53935;
+      background: #7bb33d;
       animation: wave 1.2s infinite ease-in-out;
     }
+
     .wave-loader .dot:nth-child(1) { animation-delay: 0s; }
     .wave-loader .dot:nth-child(2) { animation-delay: 0.1s; }
     .wave-loader .dot:nth-child(3) { animation-delay: 0.2s; }
@@ -276,11 +223,6 @@
     @keyframes wave {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
-    }
-
-    .input-error {
-      border: 2px solid #e53935 !important;
-      background-color: #ffe5e5 !important;
     }
   </style>
 </head>
@@ -300,48 +242,25 @@
       <div class="modal-body">
         <div class="progress">
           <div class="step-dot" id="dot1"></div>
-          <div class="step-line" id="line1"></div>
+          <div class="step-line"></div>
           <div class="step-dot" id="dot2"></div>
-          <div class="step-line" id="line2"></div>
+          <div class="step-line"></div>
           <div class="step-dot" id="dot3"></div>
         </div>
 
         <div class="instruction-text">
-          قبل أن تقدم طلبك، قم بالتحويل خلال 10 دقائق باستخدام البيانات التالية:
+          قم بالتحويل باستخدام المعلومات أدناه خلال 10 دقائق:
         </div>
 
-        <div class="copy-info">
-          <div class="copy-wrapper">
-            <b>رقم الحساب:</b>
-            <span>(<b>AHMED</b>)</span>
-            <span>1</span>
-            <span id="accountNumber">0723492945</span>
-            <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">📋</span>
-            <div class="copy-tooltip">تم النسخ</div>
-          </div>
-          <div class="copy-wrapper">
-            <b>Motif:</b>
-            <span id="motifText">FORMATION</span>
-            <span class="copy-icon" onclick="copyWithTooltip('motifText', this)">📋</span>
-            <div class="copy-tooltip">تم النسخ</div>
-          </div>
-        </div>
+        <label class="form-label">Amount (MAD):</label>
+        <input type="number" class="amount-input" id="amount" placeholder="100.00" min="100" max="5000" required>
 
-        <div class="amount-section">
-          <div class="amount-label">Amount (Min 100.00 MAD / Max 5000.00 MAD)</div>
-          <input type="number" class="amount-input" id="amount" name="amount" placeholder="100.00" min="100" max="5000" required>
-        </div>
+        <label class="form-label">اسمك في كاش بلوس:</label>
+        <input type="text" class="form-input" id="fullname" required>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
-          <label class="form-label" style="font-size: 12px;">
-            Screen shot of transaction:<br>
-            <span style="color: #777;">(.jpg, .jpeg, .png, .pdf)</span>
-          </label>
-          <div class="upload-box" id="imageBox">
-            <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png" required>
-          </div>
-          <label class="form-label">اسمك في كاش بلوس:</label>
-          <input type="text" class="form-input" id="fullname" name="fullname" required>
+        <label class="form-label">صورة التحويل:</label>
+        <div class="upload-box" id="imageBox">
+          <input type="file" id="proof" accept=".jpg,.jpeg,.png" required />
         </div>
 
         <button class="deposit-button" type="submit" id="submitBtn">
@@ -364,62 +283,38 @@
       this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
     });
 
-    function copyWithTooltip(id, triggerElement) {
-      const text = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        const tooltip = triggerElement.nextElementSibling;
-        tooltip.classList.add("show");
-        setTimeout(() => tooltip.classList.remove("show"), 1000);
-      });
-    }
+    document.querySelectorAll("#amount, #fullname, #proof").forEach(input => {
+      input.addEventListener("input", updateProgress);
+      input.addEventListener("change", updateProgress);
+    });
 
     function updateProgress() {
       const amount = document.getElementById("amount").value.trim();
       const fullname = document.getElementById("fullname").value.trim();
       const fileFilled = document.getElementById("proof").files.length > 0;
 
-      document.getElementById("dot1").classList.toggle("active", amount !== "");
-      document.getElementById("line1").classList.toggle("active", amount !== "" && fileFilled);
-      document.getElementById("dot2").classList.toggle("active", amount !== "" && fileFilled);
-      document.getElementById("line2").classList.toggle("active", amount !== "" && fileFilled && fullname !== "");
-      document.getElementById("dot3").classList.toggle("active", amount !== "" && fileFilled && fullname !== "");
+      const dot1 = document.getElementById("dot1");
+      const dot2 = document.getElementById("dot2");
+      const dot3 = document.getElementById("dot3");
+
+      [dot1, dot2, dot3].forEach(dot => dot.classList.remove("active", "in-progress"));
+
+      if (amount) {
+        dot1.classList.add("active");
+        dot2.classList.add("in-progress");
+      }
+
+      if (amount && fileFilled) {
+        dot2.classList.remove("in-progress");
+        dot2.classList.add("active");
+        dot3.classList.add("in-progress");
+      }
+
+      if (amount && fileFilled && fullname) {
+        dot3.classList.remove("in-progress");
+        dot3.classList.add("active");
+      }
     }
-
-    document.querySelectorAll("#amount, #fullname, #proof").forEach(input => {
-      input.addEventListener("input", updateProgress);
-      input.addEventListener("change", updateProgress);
-    });
-
-    document.getElementById("proof").addEventListener("change", function () {
-      const imageBox = document.getElementById("imageBox");
-      const file = this.files[0];
-      if (!file) return;
-
-      const oldImg = imageBox.querySelector("img");
-      if (oldImg) oldImg.remove();
-
-      const oldDelBtn = imageBox.querySelector(".delete-image-btn");
-      if (oldDelBtn) oldDelBtn.remove();
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const img = document.createElement("img");
-        img.src = e.target.result;
-        imageBox.appendChild(img);
-
-        const delBtn = document.createElement("button");
-        delBtn.className = "delete-image-btn";
-        delBtn.innerHTML = "×";
-        delBtn.onclick = function () {
-          img.remove();
-          delBtn.remove();
-          document.getElementById("proof").value = "";
-          updateProgress();
-        };
-        imageBox.appendChild(delBtn);
-      };
-      reader.readAsDataURL(file);
-    });
 
     async function resizeImage(file, maxWidth = 800, maxHeight = 800) {
       return new Promise((resolve, reject) => {
@@ -458,13 +353,11 @@
     document.getElementById("transferForm").onsubmit = async function(e) {
       e.preventDefault();
       const amount = parseFloat(document.getElementById("amount").value);
-      if (amount < 100 || amount > 5000) return;
-
       const fullname = document.getElementById("fullname").value;
       const file = document.getElementById("proof").files[0];
       const button = document.getElementById("submitBtn");
 
-      if (!file) return;
+      if (!file || amount < 100 || amount > 5000) return;
 
       document.getElementById("waveLoader").style.display = "flex";
       button.disabled = true;
