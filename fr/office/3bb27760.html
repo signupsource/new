@@ -9,16 +9,12 @@
     body {
       margin: 0;
       font-family: 'Tajawal', sans-serif;
-      background: #f0f0f0; /* هذا هو لون الهيكل الأصلي */
+      background: #f0f0f0;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
     header {
       background: #fff;
-      width: 100%;
       padding: 16px;
       display: flex;
       align-items: center;
@@ -43,78 +39,47 @@
       font-size: .9rem;
     }
 
-    .modal-wrapper {
-      flex: 1;
+    .success-box {
+      margin: 60px auto 0;
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      color: #2e7d32;
+      max-width: 320px;
+      padding: 20px 16px;
+      border-radius: 10px;
+      text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      padding: 30px 0;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
-    .modal-card {
-      width: 320px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      background: #fff;
+    .success-box svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
     }
 
-    .modal-top {
-      background: #fff;
-      padding: 30px 16px 20px;
-      text-align: center;
-      position: relative;
-    }
-
-    .modal-top img {
-      max-width: 150px;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      left: 12px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #888;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .close-btn:hover {
-      color: #000;
-    }
-
-    .modal-bottom {
-      background: #eee;
-      padding: 15px;
-      text-align: center;
-      font-size: 16px;
-      color: #333;
+    .success-text {
+      font-size: 17px;
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <span class="idbet">funded</span>
     <span class="separator">|</span>
     <span class="slogan">وكيل شحن</span>
   </header>
 
-  <!-- Modal Card -->
-  <div class="modal-wrapper">
-    <div class="modal-card">
-      <div class="modal-top">
-        <a href="recharge.html" class="close-btn">×</a>
-        <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="Cash Plus">
-      </div>
-      <div class="modal-bottom">
-        تم إنشاء طلب الإيداع بنجاح.
-      </div>
-    </div>
+  <div class="success-box">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+    <span class="success-text">تم إنشاء طلب الإيداع بنجاح.</span>
   </div>
 
 </body>
