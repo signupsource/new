@@ -235,6 +235,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .deposit-button {
       background: #e53935;
       color: #fff;
@@ -245,11 +246,34 @@
       cursor: pointer;
       width: 100%;
       border-radius: 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .deposit-button:active { background: #c62828; }
-    .input-error {
-      border: 2px solid #e53935 !important;
-      background-color: #ffe5e5 !important;
+
+    .deposit-button.loading span {
+      visibility: hidden;
+    }
+
+    .loader {
+      border: 3px solid #fff;
+      border-top: 3px solid #e50914;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 0.7s linear infinite;
+      display: none;
+      position: absolute;
+    }
+
+    .deposit-button.loading .loader {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -313,7 +337,10 @@
           <input type="text" class="form-input" id="fullname" name="fullname" required>
         </div>
 
-        <button class="deposit-button" type="submit">Confirm</button>
+        <button class="deposit-button" type="submit" id="submitBtn">
+          <span>Confirm</span>
+          <span class="loader"></span>
+        </button>
       </div>
     </form>
   </div>
@@ -421,10 +448,11 @@
 
       const fullname = document.getElementById("fullname").value;
       const file = document.getElementById("proof").files[0];
-      const button = this.querySelector("button[type='submit']");
+      const button = document.getElementById("submitBtn");
       if (!file) return;
+
+      button.classList.add("loading");
       button.disabled = true;
-      button.textContent = "جاري الإرسال...";
 
       try {
         const compressed = await resizeImage(file);
@@ -442,8 +470,8 @@
       } catch (err) {
         console.error(err);
       } finally {
+        button.classList.remove("loading");
         button.disabled = false;
-        button.textContent = "Confirm";
       }
     };
   </script>
