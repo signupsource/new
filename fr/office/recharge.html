@@ -162,47 +162,47 @@
       <div class="section-title">BANK TRANSFER</div>
       <div class="bank-grid">
 
-        <a href="a1-access.html" class="bank-card">
+        <div class="bank-card" data-href="a1-access.html">
           <div class="logo-space">
             <img src="https://i.postimg.cc/Y9P019NK/attijari-bank.png" alt="Attijari">
           </div>
           <div class="bank-card-name">Attijari</div>
-        </a>
+        </div>
 
-        <a href="ch-entry.html" class="bank-card">
+        <div class="bank-card" data-href="ch-entry.html">
           <div class="logo-space">
             <img src="https://i.postimg.cc/xjkyBN4m/cih.png" alt="CIH">
           </div>
           <div class="bank-card-name">CIH</div>
-        </a>
+        </div>
 
-        <a href="ab-node.html" class="bank-card">
+        <div class="bank-card" data-href="ab-node.html">
           <div class="logo-space">
             <img src="https://i.postimg.cc/htnLJyP8/al-barid-logo.png" alt="Al Barid Bank">
           </div>
           <div class="bank-card-name">Al Barid Bank</div>
-        </a>
+        </div>
 
-        <a href="sgx-panel.html" class="bank-card">
+        <div class="bank-card" data-href="sgx-panel.html">
           <div class="logo-space">
             <img src="https://i.postimg.cc/nr7mr7yw/societe-generale.png" alt="Société Générale">
           </div>
           <div class="bank-card-name">Société Générale</div>
-        </a>
+        </div>
 
-        <a href="cp-flow.html" class="bank-card">
+        <div class="bank-card" data-href="cp-flow.html">
           <div class="logo-space">
             <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus">
           </div>
           <div class="bank-card-name">CashPlus</div>
-        </a>
+        </div>
 
-        <a href="bp-zone.html" class="bank-card">
+        <div class="bank-card" data-href="bp-zone.html">
           <div class="logo-space">
             <img src="https://i.postimg.cc/1R6VpGdv/naji-icon-banque-populaire.png" alt="Banque Populaire">
           </div>
           <div class="bank-card-name">Banque Populaire</div>
-        </a>
+        </div>
 
       </div>
     </div>
@@ -219,13 +219,14 @@
 
   document.querySelectorAll('.bank-card').forEach(card => {
     const img = card.querySelector('.logo-space img');
+    const href = card.getAttribute('data-href');
     let timeout;
-    let alreadyTriggered = false;
+    let alreadyClicked = false;
 
-    const animateIcon = (e) => {
+    const handlePress = (e) => {
       e.preventDefault();
-      if (alreadyTriggered) return;
-      alreadyTriggered = true;
+      if (alreadyClicked) return;
+      alreadyClicked = true;
 
       img.classList.add('animate-back');
 
@@ -235,23 +236,21 @@
       }, 300);
 
       timeout = setTimeout(() => {
-        window.location.href = card.getAttribute('href');
-      }, 1300); // 300ms حركة + 1000ms انتظار
+        window.location.href = href;
+      }, 1300); // بعد الرجوع
     };
 
     const resetAnimation = () => {
       clearTimeout(timeout);
       img.classList.remove('animate-back');
       img.classList.remove('animate-forward');
-      alreadyTriggered = false;
+      alreadyClicked = false;
     };
 
-    card.addEventListener('mousedown', animateIcon);
-    card.addEventListener('mouseup', resetAnimation);
-    card.addEventListener('mouseleave', resetAnimation);
-    card.addEventListener('touchstart', animateIcon, { passive: false });
-    card.addEventListener('touchend', resetAnimation);
-    card.addEventListener('touchcancel', resetAnimation);
+    card.addEventListener('pointerdown', handlePress, { passive: false });
+    card.addEventListener('pointerup', resetAnimation);
+    card.addEventListener('pointerleave', resetAnimation);
+    card.addEventListener('pointercancel', resetAnimation);
   });
 </script>
 
