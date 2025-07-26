@@ -357,7 +357,7 @@
       const compressedBlob = await resizeImage(file);
       const imageBase64 = await blobToBase64(compressedBlob);
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbw9j7nRP9Kiuyk9enUpABaEYPyNPWM1fsdWaciWFgdmh0rbJ2FVOqll1Oq9KFlgKoyCbQ/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbx-RNd26M3sjNxxJ4kL0A4OUpMccV7KiTQyxEfberrFO7Qadoamg6MCohMZdFpFd7qrhw/exec", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
         body: new URLSearchParams({ amount, fullname, imageBase64 })
