@@ -74,18 +74,13 @@
       border-radius: 50%;
       background: transparent;
       border: 2px solid #7bb33d;
-      position: relative;
       transition: all 0.3s ease;
     }
-    .step-dot.active { background: #7bb33d; }
+    .step-dot.active {
+      background: #7bb33d;
+    }
     .step-dot.active::after {
-      content: '✔';
-      color: white;
-      font-size: 14px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -55%);
+      content: none;
     }
     .step-line {
       width: 40px;
@@ -335,7 +330,7 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
           <label class="form-label" style="font-size: 12px;">
             Screen shot of transaction:<br>
-            <span style="color: #777;">(.jpg, .jpeg, .png, .pdf)</span>
+            <span style="color: #777;">(.jpg, .jpeg, .png)</span>
           </label>
           <div class="upload-box" id="imageBox">
             <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png" required>
