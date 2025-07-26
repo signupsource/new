@@ -9,11 +9,47 @@
     body {
       margin: 0;
       font-family: 'Tajawal', sans-serif;
-      background: rgba(0, 0, 0, 0.3);
-      height: 100vh;
+      background: rgba(0, 0, 0, 0.1);
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+    }
+
+    header {
+      background: #fff;
+      width: 100%;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      border-bottom: 1px solid #eee;
+    }
+
+    .idbet {
+      color: #e50914;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .separator {
+      color: #ccc;
+    }
+
+    .slogan {
+      color: #555;
+      font-size: .9rem;
+    }
+
+    .modal-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 30px 0;
     }
 
     .modal-card {
@@ -61,13 +97,23 @@
 </head>
 <body>
 
-  <div class="modal-card">
-    <div class="modal-top">
-      <a href="recharge.html" class="close-btn">×</a>
-      <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="Cash Plus">
-    </div>
-    <div class="modal-bottom">
-      تم إنشاء طلب الإيداع بنجاح.
+  <!-- Header -->
+  <header>
+    <span class="idbet">funded</span>
+    <span class="separator">|</span>
+    <span class="slogan">وكيل شحن</span>
+  </header>
+
+  <!-- Modal Card -->
+  <div class="modal-wrapper">
+    <div class="modal-card">
+      <div class="modal-top">
+        <a href="recharge.html" class="close-btn">×</a>
+        <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="Cash Plus">
+      </div>
+      <div class="modal-bottom">
+        تم إنشاء طلب الإيداع بنجاح.
+      </div>
     </div>
   </div>
 
