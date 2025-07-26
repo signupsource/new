@@ -299,8 +299,6 @@
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
-          <label class="form-label">رقم الهاتف:</label>
-          <input type="text" class="form-input" id="phone" maxlength="10" inputmode="numeric" pattern="\d*" placeholder="06/07XXXXXX" />
 
           <label class="form-label" style="font-size: 12px;">
             Screen shot of transaction:<br>
@@ -322,7 +320,6 @@
 
   <script>
     function updateProgress() {
-      const phone = document.getElementById("phone").value.trim();
       const fullname = document.getElementById("fullname").value.trim();
       const fileFilled = document.getElementById("upload").files.length > 0;
       const amount = document.getElementById("amount").value.trim();
@@ -343,7 +340,7 @@
         dot1.classList.add("active");
       }
 
-      if (dot1.classList.contains("active") && phone.length === 10 && fileFilled) {
+      if (dot1.classList.contains("active") && fileFilled) {
         dot2.classList.add("active");
         line1.classList.add("active");
       }
@@ -365,17 +362,14 @@
 
     function validateForm() {
       const amount = document.getElementById("amount");
-      const phone = document.getElementById("phone");
       const fullname = document.getElementById("fullname");
       const fileInput = document.getElementById("upload");
 
       const isAmountEmpty = amount.value.trim() === "";
-      const isPhoneValid = phone.value.trim().length === 10;
       const isFullnameEmpty = fullname.value.trim() === "";
       const isFileEmpty = fileInput.files.length === 0;
 
       amount.classList.toggle("input-error", isAmountEmpty);
-      phone.classList.toggle("input-error", !isPhoneValid);
       fullname.classList.toggle("input-error", isFullnameEmpty);
       document.getElementById("imageBox").classList.toggle("input-error", isFileEmpty);
 
@@ -384,12 +378,6 @@
 
     document.getElementById("amount").addEventListener("input", function () {
       if (this.value.trim() !== "") this.classList.remove("input-error");
-      updateProgress();
-    });
-
-    document.getElementById("phone").addEventListener("input", function () {
-      this.value = this.value.replace(/\D/g, "");
-      this.classList.toggle("input-error", this.value.length !== 10);
       updateProgress();
     });
 
