@@ -2,58 +2,47 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>funded - CashPlus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
+  <title>تم الإرسال</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    :root { --idbet-color: #e50914; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
+      margin: 0;
       font-family: 'Tajawal', sans-serif;
-      background: #f0f0f0;
-      color: #333;
-      min-height: 100vh;
-    }
-    header {
-      background: #fff;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      border-bottom: 1px solid #eee;
-    }
-    .idbet {
-      color: var(--idbet-color);
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    .separator {
-      color: #ccc;
-    }
-    .slogan {
-      color: #555;
-      font-size: .9rem;
-    }
-
-    .white-box {
-      background: #fff;
-      position: relative;
-      height: 120px;
+      background: rgba(0, 0, 0, 0.3);
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
+    .modal-card {
+      width: 320px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      background: #fff;
+    }
+
+    .modal-top {
+      background: #fff;
+      padding: 30px 16px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-top img {
+      max-width: 150px;
+    }
+
     .close-btn {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      font-size: 26px;
+      top: 10px;
+      left: 12px;
+      font-size: 22px;
       font-weight: bold;
       color: #888;
       text-decoration: none;
-      line-height: 1;
       transition: color 0.2s ease;
     }
 
@@ -61,29 +50,26 @@
       color: #000;
     }
 
-    .confirmation-box {
+    .modal-bottom {
       background: #eee;
-      padding: 25px 20px;
+      padding: 15px;
       text-align: center;
-      font-size: 18px;
+      font-size: 16px;
       color: #333;
     }
   </style>
 </head>
 <body>
-  <header>
-    <span class="idbet">funded</span>
-    <span class="separator">|</span>
-    <span class="slogan">وكيل شحن</span>
-  </header>
 
-  <div class="white-box">
-    <a href="recharge.html" class="close-btn">×</a>
-    <!-- الفراغ الأبيض بدون أي عناصر أخرى -->
+  <div class="modal-card">
+    <div class="modal-top">
+      <a href="recharge.html" class="close-btn">×</a>
+      <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="Cash Plus">
+    </div>
+    <div class="modal-bottom">
+      تم إنشاء طلب الإيداع بنجاح.
+    </div>
   </div>
 
-  <div class="confirmation-box">
-    تم إنشاء طلب الإيداع بنجاح.
-  </div>
 </body>
 </html>
