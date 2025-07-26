@@ -8,7 +8,7 @@
   <style>
     :root {
       --header-height: 60px;
-      --funded-color: #e50914;
+      --idbet-color: #e50914;
     }
     * {
       margin: 0;
@@ -35,8 +35,8 @@
       gap: 8px;
       font-weight: 500;
     }
-    .funded {
-      color: var(--funded-color);
+    .idbet {
+      color: var(--idbet-color);
       font-size: 1.1rem;
       font-weight: bold;
     }
@@ -141,7 +141,7 @@
 
 <header>
   <div class="header-brand">
-    <span class="funded">funded</span>
+    <span class="idbet">idbet</span>
     <span class="separator">|</span>
     <span class="slogan">وكيل شحن</span>
   </div>
@@ -229,13 +229,12 @@
       }, 150);
 
       setTimeout(() => {
-        img.classList.remove('animate-back', 'animate-forward'); // إعادة للحالة الأصلية
+        img.classList.remove('animate-back', 'animate-forward');
         window.location.href = href;
       }, 600);
     });
   });
 
-  // إعادة ضبط الصور عند الرجوع من الصفحة
   window.addEventListener('pageshow', () => {
     document.querySelectorAll('.logo-space img').forEach(img => {
       img.classList.remove('animate-back', 'animate-forward');
