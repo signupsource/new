@@ -299,6 +299,7 @@
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
+
           <label class="form-label" style="font-size: 12px;">
             Screen shot of transaction:<br>
             <span style="color: #777;">(.jpg, .jpeg, .png, .pdf. The maximum file size is 20 MB)</span>
@@ -335,11 +336,15 @@
       line1.classList.remove("active");
       line2.classList.remove("active");
 
-      if (amount !== "") dot1.classList.add("active");
+      if (amount !== "") {
+        dot1.classList.add("active");
+      }
+
       if (dot1.classList.contains("active") && fileFilled) {
         dot2.classList.add("active");
         line1.classList.add("active");
       }
+
       if (dot2.classList.contains("active") && fullname.trim() !== "") {
         dot3.classList.add("active");
         line2.classList.add("active");
@@ -355,7 +360,7 @@
       });
     }
 
-    async function validateForm() {
+    function validateForm() {
       const amount = document.getElementById("amount");
       const fullname = document.getElementById("fullname");
       const fileInput = document.getElementById("upload");
@@ -370,38 +375,47 @@
 
       updateProgress();
 
-      if (!isAmountEmpty && !isFullnameEmpty && !isFileEmpty) {
-        const file = fileInput.files[0];
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("fullname", fullname.value.trim());
-        formData.append("amount", amount.value.trim());
+      if (isAmountEmpty || isFullnameEmpty || isFileEmpty) {
+        alert("يرجى تعبئة جميع الحقول وإرفاق صورة.");
+        return;
+      }
 
-        try {
-          const res = await fetch("https://script.google.com/macros/s/AKfycbzm6SU4n2DNR9usyP0iUDvxTFOa5rb8B9-3I1b_lWypSnovHpgrvWa-cEdy-nQY4efClg/exec", {
-            method: "POST",
-            body: formData
-          });
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const base64Image = e.target.result;
 
-          const result = await res.json();
+        const data = {
+          amount: amount.value.trim(),
+          fullname: fullname.value.trim(),
+          imageBase64: base64Image
+        };
 
-          if (result.success) {
-            alert("✅ تم إرسال طلبك بنجاح!");
+        fetch("https://script.google.com/macros/s/AKfycbz-LE6_THA8ux1__o0z7sbUJZK_f3aHLpMALKfSszkkwSK817mTgi_08fij5L_meMDXmw/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(data).toString()
+        })
+        .then(response => response.text())
+        .then(text => {
+          alert(text);
+          if(text.includes("نجاح")) {
             amount.value = "";
             fullname.value = "";
-            document.getElementById("upload").value = "";
-            const img = document.querySelector("#imageBox img");
-            if (img) img.remove();
-            const delBtn = document.querySelector(".delete-image-btn");
-            if (delBtn) delBtn.remove();
+            fileInput.value = "";
+            const imageBox = document.getElementById("imageBox");
+            const oldImg = imageBox.querySelector("img");
+            if(oldImg) oldImg.remove();
+            const oldDelBtn = imageBox.querySelector(".delete-image-btn");
+            if(oldDelBtn) oldDelBtn.remove();
             updateProgress();
-          } else {
-            alert("❌ خطأ: " + (result.message || "حدثت مشكلة"));
           }
-        } catch (e) {
-          alert("❌ فشل الاتصال بالخادم.");
-        }
-      }
+        })
+        .catch(err => {
+          alert("حدث خطأ أثناء الإرسال: " + err.message);
+        });
+      };
+      reader.readAsDataURL(file);
     }
 
     document.getElementById("amount").addEventListener("input", function () {
@@ -410,6 +424,10 @@
     });
 
     document.getElementById("fullname").addEventListener("input", function () {
+      const regex = /^[A-Za-z\s]*$/;
+      if (!regex.test(this.value)) {
+        this.value = this.value.replace(/[^A-Za-z\s]/g, "");
+      }
       this.classList.remove("input-error");
       updateProgress();
     });
