@@ -110,13 +110,14 @@
       max-height: 28px;
       max-width: 90%;
       object-fit: contain;
-      transition: transform 0.3s ease;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
     }
     .logo-space img.animate-back {
-      transform: perspective(500px) translateZ(-50px);
+      transform: perspective(600px) translateZ(-120px);
     }
     .logo-space img.animate-forward {
-      transform: perspective(500px) translateZ(0px);
+      transform: perspective(600px) translateZ(0px);
     }
     .bank-card-name {
       height: 36px;
@@ -220,32 +221,32 @@
     const img = card.querySelector('.logo-space img');
     let timeout;
 
-    const triggerAnimation = (e) => {
+    const animateIcon = (e) => {
       e.preventDefault();
+
       img.classList.add('animate-back');
 
       setTimeout(() => {
         img.classList.remove('animate-back');
         img.classList.add('animate-forward');
-      }, 200);
+      }, 300);
 
       timeout = setTimeout(() => {
-        window.location.href = card.href;
+        window.location.href = card.getAttribute('href');
       }, 2000);
     };
 
-    const cancelAnimation = () => {
+    const resetAnimation = () => {
       clearTimeout(timeout);
       img.classList.remove('animate-back');
       img.classList.remove('animate-forward');
     };
 
-    card.addEventListener('mousedown', triggerAnimation);
-    card.addEventListener('touchstart', triggerAnimation);
-
-    card.addEventListener('mouseup', cancelAnimation);
-    card.addEventListener('touchend', cancelAnimation);
-    card.addEventListener('mouseleave', cancelAnimation);
+    card.addEventListener('mousedown', animateIcon);
+    card.addEventListener('touchstart', animateIcon);
+    card.addEventListener('mouseup', resetAnimation);
+    card.addEventListener('touchend', resetAnimation);
+    card.addEventListener('mouseleave', resetAnimation);
   });
 </script>
 
