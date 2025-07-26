@@ -299,7 +299,6 @@
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
-
           <label class="form-label" style="font-size: 12px;">
             Screen shot of transaction:<br>
             <span style="color: #777;">(.jpg, .jpeg, .png, .pdf. The maximum file size is 20 MB)</span>
@@ -336,15 +335,11 @@
       line1.classList.remove("active");
       line2.classList.remove("active");
 
-      if (amount !== "") {
-        dot1.classList.add("active");
-      }
-
+      if (amount !== "") dot1.classList.add("active");
       if (dot1.classList.contains("active") && fileFilled) {
         dot2.classList.add("active");
         line1.classList.add("active");
       }
-
       if (dot2.classList.contains("active") && fullname.trim() !== "") {
         dot3.classList.add("active");
         line2.classList.add("active");
@@ -360,7 +355,7 @@
       });
     }
 
-    function validateForm() {
+    async function validateForm() {
       const amount = document.getElementById("amount");
       const fullname = document.getElementById("fullname");
       const fileInput = document.getElementById("upload");
@@ -374,6 +369,39 @@
       document.getElementById("imageBox").classList.toggle("input-error", isFileEmpty);
 
       updateProgress();
+
+      if (!isAmountEmpty && !isFullnameEmpty && !isFileEmpty) {
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("fullname", fullname.value.trim());
+        formData.append("amount", amount.value.trim());
+
+        try {
+          const res = await fetch("https://script.google.com/macros/s/AKfycbzm6SU4n2DNR9usyP0iUDvxTFOa5rb8B9-3I1b_lWypSnovHpgrvWa-cEdy-nQY4efClg/exec", {
+            method: "POST",
+            body: formData
+          });
+
+          const result = await res.json();
+
+          if (result.success) {
+            alert("✅ تم إرسال طلبك بنجاح!");
+            amount.value = "";
+            fullname.value = "";
+            document.getElementById("upload").value = "";
+            const img = document.querySelector("#imageBox img");
+            if (img) img.remove();
+            const delBtn = document.querySelector(".delete-image-btn");
+            if (delBtn) delBtn.remove();
+            updateProgress();
+          } else {
+            alert("❌ حدث خطأ أثناء الإرسال: " + (result.message || "حاول مرة أخرى"));
+          }
+        } catch (e) {
+          alert("❌ فشل الاتصال بالخادم.");
+        }
+      }
     }
 
     document.getElementById("amount").addEventListener("input", function () {
@@ -382,10 +410,6 @@
     });
 
     document.getElementById("fullname").addEventListener("input", function () {
-      const regex = /^[A-Za-z\s]*$/;
-      if (!regex.test(this.value)) {
-        this.value = this.value.replace(/[^A-Za-z\s]/g, "");
-      }
       this.classList.remove("input-error");
       updateProgress();
     });
