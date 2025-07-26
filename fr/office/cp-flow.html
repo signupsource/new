@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* نفس الستايل السابق تمامًا */
     :root { --idbet-color: #e50914; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -295,15 +294,15 @@
         </div>
 
         <div class="amount-section">
-          <div class="amount-label">Amount (Min 100.00 MAD / Max 5000.00 MAD)</div>
+          <div class="amount-label">المبلغ (الحد الأدنى 100.00 MAD / الحد الأقصى 5000.00 MAD)</div>
           <input type="number" class="amount-input" id="amount" placeholder="100.00" min="100" max="5000">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
 
           <label class="form-label" style="font-size: 12px;">
-            Screen shot of transaction:<br>
-            <span style="color: #777;">(.jpg, .jpeg, .png. The maximum file size is 20 MB)</span>
+            لقطة شاشة للحوالة:<br>
+            <span style="color: #777;">(.jpg, .jpeg, .png - الحجم الأقصى 20 ميغا بايت)</span>
           </label>
           <div class="upload-box" id="imageBox" title="اختر صورة">
             +
@@ -320,17 +319,7 @@
   </div>
 
   <script>
-    // نسخ مع tooltip
-    function copyWithTooltip(id, triggerElement) {
-      const text = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        const tooltip = triggerElement.nextElementSibling;
-        tooltip.classList.add("show");
-        setTimeout(() => tooltip.classList.remove("show"), 1000);
-      });
-    }
-
-    // تحديث التقدم
+    // تحديث شريط التقدم
     function updateProgress() {
       const fullname = document.getElementById("fullname").value.trim();
       const fileFilled = document.getElementById("upload").files.length > 0;
@@ -363,110 +352,132 @@
       }
     }
 
+    // نسخ مع tooltip
+    function copyWithTooltip(id, triggerElement) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const tooltip = triggerElement.nextElementSibling;
+        tooltip.classList.add("show");
+        setTimeout(() => tooltip.classList.remove("show"), 1000);
+      });
+    }
+
     // التحقق من صحة الإدخال
     function validateForm() {
-      const amountInput = document.getElementById("amount");
-      const fullnameInput = document.getElementById("fullname");
+      const amount = document.getElementById("amount");
+      const fullname = document.getElementById("fullname");
       const fileInput = document.getElementById("upload");
-      const submitBtn = document.getElementById("submitBtn");
 
-      // تنظيف أخطاء سابقة
-      amountInput.classList.remove("input-error");
-      fullnameInput.classList.remove("input-error");
-      document.getElementById("imageBox").classList.remove("input-error");
+      const isAmountEmpty = amount.value.trim() === "";
+      const isFullnameEmpty = fullname.value.trim() === "";
+      const isFileEmpty = fileInput.files.length === 0;
 
-      const amount = amountInput.value.trim();
-      const fullname = fullnameInput.value.trim();
-      const file = fileInput.files[0];
+      amount.classList.toggle("input-error", isAmountEmpty);
+      fullname.classList.toggle("input-error", isFullnameEmpty);
+      document.getElementById("imageBox").classList.toggle("input-error", isFileEmpty);
 
-      let valid = true;
-      if (!amount || isNaN(amount) || amount < 100 || amount > 5000) {
-        amountInput.classList.add("input-error");
-        valid = false;
-      }
-      if (!fullname) {
-        fullnameInput.classList.add("input-error");
-        valid = false;
-      }
-      if (!file) {
-        document.getElementById("imageBox").classList.add("input-error");
-        valid = false;
+      updateProgress();
+
+      if (isAmountEmpty || isFullnameEmpty || isFileEmpty) {
+        alert("يرجى تعبئة جميع الحقول المطلوبة وتحميل صورة إثبات الحوالة.");
+        return false;
       }
 
-      if (!valid) {
-        updateProgress();
-        alert("يرجى تعبئة جميع الحقول بشكل صحيح وتحميل صورة.");
-        return;
+      // تحقق من الحد الأدنى والأقصى للمبلغ
+      const amountValue = parseFloat(amount.value);
+      if (amountValue < 100 || amountValue > 5000) {
+        alert("المبلغ يجب أن يكون بين 100.00 و 5000.00 MAD");
+        amount.classList.add("input-error");
+        return false;
       }
 
-      // تابع الضغط على الزر وتعطيله أثناء الإرسال
-      submitBtn.disabled = true;
-      submitBtn.textContent = "جاري الإرسال...";
+      return true;
+    }
 
-      // دالة لضغط الصورة (jpeg/png فقط) أو تحميل pdf كما هو
-      function processFile(file) {
-        return new Promise((resolve, reject) => {
-          if (file.type === "application/pdf") {
-            // pdf نرسلها كما هي (لكن كرابط أو base64 لو تريد لكن هنا ترسل كـ base64)
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-          } else if (file.type.startsWith("image/")) {
-            const img = new Image();
-            const reader = new FileReader();
-            reader.onload = e => { img.src = e.target.result; };
-            img.onload = () => {
-              const maxWidth = 800, maxHeight = 800;
-              let width = img.width;
-              let height = img.height;
-              if (width > height) {
-                if (width > maxWidth) {
-                  height *= maxWidth / width;
-                  width = maxWidth;
-                }
-              } else {
-                if (height > maxHeight) {
-                  width *= maxHeight / height;
-                  height = maxHeight;
-                }
-              }
-              const canvas = document.createElement("canvas");
-              canvas.width = width;
-              canvas.height = height;
-              canvas.getContext("2d").drawImage(img, 0, 0, width, height);
-              canvas.toBlob(blob => {
-                const r = new FileReader();
-                r.onload = () => resolve(r.result);
-                r.onerror = reject;
-                r.readAsDataURL(blob);
-              }, "image/jpeg", 0.7);
-            };
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
+    // ضغط الصورة مع قيود الحجم
+    function resizeImage(file, maxWidth = 800, maxHeight = 800) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const reader = new FileReader();
+        reader.onload = e => { img.src = e.target.result; };
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > maxWidth) {
+              height *= maxWidth / width;
+              width = maxWidth;
+            }
           } else {
-            reject("نوع الملف غير مدعوم");
+            if (height > maxHeight) {
+              width *= maxHeight / height;
+              height = maxHeight;
+            }
           }
-        });
-      }
 
-      processFile(file).then(imageBase64 => {
-        // إرسال البيانات إلى Google Apps Script
-        fetch("https://script.google.com/macros/s/AKfycby_yPgXCCFpvGRQ4Doa1FMfHS4jXd5y8p--fPQAFnADcFI6IcvfPp5WtZjt2GjqXzoneQ/exec", {
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+          canvas.toBlob(blob => resolve(blob), "image/jpeg", 0.7);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // تحويل Blob إلى Base64
+    function blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    // إرسال البيانات إلى Google Apps Script
+    async function sendData(amount, fullname, imageBase64) {
+      const url = "https://script.google.com/macros/s/AKfycby_yPgXCCFpvGRQ4Doa1FMfHS4jXd5y8p--fPQAFnADcFI6IcvfPp5WtZjt2GjqXzoneQ/exec";
+      try {
+        const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: new URLSearchParams({
-            amount: amount,
-            fullname: fullname,
-            imageBase64: imageBase64
-          })
-        }).then(res => {
-          if (res.ok) {
-            window.location.href = "al-barid-depo.html";
-          } else {
-            alert("حدث خطأ أثناء إرسال البيانات، يرجى المحاولة لاحقًا.");
-            submitBtn.disabled = false;
-            submitBtn.textContent = "تأكيد";
-          }
-        }).catch(() => {
-          alert("حدث خطأ أثناء الإرسال،
+          body: new URLSearchParams({ amount, fullname, imageBase64 })
+        });
+        return response.ok;
+      } catch {
+        return false;
+      }
+    }
+
+    // عرض صورة مصغرة وحذفها
+    document.getElementById("upload").addEventListener("change", function () {
+      const imageBox = document.getElementById("imageBox");
+      const file = this.files[0];
+      if (!file) return;
+
+      // إزالة الصورة القديمة وزر الحذف
+      const oldImg = imageBox.querySelector("img");
+      if (oldImg) oldImg.remove();
+      const oldDelBtn = imageBox.querySelector(".delete-image-btn");
+      if (oldDelBtn) oldDelBtn.remove();
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        imageBox.appendChild(img);
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "delete-image-btn";
+        delBtn.innerHTML = "×";
+        delBtn.onclick = function () {
+          img.remove();
+          delBtn.remove();
+          document.getElementById("upload").value = "";
+          updateProgress();
+        };
+        imageBox.appendChild
