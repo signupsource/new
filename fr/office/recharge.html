@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>idbet - recharge</title>
+  <title>new/fr/office/recharge</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -17,8 +17,8 @@
     }
     body {
       font-family: 'Tajawal', sans-serif;
-      background: #fff;
-      color: #222;
+      background: #ffffff;
+      color: #333;
     }
     header {
       height: var(--header-height);
@@ -26,25 +26,26 @@
       display: flex;
       align-items: center;
       padding: 0 16px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
       border-bottom: 1px solid #ddd;
     }
     .header-brand {
       display: flex;
       align-items: center;
       gap: 8px;
+      font-weight: 500;
     }
     .idbet {
       color: var(--idbet-color);
-      font-weight: bold;
       font-size: 1.1rem;
+      font-weight: bold;
     }
     .separator {
       color: #ccc;
     }
     .slogan {
       color: #555;
-      font-size: 0.9rem;
+      font-size: .9rem;
     }
     main {
       padding: 24px 0;
@@ -58,14 +59,15 @@
     .account-number {
       font-size: 1.2rem;
       font-weight: bold;
+      margin-bottom: 6px;
     }
     .instruction {
       font-size: 0.95rem;
       color: #444;
-      margin-top: 8px;
+      margin-bottom: 16px;
     }
     .bank-section {
-      background-color: #f0f0f0;
+      background-color: #e0e0e0;
       padding: 24px 0;
     }
     .container {
@@ -75,9 +77,10 @@
     }
     .section-title {
       font-weight: bold;
+      margin-bottom: 12px;
       color: #333;
       font-size: 1rem;
-      margin-bottom: 12px;
+      text-align: left;
     }
     .bank-grid {
       display: grid;
@@ -85,14 +88,18 @@
       gap: 16px;
     }
     .bank-card {
-      background: #fff;
-      border: 1px solid #ccc;
-      cursor: pointer;
+      background-color: #f9f9f9;
       display: flex;
       flex-direction: column;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      border-radius: 0;
+      cursor: pointer;
     }
     .logo-space {
       height: 60px;
+      background-color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -107,12 +114,13 @@
       will-change: transform;
     }
     .logo-space img.animate-back {
-      transform: scale(0.85);
+      transform: perspective(600px) scale(0.85);
     }
     .logo-space img.animate-forward {
-      transform: scale(1);
+      transform: perspective(600px) scale(1);
     }
     .bank-card-name {
+      height: 36px;
       background: #0a4010;
       color: #fff;
       font-size: 0.9rem;
@@ -120,7 +128,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 36px;
     }
     @media (max-width: 768px) {
       .bank-grid {
@@ -136,43 +143,43 @@
   <div class="header-brand">
     <span class="idbet">idbet</span>
     <span class="separator">|</span>
-    <span class="slogan">بوابتك الآمنة</span>
+    <span class="slogan">وكيل شحن</span>
   </div>
 </header>
 
 <main>
   <div class="account-info">
     <div class="account-number">ACCOUNT <span id="account-number">0000000000</span></div>
-    <div class="instruction">اختر طريقة لإعادة الرصيد:</div>
+    <div class="instruction">Select payment method to top up your account:</div>
   </div>
 
   <div class="bank-section">
     <div class="container">
-      <div class="section-title">الخيارات المتاحة</div>
+      <div class="section-title">BANK TRANSFER</div>
       <div class="bank-grid">
         <div class="bank-card" data-href="a1-access.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/wx0kcW7C/veripay-network.png" alt=""></div>
-          <div class="bank-card-name">Veripay</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/wx0kcW7C/veripay-network.png" alt="Attijari"></div>
+          <div class="bank-card-name">Attijari</div>
         </div>
         <div class="bank-card" data-href="ch-entry.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/rmqS5Wcy/nova-wallet.png" alt=""></div>
-          <div class="bank-card-name">Nova Wallet</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/rmqS5Wcy/nova-wallet.png" alt="CIH"></div>
+          <div class="bank-card-name">CIH</div>
         </div>
         <div class="bank-card" data-href="ab-node.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/gksJtVNC/charset.png" alt=""></div>
-          <div class="bank-card-name">Postex</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/gksJtVNC/charset.png" alt="Al Barid Bank"></div>
+          <div class="bank-card-name">Al Barid Bank</div>
         </div>
         <div class="bank-card" data-href="sgx-panel.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/4ySVCScn/safex-finance.png" alt=""></div>
-          <div class="bank-card-name">Safex</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/4ySVCScn/safex-finance.png" alt="Société Générale"></div>
+          <div class="bank-card-name">Société Générale</div>
         </div>
         <div class="bank-card" data-href="cp-flow.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/Wpy5653Y/securepay.png" alt=""></div>
-          <div class="bank-card-name">RapidFlux</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/Wpy5653Y/securepay.png" alt="CashPlus"></div>
+          <div class="bank-card-name">CashPlus</div>
         </div>
         <div class="bank-card" data-href="bp-zone.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/Qx7HxCGf/populara-express.png" alt=""></div>
-          <div class="bank-card-name">Populara</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/Qx7HxCGf/populara-express.png" alt="Banque Populaire"></div>
+          <div class="bank-card-name">Banque Populaire</div>
         </div>
       </div>
     </div>
@@ -180,35 +187,35 @@
 
   <div class="bank-section">
     <div class="container">
-      <div class="section-title">طرق إضافية</div>
+      <div class="section-title">خدمات إضافية</div>
       <div class="bank-grid">
         <div class="bank-card"><div class="logo-space"></div><div class="bank-card-name">قابلة للملء</div></div>
         <div class="bank-card"><div class="logo-space"></div><div class="bank-card-name">قابلة للملء</div></div>
         <div class="bank-card"><div class="logo-space"></div><div class="bank-card-name">قابلة للملء</div></div>
 
         <div class="bank-card" data-href="cp-flow.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/Wpy5653Y/securepay.png" alt=""></div>
-          <div class="bank-card-name">RapidFlux</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/Wpy5653Y/securepay.png" alt="CashPlus"></div>
+          <div class="bank-card-name">CashPlus</div>
         </div>
         <div class="bank-card" data-href="ch-entry.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/rmqS5Wcy/nova-wallet.png" alt=""></div>
-          <div class="bank-card-name">Nova Wallet</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/rmqS5Wcy/nova-wallet.png" alt="CIH"></div>
+          <div class="bank-card-name">CIH</div>
         </div>
         <div class="bank-card" data-href="a1-access.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/wx0kcW7C/veripay-network.png" alt=""></div>
-          <div class="bank-card-name">Veripay</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/wx0kcW7C/veripay-network.png" alt="Attijari"></div>
+          <div class="bank-card-name">Attijari</div>
         </div>
         <div class="bank-card" data-href="bp-zone.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/Qx7HxCGf/populara-express.png" alt=""></div>
-          <div class="bank-card-name">Populara</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/Qx7HxCGf/populara-express.png" alt="Banque Populaire"></div>
+          <div class="bank-card-name">Banque Populaire</div>
         </div>
         <div class="bank-card" data-href="sgx-panel.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/4ySVCScn/safex-finance.png" alt=""></div>
-          <div class="bank-card-name">Safex</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/4ySVCScn/safex-finance.png" alt="Société Générale"></div>
+          <div class="bank-card-name">Société Générale</div>
         </div>
         <div class="bank-card" data-href="ab-node.html">
-          <div class="logo-space"><img src="https://i.postimg.cc/gksJtVNC/charset.png" alt=""></div>
-          <div class="bank-card-name">Postex</div>
+          <div class="logo-space"><img src="https://i.postimg.cc/gksJtVNC/charset.png" alt="Al Barid Bank"></div>
+          <div class="bank-card-name">Al Barid Bank</div>
         </div>
       </div>
     </div>
@@ -217,12 +224,12 @@
 
 <script>
   const storedId = localStorage.getItem('userId');
-  if (!storedId) location.href = 'index.html';
+  if (!storedId) window.location.href = 'index.html';
   else document.getElementById('account-number').textContent = storedId;
 
   document.querySelectorAll('.bank-card').forEach(card => {
     const img = card.querySelector('.logo-space img');
-    const href = card.dataset.href;
+    const href = card.getAttribute('data-href');
     if (!img || !href) return;
 
     card.addEventListener('click', e => {
@@ -235,15 +242,15 @@
       }, 150);
       setTimeout(() => {
         img.classList.remove('animate-back', 'animate-forward');
-        location.href = href;
+        window.location.href = href;
       }, 600);
     });
   });
 
   window.addEventListener('pageshow', () => {
-    document.querySelectorAll('.logo-space img').forEach(img =>
-      img.classList.remove('animate-back', 'animate-forward')
-    );
+    document.querySelectorAll('.logo-space img').forEach(img => {
+      img.classList.remove('animate-back', 'animate-forward');
+    });
   });
 </script>
 
