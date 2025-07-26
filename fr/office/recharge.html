@@ -220,9 +220,12 @@
   document.querySelectorAll('.bank-card').forEach(card => {
     const img = card.querySelector('.logo-space img');
     let timeout;
+    let alreadyTriggered = false;
 
     const animateIcon = (e) => {
       e.preventDefault();
+      if (alreadyTriggered) return;
+      alreadyTriggered = true;
 
       img.classList.add('animate-back');
 
@@ -233,20 +236,22 @@
 
       timeout = setTimeout(() => {
         window.location.href = card.getAttribute('href');
-      }, 2000);
+      }, 1300); // 300ms حركة + 1000ms انتظار
     };
 
     const resetAnimation = () => {
       clearTimeout(timeout);
       img.classList.remove('animate-back');
       img.classList.remove('animate-forward');
+      alreadyTriggered = false;
     };
 
     card.addEventListener('mousedown', animateIcon);
-    card.addEventListener('touchstart', animateIcon);
     card.addEventListener('mouseup', resetAnimation);
-    card.addEventListener('touchend', resetAnimation);
     card.addEventListener('mouseleave', resetAnimation);
+    card.addEventListener('touchstart', animateIcon, { passive: false });
+    card.addEventListener('touchend', resetAnimation);
+    card.addEventListener('touchcancel', resetAnimation);
   });
 </script>
 
