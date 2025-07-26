@@ -1,86 +1,92 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>تم الإرسال</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>تم الإيداع</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Tajawal', sans-serif;
       background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       min-height: 100vh;
     }
 
     header {
-      background-color: #ffffff;
-      padding: 18px 24px;
+      background: #fff;
+      padding: 16px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 12px;
-      border-bottom: 1px solid #e0e0e0;
-      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
 
     .idbet {
       color: #e50914;
-      font-weight: 700;
+      font-weight: bold;
       font-size: 1.25rem;
-      letter-spacing: 0.5px;
     }
 
     .separator {
-      color: #c1c1c1;
-      font-size: 1.2rem;
+      color: #ccc;
     }
 
     .slogan {
       color: #444;
-      font-weight: 500;
       font-size: 0.95rem;
-    }
-
-    .success-box {
-      margin: 60px auto 0;
-      background: #e8f5e9;
-      border: 1px solid #c8e6c9;
-      color: #2e7d32;
-      max-width: 320px;
-      padding: 20px 16px;
-      border-radius: 10px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    .success-box svg {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-    }
-
-    .success-text {
-      font-size: 17px;
       font-weight: 500;
     }
 
-    .back-link {
-      display: block;
+    .popup-card {
+      margin-top: 80px;
+      width: 320px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .popup-header {
+      background: #fff;
+      padding: 30px 16px 20px;
       text-align: center;
-      margin: 25px auto 0;
-      font-size: 15px;
-      color: #555;
+      position: relative;
+    }
+
+    .popup-header img {
+      max-width: 140px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 22px;
+      color: #aaa;
       text-decoration: none;
+      font-weight: bold;
       transition: color 0.2s ease;
     }
 
-    .back-link:hover {
+    .close-btn:hover {
       color: #000;
+    }
+
+    .popup-footer {
+      background: #eeeeee;
+      padding: 18px;
+      text-align: center;
+      font-size: 16px;
+      color: #333;
+      font-weight: 500;
+      border-top: 1px solid #ddd;
     }
   </style>
 </head>
@@ -89,19 +95,18 @@
   <header>
     <span class="idbet">funded</span>
     <span class="separator">|</span>
-    <span class="slogan">وكيل معتمد لخدمات الشحن</span>
+    <span class="slogan">وكيل شحن</span>
   </header>
 
-  <div class="success-box">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
-         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-         viewBox="0 0 24 24">
-      <path d="M20 6L9 17l-5-5" />
-    </svg>
-    <span class="success-text">تم إنشاء طلب الإيداع بنجاح.</span>
+  <div class="popup-card">
+    <div class="popup-header">
+      <a href="recharge.html" class="close-btn">×</a>
+      <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="Cash Plus Logo">
+    </div>
+    <div class="popup-footer">
+      تم إنشاء طلب الإيداع بنجاح.
+    </div>
   </div>
-
-  <a href="recharge.html" class="back-link">↩ الرجوع</a>
 
 </body>
 </html>
