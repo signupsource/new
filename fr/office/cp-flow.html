@@ -77,9 +77,7 @@
       position: relative;
       transition: all 0.3s ease;
     }
-    .step-dot.active {
-      background: #7bb33d;
-    }
+    .step-dot.active { background: #7bb33d; }
     .step-dot.active::after {
       content: '✔';
       color: white;
@@ -95,9 +93,7 @@
       background: #d0d0d0;
       transition: background 0.3s ease;
     }
-    .step-line.active {
-      background: #7bb33d;
-    }
+    .step-line.active { background: #7bb33d; }
     .instruction-text {
       color: #e53935;
       font-size: 13px;
@@ -120,10 +116,6 @@
     }
     .copy-icon {
       cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .copy-icon:hover {
-      transform: scale(1.2);
     }
     .copy-tooltip {
       position: absolute;
@@ -233,9 +225,7 @@
       width: 100%;
       border-radius: 0;
     }
-    .deposit-button:active {
-      background: #c62828;
-    }
+    .deposit-button:active { background: #c62828; }
     .input-error {
       border: 2px solid #e53935 !important;
       background-color: #ffe5e5 !important;
@@ -327,6 +317,37 @@
     document.querySelectorAll("#amount, #fullname, #proof").forEach(input => {
       input.addEventListener("input", updateProgress);
       input.addEventListener("change", updateProgress);
+    });
+
+    document.getElementById("proof").addEventListener("change", function () {
+      const imageBox = document.getElementById("imageBox");
+      const file = this.files[0];
+      if (!file) return;
+
+      const oldImg = imageBox.querySelector("img");
+      if (oldImg) oldImg.remove();
+
+      const oldDelBtn = imageBox.querySelector(".delete-image-btn");
+      if (oldDelBtn) oldDelBtn.remove();
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        imageBox.appendChild(img);
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "delete-image-btn";
+        delBtn.innerHTML = "×";
+        delBtn.onclick = function () {
+          img.remove();
+          delBtn.remove();
+          document.getElementById("proof").value = "";
+          updateProgress();
+        };
+        imageBox.appendChild(delBtn);
+      };
+      reader.readAsDataURL(file);
     });
 
     function resizeImage(file, maxWidth = 800, maxHeight = 800) {
