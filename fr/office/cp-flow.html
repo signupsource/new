@@ -298,8 +298,12 @@
           <input type="number" class="amount-input" id="amount" placeholder="100.00">
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
+        <div>
+          <label class="form-label">اسمك في حسابك البنكي:</label>
+          <input type="text" class="form-input" id="fullname" placeholder="اسمك في كاش بلوس">
+        </div>
 
+        <div>
           <label class="form-label" style="font-size: 12px;">
             Screen shot of transaction:<br>
             <span style="color: #777;">(.jpg, .jpeg, .png, .pdf. The maximum file size is 20 MB)</span>
@@ -308,9 +312,6 @@
             +
             <input type="file" id="upload" accept=".jpg,.jpeg,.png,.pdf">
           </div>
-
-          <label class="form-label">اسمك في حسابك البنكي:</label>
-          <input type="text" class="form-input" id="fullname" placeholder="اسمك في كاش بلوس">
         </div>
 
         <button class="deposit-button" onclick="validateForm()">Confirm</button>
@@ -340,12 +341,12 @@
         dot1.classList.add("active");
       }
 
-      if (dot1.classList.contains("active") && fileFilled) {
+      if (dot1.classList.contains("active") && fullname !== "") {
         dot2.classList.add("active");
         line1.classList.add("active");
       }
 
-      if (dot2.classList.contains("active") && fullname.trim() !== "") {
+      if (dot2.classList.contains("active") && fileFilled) {
         dot3.classList.add("active");
         line2.classList.add("active");
       }
