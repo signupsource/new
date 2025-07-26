@@ -17,7 +17,7 @@
     }
     body {
       font-family: 'Tajawal', sans-serif;
-      background: #ffffff;
+      background: #f9f9f9;
       color: #333;
     }
     header {
@@ -27,7 +27,7 @@
       align-items: center;
       padding: 0 16px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #eee;
     }
     .header-brand {
       display: flex;
@@ -67,72 +67,64 @@
       margin-bottom: 16px;
     }
     .bank-section {
-      background-color: #e0e0e0;
-      width: 100vw;
-      padding: 16px 0;
+      background-color: #dcdcdc;
+      width: 100%;
+      padding: 32px 0;
+    }
+    .bank-container {
+      max-width: 800px;
+      margin: 0 auto;
     }
     .section-title {
       font-weight: bold;
-      margin-bottom: 12px;
-      color: #333;
-      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #222;
+      font-size: 1.1rem;
       text-align: left;
-      padding-left: 16px;
+      padding-left: 8px;
     }
     .bank-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      padding: 0 16px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      justify-content: center;
     }
     .bank-card {
-      background-color: #f5f5f5;
+      background-color: #fff;
       display: flex;
       flex-direction: column;
       border: 1px solid #ccc;
-      width: 100%;
+      border-radius: 4px;
       overflow: hidden;
-      padding: 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
     .logo-space {
-      height: 52px;
       background-color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px;
-      border-bottom: 1px solid #ccc;
+      padding: 14px;
+      height: 70px;
     }
     .logo-space img {
-      max-height: 36px;
+      max-height: 48px;
       max-width: 90%;
       object-fit: contain;
-      transition: transform 0.15s ease;
-    }
-    .logo-space img:active {
-      animation: tapEffect 0.25s ease;
-    }
-    @keyframes tapEffect {
-      0%   { transform: scale(1); }
-      50%  { transform: scale(0.88); }
-      100% { transform: scale(1); }
     }
     .bank-card-name {
-      height: 36px;
       background: #8b8886;
       color: #fff;
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       font-weight: 500;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 0 4px;
+      height: 40px;
     }
     @media (max-width: 600px) {
       .bank-grid {
-        grid-template-columns: repeat(3, 1fr);
-        padding: 0 8px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 12px;
       }
     }
     a {
@@ -158,51 +150,53 @@
   </div>
 
   <div class="bank-section">
-    <div class="section-title">BANK TRANSFER</div>
-    <div class="bank-grid">
+    <div class="bank-container">
+      <div class="section-title">BANK TRANSFER</div>
+      <div class="bank-grid">
 
-      <a href="a1-access.html" class="bank-card">
-        <div class="logo-space">
-          <img src="https://i.postimg.cc/Y9P019NK/attijari-bank.png" alt="Attijari">
-        </div>
-        <div class="bank-card-name">Attijari</div>
-      </a>
+        <a href="ab-node.html" class="bank-card">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/htnLJyP8/al-barid-logo.png" alt="Al Barid Bank">
+          </div>
+          <div class="bank-card-name">Al Barid Bank</div>
+        </a>
 
-      <a href="ch-entry.html" class="bank-card">
-        <div class="logo-space">
-          <img src="https://i.postimg.cc/xjkyBN4m/cih.png" alt="CIH">
-        </div>
-        <div class="bank-card-name">CIH</div>
-      </a>
+        <a href="ch-entry.html" class="bank-card">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/xjkyBN4m/cih.png" alt="CIH">
+          </div>
+          <div class="bank-card-name">CIH</div>
+        </a>
 
-      <a href="ab-node.html" class="bank-card">
-        <div class="logo-space">
-          <img src="https://i.postimg.cc/htnLJyP8/al-barid-logo.png" alt="Al Barid Bank">
-        </div>
-        <div class="bank-card-name">Al Barid Bank</div>
-      </a>
+        <a href="a1-access.html" class="bank-card">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/Y9P019NK/attijari-bank.png" alt="Attijari">
+          </div>
+          <div class="bank-card-name">Attijari</div>
+        </a>
 
-      <a href="sgx-panel.html" class="bank-card">
-        <div class="logo-space">
-          <img src="https://i.postimg.cc/nr7mr7yw/societe-generale.png" alt="Société Générale">
-        </div>
-        <div class="bank-card-name">Société Générale</div>
-      </a>
+        <a href="bp-zone.html" class="bank-card">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/1R6VpGdv/naji-icon-banque-populaire.png" alt="Banque Populaire">
+          </div>
+          <div class="bank-card-name">Banque Populaire</div>
+        </a>
 
-      <a href="cp-flow.html" class="bank-card">
-        <div class="logo-space">
-          <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus">
-        </div>
-        <div class="bank-card-name">CashPlus</div>
-      </a>
+        <a href="cp-flow.html" class="bank-card">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus">
+          </div>
+          <div class="bank-card-name">CashPlus</div>
+        </a>
 
-      <a href="bp-zone.html" class="bank-card">
-        <div class="logo-space">
-          <img src="https://i.postimg.cc/1R6VpGdv/naji-icon-banque-populaire.png" alt="Banque Populaire">
-        </div>
-        <div class="bank-card-name">Banque Populaire</div>
-      </a>
+        <a href="sgx-panel.html" class="bank-card">
+          <div class="logo-space">
+            <img src="https://i.postimg.cc/nr7mr7yw/societe-generale.png" alt="Société Générale">
+          </div>
+          <div class="bank-card-name">Société Générale</div>
+        </a>
 
+      </div>
     </div>
   </div>
 </main>
