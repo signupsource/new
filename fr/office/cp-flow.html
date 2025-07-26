@@ -155,8 +155,6 @@
       border: 1px solid #ccc;
       outline: none;
     }
-
-    /* إزالة الأسهم من حقل الرقم */
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
       -webkit-appearance: none;
@@ -165,7 +163,6 @@
     input[type=number] {
       -moz-appearance: textfield;
     }
-
     .form-label {
       font-size: 13px;
       color: #333;
@@ -186,10 +183,23 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
-      cursor: pointer;
       position: relative;
       overflow: hidden;
+    }
+    .upload-box::before {
+      content: "+";
+      font-size: 26px;
+      color: #666;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .upload-box input,
+    .upload-box img {
+      z-index: 2;
     }
     .upload-box input {
       position: absolute;
@@ -275,24 +285,13 @@
             <span>(<b>AHMED</b>)</span>
             <span>1</span>
             <span id="accountNumber">0723492945</span>
-            <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
-              <!-- copy icon SVG -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a9e33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-            </span>
+            <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">📋</span>
             <div class="copy-tooltip">تم النسخ</div>
           </div>
           <div class="copy-wrapper">
             <b>Motif:</b>
             <span id="motifText">FORMATION</span>
-            <span class="copy-icon" onclick="copyWithTooltip('motifText', this)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a9e33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-            </span>
+            <span class="copy-icon" onclick="copyWithTooltip('motifText', this)">📋</span>
             <div class="copy-tooltip">تم النسخ</div>
           </div>
         </div>
@@ -305,10 +304,10 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
           <label class="form-label" style="font-size: 12px;">
             Screen shot of transaction:<br>
-            <span style="color: #777;">(.jpg, .jpeg, .png, .pdf. The maximum file size is 20 MB)</span>
+            <span style="color: #777;">(.jpg, .jpeg, .png, .pdf)</span>
           </label>
           <div class="upload-box" id="imageBox">
-            +<input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png" required>
+            <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png" required>
           </div>
           <label class="form-label">اسمك في كاش بلوس:</label>
           <input type="text" class="form-input" id="fullname" name="fullname" required>
@@ -320,6 +319,10 @@
   </div>
 
   <script>
+    document.getElementById("fullname").addEventListener("input", function () {
+      this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+    });
+
     function copyWithTooltip(id, triggerElement) {
       const text = document.getElementById(id).textContent;
       navigator.clipboard.writeText(text).then(() => {
