@@ -216,12 +216,9 @@
   document.querySelectorAll('.bank-card').forEach(card => {
     const img = card.querySelector('.logo-space img');
     const href = card.getAttribute('data-href');
-    let alreadyClicked = false;
 
     card.addEventListener('click', (e) => {
       e.preventDefault();
-      if (alreadyClicked) return;
-      alreadyClicked = true;
 
       img.classList.remove('animate-forward');
       img.classList.add('animate-back');
@@ -232,6 +229,7 @@
       }, 150);
 
       setTimeout(() => {
+        img.classList.remove('animate-back', 'animate-forward'); // إعادة للحالة الأصلية
         window.location.href = href;
       }, 600);
     });
