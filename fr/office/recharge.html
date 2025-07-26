@@ -110,14 +110,14 @@
       max-height: 28px;
       max-width: 90%;
       object-fit: contain;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.3s ease-in-out;
       will-change: transform;
     }
     .logo-space img.animate-back {
-      transform: perspective(600px) translateZ(-120px);
+      transform: perspective(600px) scale(0.8);
     }
     .logo-space img.animate-forward {
-      transform: perspective(600px) translateZ(0);
+      transform: perspective(600px) scale(1);
     }
     .bank-card-name {
       height: 36px;
@@ -216,38 +216,25 @@
   document.querySelectorAll('.bank-card').forEach(card => {
     const img = card.querySelector('.logo-space img');
     const href = card.getAttribute('data-href');
-    let timeout1, timeout2;
     let alreadyClicked = false;
 
-    const handlePress = (e) => {
+    card.addEventListener('click', (e) => {
       e.preventDefault();
       if (alreadyClicked) return;
       alreadyClicked = true;
 
+      img.classList.remove('animate-forward');
       img.classList.add('animate-back');
 
-      timeout1 = setTimeout(() => {
+      setTimeout(() => {
         img.classList.remove('animate-back');
         img.classList.add('animate-forward');
       }, 300);
 
-      timeout2 = setTimeout(() => {
+      setTimeout(() => {
         window.location.href = href;
-      }, 1300);
-    };
-
-    const resetAnimation = () => {
-      clearTimeout(timeout1);
-      clearTimeout(timeout2);
-      img.classList.remove('animate-back');
-      img.classList.remove('animate-forward');
-      alreadyClicked = false;
-    };
-
-    card.addEventListener('pointerdown', handlePress, { passive: false });
-    card.addEventListener('pointerup', resetAnimation);
-    card.addEventListener('pointerleave', resetAnimation);
-    card.addEventListener('pointercancel', resetAnimation);
+      }, 1000);
+    });
   });
 </script>
 
