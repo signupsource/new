@@ -396,7 +396,7 @@
             if (delBtn) delBtn.remove();
             updateProgress();
           } else {
-            alert("❌ حدث خطأ أثناء الإرسال: " + (result.message || "حاول مرة أخرى"));
+            alert("❌ خطأ: " + (result.message || "حدثت مشكلة"));
           }
         } catch (e) {
           alert("❌ فشل الاتصال بالخادم.");
