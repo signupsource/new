@@ -11,39 +11,60 @@
     }
     body {
       margin: 0;
-      background-color: #333;
-      color: #f5f5f5;
+      background-color: #d9e3db;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: none;
+      overflow: visible;
     }
     .main-box {
       position: relative;
       width: 90%;
       max-width: 420px;
       margin: 60px auto;
-      background-color: #2f2f2f;
+      background-color: #fff;
       border-radius: 14px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      overflow: visible;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
     .exit-button {
       position: absolute;
       top: 10px;
       right: 10px;
       font-size: 28px;
-      color: #aaa;
-      background: none;
-      border: none;
+      color: #888;
+      text-decoration: none;
       cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      z-index: 10;
+      background: none;
+      width: auto;
+      height: auto;
+      line-height: normal;
+      text-align: center;
+      box-shadow: none;
+      padding: 0 6px;
     }
     .exit-button:hover {
-      color: #fff;
+      color: #555;
+      background: none;
     }
     .logo-box {
       text-align: center;
       padding: 20px 10px 10px;
+      perspective: 600px;
     }
     .logo-box img {
       height: 40px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      display: inline-block;
+    }
+    .logo-box img.active,
+    .logo-box img:hover {
+      transform: translateZ(-40px);
     }
     .alert {
       background-color: #1c4729;
@@ -51,6 +72,7 @@
       padding: 10px 15px;
       font-size: 14px;
       text-align: center;
+      line-height: 1.5;
     }
     .form-content {
       padding: 20px;
@@ -61,6 +83,7 @@
       align-items: center;
       margin-bottom: 15px;
       font-size: 15px;
+      color: #333;
     }
     .info-label {
       width: 45%;
@@ -71,26 +94,48 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
     input[type="text"],
     input[type="number"] {
       width: 100%;
       padding: 10px;
       font-size: 14px;
-      border: 1px solid #777;
+      border: 1px solid #ccc;
       border-radius: 6px;
-      background-color: #222;
-      color: #fff;
+      -webkit-appearance: none;
     }
-    input::placeholder {
-      color: #bbb;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    .english-numbers {
+      font-feature-settings: "lnum";
+      direction: ltr;
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+    .info-input strong.english-numbers {
+      word-break: break-all;
+      max-width: 100%;
+      display: inline-block;
+      white-space: normal;
+    }
+    .copy-icon {
+      display: inline-block;
+      cursor: pointer;
     }
     .copy-icon img {
       height: 20px;
-      filter: invert(100%);
     }
     .copied-text {
-      color: #8f8;
+      color: green;
       font-size: 13px;
       display: none;
     }
@@ -110,10 +155,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+    }
+    .upload-section input[type="file"] {
+      display: none;
     }
     .upload-section label {
       font-size: 30px;
-      color: #ccc;
+      color: #666;
       cursor: pointer;
     }
     .preview-image {
@@ -126,7 +175,7 @@
     }
     .note {
       font-size: 13px;
-      color: #ccc;
+      color: #666;
       text-align: center;
       margin-bottom: 15px;
     }
@@ -139,12 +188,19 @@
       width: 100%;
       border-radius: 0 0 14px 14px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
     .submit-btn:hover:not(:disabled) {
       background-color: #27653d;
     }
     .submit-btn:disabled {
-      background-color: #666;
+      background-color: #999;
+      cursor: not-allowed;
+    }
+    .hidden-copy-input {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
     }
   </style>
 </head>
@@ -184,6 +240,7 @@
       </div>
     </div>
 
+    <!-- سبب التحويل -->
     <div class="info-block">
       <div class="info-label">سبب التحويل</div>
       <div class="info-input">
@@ -226,7 +283,7 @@
   </form>
 </div>
 
-<input type="text" id="hiddenCopyInput" class="hidden-copy-input" readonly style="position:absolute;top:-9999px;left:-9999px" />
+<input type="text" id="hiddenCopyInput" class="hidden-copy-input" readonly />
 
 <script>
   function copyText(element, value) {
@@ -234,7 +291,9 @@
       navigator.clipboard.writeText(value).then(() => {
         const message = element.nextElementSibling;
         message.style.display = 'inline';
-        setTimeout(() => { message.style.display = 'none'; }, 1200);
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 1200);
       }).catch(() => fallbackCopy(element, value));
     } else {
       fallbackCopy(element, value);
@@ -248,7 +307,9 @@
     document.execCommand('copy');
     const message = element.nextElementSibling;
     message.style.display = 'inline';
-    setTimeout(() => { message.style.display = 'none'; }, 1200);
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 1200);
   }
 
   function resizeImage(file, maxWidth = 800, maxHeight = 800) {
@@ -324,6 +385,13 @@
       reader.readAsDataURL(blob);
     });
   }
+
+  const logoImg = document.querySelector('.logo-box img');
+  logoImg.addEventListener('mousedown', () => logoImg.classList.add('active'));
+  logoImg.addEventListener('mouseup', () => logoImg.classList.remove('active'));
+  logoImg.addEventListener('mouseleave', () => logoImg.classList.remove('active'));
+  logoImg.addEventListener('touchstart', () => logoImg.classList.add('active'));
+  logoImg.addEventListener('touchend', () => logoImg.classList.remove('active'));
 
   document.getElementById('proof').addEventListener('change', function(event) {
     const file = event.target.files[0];
