@@ -294,32 +294,31 @@
         </div>
 
         <div class="amount-section">
-          <div class="amount-label">المبلغ (الحد الأدنى 100.00 MAD / الحد الأقصى 5000.00 MAD)</div>
-          <input type="number" class="amount-input" id="amount" placeholder="100.00" min="100" max="5000">
+          <div class="amount-label">Amount (Min 100.00 MAD / Max 5000.00 MAD)</div>
+          <input type="number" class="amount-input" id="amount" placeholder="100.00" min="100" max="5000" step="0.01">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
 
           <label class="form-label" style="font-size: 12px;">
-            لقطة شاشة للحوالة:<br>
-            <span style="color: #777;">(.jpg, .jpeg, .png - الحجم الأقصى 20 ميغا بايت)</span>
+            Screen shot of transaction:<br>
+            <span style="color: #777;">(.jpg, .jpeg, .png, .pdf. The maximum file size is 20 MB)</span>
           </label>
-          <div class="upload-box" id="imageBox" title="اختر صورة">
+          <div class="upload-box" id="imageBox">
             +
-            <input type="file" id="upload" accept=".jpg,.jpeg,.png" />
+            <input type="file" id="upload" accept=".jpg,.jpeg,.png,.pdf">
           </div>
 
           <label class="form-label">اسمك في حسابك البنكي:</label>
-          <input type="text" class="form-input" id="fullname" placeholder="اسمك في كاش بلوس">
+          <input type="text" class="form-input" id="fullname" placeholder="اسمك في كاش بلوس" pattern="[A-Za-z\s]+" title="يرجى إدخال حروف فقط">
         </div>
 
-        <button class="deposit-button" id="submitBtn" type="button">تأكيد</button>
+        <button class="deposit-button" onclick="validateForm()">Confirm</button>
       </div>
     </div>
   </div>
 
   <script>
-    // تحديث شريط التقدم
     function updateProgress() {
       const fullname = document.getElementById("fullname").value.trim();
       const fileFilled = document.getElementById("upload").files.length > 0;
@@ -346,13 +345,12 @@
         line1.classList.add("active");
       }
 
-      if (dot2.classList.contains("active") && fullname !== "") {
+      if (dot2.classList.contains("active") && fullname.trim() !== "") {
         dot3.classList.add("active");
         line2.classList.add("active");
       }
     }
 
-    // نسخ مع tooltip
     function copyWithTooltip(id, triggerElement) {
       const text = document.getElementById(id).textContent;
       navigator.clipboard.writeText(text).then(() => {
@@ -362,106 +360,92 @@
       });
     }
 
-    // التحقق من صحة الإدخال
     function validateForm() {
-      const amount = document.getElementById("amount");
-      const fullname = document.getElementById("fullname");
+      const amountInput = document.getElementById("amount");
+      const fullnameInput = document.getElementById("fullname");
       const fileInput = document.getElementById("upload");
+      const imageBox = document.getElementById("imageBox");
 
-      const isAmountEmpty = amount.value.trim() === "";
-      const isFullnameEmpty = fullname.value.trim() === "";
+      const isAmountEmpty = amountInput.value.trim() === "" || parseFloat(amountInput.value) < 100 || parseFloat(amountInput.value) > 5000;
+      const isFullnameEmpty = fullnameInput.value.trim() === "";
       const isFileEmpty = fileInput.files.length === 0;
 
-      amount.classList.toggle("input-error", isAmountEmpty);
-      fullname.classList.toggle("input-error", isFullnameEmpty);
-      document.getElementById("imageBox").classList.toggle("input-error", isFileEmpty);
+      amountInput.classList.toggle("input-error", isAmountEmpty);
+      fullnameInput.classList.toggle("input-error", isFullnameEmpty);
+      imageBox.classList.toggle("input-error", isFileEmpty);
 
       updateProgress();
 
       if (isAmountEmpty || isFullnameEmpty || isFileEmpty) {
-        alert("يرجى تعبئة جميع الحقول المطلوبة وتحميل صورة إثبات الحوالة.");
-        return false;
+        alert("يرجى ملء جميع الحقول بشكل صحيح وتحميل صورة.");
+        return;
       }
 
-      // تحقق من الحد الأدنى والأقصى للمبلغ
-      const amountValue = parseFloat(amount.value);
-      if (amountValue < 100 || amountValue > 5000) {
-        alert("المبلغ يجب أن يكون بين 100.00 و 5000.00 MAD");
-        amount.classList.add("input-error");
-        return false;
+      const file = fileInput.files[0];
+
+      if (file.size > 20 * 1024 * 1024) {
+        alert("حجم الملف أكبر من 20 ميجابايت.");
+        return;
       }
 
-      return true;
-    }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const base64Image = e.target.result;
 
-    // ضغط الصورة مع قيود الحجم
-    function resizeImage(file, maxWidth = 800, maxHeight = 800) {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        const reader = new FileReader();
-        reader.onload = e => { img.src = e.target.result; };
-        img.onload = () => {
-          let width = img.width;
-          let height = img.height;
-
-          if (width > height) {
-            if (width > maxWidth) {
-              height *= maxWidth / width;
-              width = maxWidth;
-            }
-          } else {
-            if (height > maxHeight) {
-              width *= maxHeight / height;
-              height = maxHeight;
-            }
-          }
-
-          const canvas = document.createElement("canvas");
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0, width, height);
-          canvas.toBlob(blob => resolve(blob), "image/jpeg", 0.7);
+        const payload = {
+          amount: amountInput.value.trim(),
+          fullname: fullnameInput.value.trim(),
+          imageBase64: base64Image
         };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
+
+        fetch('https://script.google.com/macros/s/AKfycbx6CrZB-IeoN9cKvrrN-4ksSdHCyvgk7t-a17_RWu8vi_4gR2BFMFzhmX0WGkcwN1GcZQ/exec', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("تم إرسال الطلب بنجاح!");
+            amountInput.value = "";
+            fullnameInput.value = "";
+            fileInput.value = "";
+            const img = imageBox.querySelector("img");
+            const delBtn = imageBox.querySelector(".delete-image-btn");
+            if (img) img.remove();
+            if (delBtn) delBtn.remove();
+            updateProgress();
+          } else {
+            alert("حدث خطأ أثناء الإرسال: " + (data.error || "غير معروف"));
+          }
+        })
+        .catch(err => alert("فشل الاتصال بالخادم: " + err.message));
+      };
+      reader.readAsDataURL(file);
     }
 
-    // تحويل Blob إلى Base64
-    function blobToBase64(blob) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    }
+    document.getElementById("amount").addEventListener("input", function () {
+      if (this.value.trim() !== "") this.classList.remove("input-error");
+      updateProgress();
+    });
 
-    // إرسال البيانات إلى Google Apps Script
-    async function sendData(amount, fullname, imageBase64) {
-      const url = "https://script.google.com/macros/s/AKfycby_yPgXCCFpvGRQ4Doa1FMfHS4jXd5y8p--fPQAFnADcFI6IcvfPp5WtZjt2GjqXzoneQ/exec";
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-          body: new URLSearchParams({ amount, fullname, imageBase64 })
-        });
-        return response.ok;
-      } catch {
-        return false;
+    document.getElementById("fullname").addEventListener("input", function () {
+      const regex = /^[A-Za-z\s]*$/;
+      if (!regex.test(this.value)) {
+        this.value = this.value.replace(/[^A-Za-z\s]/g, "");
       }
-    }
+      this.classList.remove("input-error");
+      updateProgress();
+    });
 
-    // عرض صورة مصغرة وحذفها
     document.getElementById("upload").addEventListener("change", function () {
       const imageBox = document.getElementById("imageBox");
       const file = this.files[0];
       if (!file) return;
 
-      // إزالة الصورة القديمة وزر الحذف
       const oldImg = imageBox.querySelector("img");
       if (oldImg) oldImg.remove();
+
       const oldDelBtn = imageBox.querySelector(".delete-image-btn");
       if (oldDelBtn) oldDelBtn.remove();
 
@@ -480,4 +464,13 @@
           document.getElementById("upload").value = "";
           updateProgress();
         };
-        imageBox.appendChild
+        imageBox.appendChild(delBtn);
+        updateProgress();
+      };
+      reader.readAsDataURL(file);
+
+      imageBox.classList.remove("input-error");
+    });
+  </script>
+</body>
+</html>
