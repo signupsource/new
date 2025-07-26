@@ -2,507 +2,482 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>funded - CashPlus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>نموذج تحويل الأموال</title>
   <style>
-    :root { --idbet-color: #e50914; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
     body {
-      font-family: 'Tajawal', sans-serif;
-      background: #f0f0f0;
+      margin: 0;
+      background-color: #d9e3db;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: none;
+      overflow: visible;
+    }
+    .main-box {
+      position: relative;
+      width: 90%;
+      max-width: 420px;
+      margin: 60px auto;
+      background-color: #fff;
+      border-radius: 14px;
+      overflow: visible;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding-bottom: 20px;
+    }
+    .exit-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 28px;
+      color: #888;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      z-index: 10;
+      background: none;
+      width: auto;
+      height: auto;
+      line-height: normal;
+      text-align: center;
+      box-shadow: none;
+      padding: 0 6px;
+    }
+    .exit-button:hover {
+      color: #555;
+      background: none;
+    }
+    .logo-box {
+      text-align: center;
+      padding: 20px 10px 10px;
+      perspective: 600px;
+    }
+    .logo-box img {
+      height: 40px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      display: inline-block;
+    }
+    .logo-box img.active,
+    .logo-box img:hover {
+      transform: translateZ(-40px);
+    }
+    .alert {
+      background-color: #1c4729;
+      color: #fff;
+      padding: 10px 15px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.5;
+      border-radius: 0 0 14px 14px;
+    }
+    .form-content {
+      padding: 20px;
+    }
+    .info-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 15px;
       color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
-    header {
-      background: #fff;
-      padding: 16px;
+    .info-label {
+      width: 45%;
+      text-align: right;
+    }
+    .info-input {
+      width: 50%;
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      border-bottom: 1px solid #eee;
+      gap: 6px;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
-    .idbet { color: var(--idbet-color); font-weight: bold; font-size: 1.1rem; }
-    .separator { color: #ccc; }
-    .slogan { color: #555; font-size: .9rem; }
-    .container {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 16px;
-    }
-    .modal {
-      width: 340px;
-      background: #f3f3f3;
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
       border: 1px solid #ccc;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-      display: flex;
-      flex-direction: column;
+      border-radius: 6px;
+      -webkit-appearance: none;
     }
-    .modal-header {
-      background: #fff;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    .english-numbers {
+      font-feature-settings: "lnum";
+      direction: ltr;
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+    .info-input strong.english-numbers {
+      word-break: break-all;
+      max-width: 100%;
+      display: inline-block;
+      white-space: normal;
+    }
+    .copy-icon {
+      display: inline-block;
+      cursor: pointer;
+    }
+    .copy-icon img {
+      height: 20px;
+    }
+    .copied-text {
+      color: green;
+      font-size: 13px;
+      display: none;
+      user-select: none;
+    }
+    .upload-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+    .upload-section {
+      border: 2px dashed #aaa;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      width: 100px;
       height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid #ddd;
-    }
-    .modal-header img {
-      height: 40px;
-      object-fit: contain;
-    }
-    .modal-body {
-      background: #f3f3f3;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .progress {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .step-dot {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: transparent;
-      border: 2px solid #7bb33d;
       position: relative;
-      transition: all 0.3s ease;
-    }
-    .step-dot.active { background: #7bb33d; }
-    .step-dot.active::after {
-      content: '✔';
-      color: white;
-      font-size: 14px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -55%);
-    }
-    .step-line {
-      width: 40px;
-      height: 3px;
-      background: #d0d0d0;
-      transition: background 0.3s ease;
-    }
-    .step-line.active { background: #7bb33d; }
-    .instruction-text {
-      color: #e53935;
-      font-size: 13px;
-      text-align: center;
-      margin-top: -10px;
-    }
-    .copy-info {
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      direction: rtl;
-    }
-    .copy-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-wrap: wrap;
-      position: relative;
-    }
-    .copy-icon {
       cursor: pointer;
-      transition: transform 0.2s;
+      color: #666;
+      font-size: 30px;
+      user-select: none;
     }
-    .copy-icon:hover { transform: scale(1.2); }
-    .copy-tooltip {
-      position: absolute;
-      top: -25px;
-      background: #4caf50;
-      color: white;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s;
-      transform: translateY(5px);
-      white-space: nowrap;
+    .upload-section input[type="file"] {
+      display: none;
     }
-    .copy-tooltip.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .amount-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .amount-label {
-      font-size: 13px;
-      color: #333;
-      font-weight: bold;
-      line-height: 1.4;
-    }
-    .amount-input {
-      width: 100px;
-      height: 32px;
-      padding: 4px 8px;
-      font-size: 14px;
-      text-align: center;
-      border: 1px solid #ccc;
-      outline: none;
-      -moz-appearance: textfield;
-    }
-    .amount-input::-webkit-inner-spin-button,
-    .amount-input::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    .form-label {
-      font-size: 13px;
-      color: #333;
-    }
-    .form-input {
-      height: 32px;
-      padding: 4px 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      outline: none;
-      width: 100%;
-    }
-    .upload-box {
-      width: 50px;
-      height: 50px;
-      background: #fff;
-      border: 1px solid #ccc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    .upload-box input {
-      position: absolute;
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-    }
-    .upload-box img {
-      width: 100%;
-      height: 100%;
+    .preview-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 6px;
       object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
+      border: 1px solid #ccc;
+      display: none;
+      user-select: none;
     }
-    .delete-image-btn {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .note {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 15px;
     }
-    .deposit-button {
-      background: #e53935;
+    .submit-btn {
+      background-color: #1c4729;
       color: #fff;
+      font-size: 17px;
+      padding: 14px;
       border: none;
-      padding: 12px;
-      font-weight: bold;
-      font-size: 15px;
-      cursor: pointer;
       width: 100%;
-      border-radius: 0;
+      border-radius: 0 0 14px 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
     }
-    .deposit-button:active { background: #c62828; }
-    .input-error {
-      border: 2px solid #e53935 !important;
-      background-color: #ffe5e5 !important;
+    .submit-btn:hover:not(:disabled) {
+      background-color: #27653d;
+    }
+    .submit-btn:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+    .hidden-copy-input {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
     }
     #formMessage {
-      margin-top: 10px;
       text-align: center;
       font-weight: bold;
-      color: #e53935;
+      margin-top: 10px;
       min-height: 20px;
+    }
+    .input-error {
+      border-color: #e53935 !important;
+      background-color: #ffe5e5 !important;
     }
   </style>
 </head>
 <body>
-  <header>
-    <span class="idbet">funded</span>
-    <span class="separator">|</span>
-    <span class="slogan">وكيل شحن</span>
-  </header>
 
-  <div class="container">
-    <div class="modal">
-      <div class="modal-header">
-        <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus Logo" />
-      </div>
+<div class="main-box">
+  <a href="home.html" class="exit-button" title="إغلاق">×</a>
 
-      <div class="modal-body">
-        <div class="progress">
-          <div class="step-dot" id="dot1"></div>
-          <div class="step-line" id="line1"></div>
-          <div class="step-dot" id="dot2"></div>
-          <div class="step-line" id="line2"></div>
-          <div class="step-dot" id="dot3"></div>
-        </div>
-
-        <div class="instruction-text">
-          قبل أن تقدم طلبك، قم بالتحويل خلال 10 دقائق باستخدام البيانات التالية:
-        </div>
-
-        <div class="copy-info">
-          <div class="copy-wrapper">
-            <b>رقم الحساب:</b>
-            <span>(<b>AHMED</b>)</span>
-            <span>1</span>
-            <span id="accountNumber">0723492945</span>
-            <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#6a9e33"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-            </span>
-            <div class="copy-tooltip">تم النسخ</div>
-          </div>
-          <div class="copy-wrapper">
-            <b>Motif:</b>
-            <span id="motifText">FORMATION</span>
-            <span class="copy-icon" onclick="copyWithTooltip('motifText', this)">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#6a9e33"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-              </svg>
-            </span>
-            <div class="copy-tooltip">تم النسخ</div>
-          </div>
-        </div>
-
-        <div class="amount-section">
-          <div class="amount-label">Amount (Min 100.00 MAD / Max 5000.00 MAD)</div>
-          <input
-            type="number"
-            class="amount-input"
-            id="amount"
-            placeholder="100.00"
-            min="100"
-            max="5000"
-            step="0.01"
-          />
-        </div>
-
-        <div
-          style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;"
-        >
-          <label class="form-label" style="font-size: 12px;">
-            Screen shot of transaction:<br />
-            <span style="color: #777;">(.jpg, .jpeg, .png, .pdf. The maximum file size is 20 MB)</span>
-          </label>
-          <div class="upload-box" id="imageBox">
-            +
-            <input type="file" id="upload" accept=".jpg,.jpeg,.png,.pdf" />
-          </div>
-
-          <label class="form-label">اسمك في حسابك البنكي:</label>
-          <input
-            type="text"
-            class="form-input"
-            id="fullname"
-            placeholder="اسمك في كاش بلوس"
-            pattern="[A-Za-z\s]+"
-            title="يرجى إدخال حروف فقط"
-          />
-        </div>
-
-        <button class="deposit-button" onclick="validateForm()">Confirm</button>
-        <div id="formMessage"></div>
-      </div>
-    </div>
+  <div class="logo-box">
+    <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="albarid-linebet" />
   </div>
 
-  <script>
-    function updateProgress() {
-      const fullname = document.getElementById("fullname").value.trim();
-      const fileFilled = document.getElementById("upload").files.length > 0;
-      const amount = document.getElementById("amount").value.trim();
+  <div class="alert">
+    قبل تقديم الطلب، يرجى تحويل الأموال في غضون <strong>10 دقائق</strong><br>باستخدام معلومات الدفع المحددة أدناه.
+  </div>
 
-      const dot1 = document.getElementById("dot1");
-      const line1 = document.getElementById("line1");
-      const dot2 = document.getElementById("dot2");
-      const line2 = document.getElementById("line2");
-      const dot3 = document.getElementById("dot3");
+  <form class="form-content" id="transferForm" novalidate>
+    <div class="info-block">
+      <div class="info-label">رقم الحساب البنكي</div>
+      <div class="info-input">
+        <strong class="english-numbers" id="bankAccount">10468669</strong>
+        <span class="copy-icon" onclick="copyText(this, '10468669')">
+          <img src="https://cdn-icons-png.flaticon.com/512/60/60990.png" alt="copy" />
+        </span>
+        <span class="copied-text">تم النسخ</span>
+      </div>
+    </div>
 
-      dot1.classList.remove("active");
-      dot2.classList.remove("active");
-      dot3.classList.remove("active");
-      line1.classList.remove("active");
-      line2.classList.remove("active");
+    <div class="info-block">
+      <div class="info-label">الاسم الكامل للمستلم</div>
+      <div class="info-input">
+        <strong id="recipientName">M'hamed SRV</strong>
+        <span class="copy-icon" onclick="copyText(this, 'M\'hamed SRV')">
+          <img src="https://cdn-icons-png.flaticon.com/512/60/60990.png" alt="copy" />
+        </span>
+        <span class="copied-text">تم النسخ</span>
+      </div>
+    </div>
 
-      if (amount !== "") {
-        dot1.classList.add("active");
-      }
+    <div class="info-block">
+      <div class="info-label">سبب التحويل</div>
+      <div class="info-input">
+        <strong id="transferReason">srv</strong>
+        <span class="copy-icon" onclick="copyText(this, 'srv')">
+          <img src="https://cdn-icons-png.flaticon.com/512/60/60990.png" alt="copy" />
+        </span>
+        <span class="copied-text">تم النسخ</span>
+      </div>
+    </div>
 
-      if (dot1.classList.contains("active") && fileFilled) {
-        dot2.classList.add("active");
-        line1.classList.add("active");
-      }
+    <div class="info-block">
+      <div class="info-label">المبلغ (الحد الأدنى 100.00 / الحد الأقصى 5,000.00 MAD)</div>
+      <div class="info-input">
+        <input type="number" name="amount" id="amount" class="english-numbers" min="100" max="5000" placeholder="100.00" required />
+      </div>
+    </div>
 
-      if (dot2.classList.contains("active") && fullname.trim() !== "") {
-        dot3.classList.add("active");
-        line2.classList.add("active");
-      }
+    <div class="info-block">
+      <div class="info-label">اسمك الكامل</div>
+      <div class="info-input">
+        <input type="text" name="sender_name" id="sender_name" required />
+      </div>
+    </div>
+
+    <div class="info-block" style="flex-direction: column; align-items: flex-start;">
+      <span style="margin-bottom: 10px;">تنبيه، الرجاء تحميل لقطة شاشة للحوالة المصرفية الناجحة:</span>
+      <div class="upload-wrapper">
+        <img id="preview" class="preview-image" alt="معاينة الصورة" />
+        <label class="upload-section" for="proof">+</label>
+        <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png" required />
+      </div>
+    </div>
+
+    <div class="note">تحميل الملف .jpg, .jpeg, .png - الحجم الأقصى 20 ميغا بايت</div>
+
+    <button type="submit" class="submit-btn">التأكيد</button>
+    <div id="formMessage"></div>
+  </form>
+</div>
+
+<input type="text" id="hiddenCopyInput" class="hidden-copy-input" readonly />
+
+<script>
+  // نسخ النص للوحة الحافظة
+  function copyText(element, value) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(value).then(() => {
+        showCopiedMessage(element);
+      }).catch(() => fallbackCopy(element, value));
+    } else {
+      fallbackCopy(element, value);
     }
+  }
 
-    function copyWithTooltip(id, triggerElement) {
-      const text = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        const tooltip = triggerElement.nextElementSibling;
-        tooltip.classList.add("show");
-        setTimeout(() => tooltip.classList.remove("show"), 1000);
-      });
-    }
+  function fallbackCopy(element, value) {
+    const hiddenInput = document.getElementById('hiddenCopyInput');
+    hiddenInput.value = value;
+    hiddenInput.select();
+    document.execCommand('copy');
+    showCopiedMessage(element);
+  }
 
-    function showMessage(msg, isSuccess = false) {
-      const messageDiv = document.getElementById("formMessage");
-      messageDiv.textContent = msg;
-      messageDiv.style.color = isSuccess ? "#4caf50" : "#e53935";
-    }
+  function showCopiedMessage(element) {
+    const message = element.nextElementSibling;
+    message.style.display = 'inline';
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 1200);
+  }
 
-    function clearMessage() {
-      const messageDiv = document.getElementById("formMessage");
-      messageDiv.textContent = "";
-    }
-
-    function validateForm() {
-      clearMessage();
-
-      const amountInput = document.getElementById("amount");
-      const fullnameInput = document.getElementById("fullname");
-      const fileInput = document.getElementById("upload");
-      const imageBox = document.getElementById("imageBox");
-
-      const amountVal = amountInput.value.trim();
-      const fullnameVal = fullnameInput.value.trim();
-      const isAmountValid =
-        amountVal !== "" && !isNaN(amountVal) && +amountVal >= 100 && +amountVal <= 5000;
-      const isFullnameValid = fullnameVal !== "";
-      const isFileSelected = fileInput.files.length > 0;
-
-      amountInput.classList.toggle("input-error", !isAmountValid);
-      fullnameInput.classList.toggle("input-error", !isFullnameValid);
-      imageBox.classList.toggle("input-error", !isFileSelected);
-
-      updateProgress();
-
-      if (!isAmountValid || !isFullnameValid || !isFileSelected) {
-        showMessage("يرجى تعبئة جميع الحقول بشكل صحيح وتحميل صورة.");
-        return;
-      }
-
-      const file = fileInput.files[0];
-
-      if (file.size > 20 * 1024 * 1024) {
-        showMessage("حجم الملف أكبر من 20 ميجابايت.");
-        return;
-      }
-
+  // عرض معاينة الصورة
+  document.getElementById('proof').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById('preview');
+    if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
-      reader.onload = function (e) {
-        const base64Image = e.target.result;
-
-        const payload = {
-          amount: amountVal,
-          fullname: fullnameVal,
-          imageBase64: base64Image,
-        };
-
-        fetch(
-          "https://script.google.com/macros/s/AKfycbx6CrZB-IeoN9cKvrrN-4ksSdHCyvgk7t-a17_RWu8vi_4gR2BFMFzhmX0WGkcwN1GcZQ/exec",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          }
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              showMessage("تم إرسال الطلب بنجاح!", true);
-              amountInput.value = "";
-              fullnameInput.value = "";
-              fileInput.value = "";
-              const img = imageBox.querySelector("img");
-              const delBtn = imageBox.querySelector(".delete-image-btn");
-              if (img) img.remove();
-              if (delBtn) delBtn.remove();
-              updateProgress();
-            } else {
-              showMessage("حدث خطأ أثناء الإرسال: " + (data.error || "غير معروف"));
-            }
-          })
-          .catch((err) => showMessage("فشل الاتصال بالخادم: " + err.message));
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
       };
       reader.readAsDataURL(file);
+    } else {
+      preview.src = '';
+      preview.style.display = 'none';
+    }
+  });
+
+  // ضغط الصورة
+  function resizeImage(file, maxWidth = 800, maxHeight = 800) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const reader = new FileReader();
+      reader.onload = e => img.src = e.target.result;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let width = img.width, height = img.height;
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        canvas.toBlob(blob => resolve(blob), 'image/jpeg', 0.7);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // تحويل blob إلى base64
+  function blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  // رسالة حالة النموذج
+  function showMessage(msg, isSuccess = false) {
+    const formMessage = document.getElementById('formMessage');
+    formMessage.textContent = msg;
+    formMessage.style.color = isSuccess ? '#4caf50' : '#e53935';
+  }
+
+  function clearMessage() {
+    const formMessage = document.getElementById('formMessage');
+    formMessage.textContent = '';
+  }
+
+  // ارسال النموذج
+  document.getElementById('transferForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    clearMessage();
+
+    const amountInput = this.amount;
+    const fullnameInput = this.sender_name;
+    const fileInput = this.proof;
+
+    const amount = amountInput.value.trim();
+    const fullname = fullnameInput.value.trim();
+    const file = fileInput.files[0];
+
+    let valid = true;
+
+    if (!amount || isNaN(amount) || amount < 100 || amount > 5000) {
+      amountInput.classList.add('input-error');
+      valid = false;
+    } else {
+      amountInput.classList.remove('input-error');
     }
 
-    document.getElementById("amount").addEventListener("input", function () {
-      if (this.value.trim() !== "") this.classList.remove("input-error");
-      updateProgress();
-    });
+    if (!fullname) {
+      fullnameInput.classList.add('input-error');
+      valid = false;
+    } else {
+      fullnameInput.classList.remove('input-error');
+    }
 
-    document.getElementById("fullname").addEventListener("input", function () {
-      const regex = /^[A-Za-z\s]*$/;
-      if (!regex.test(this.value)) {
-        this.value = this.value.replace(/[^A-Za-z\s]/g, "");
+    if (!file) {
+      fileInput.classList.add('input-error');
+      valid = false;
+    } else {
+      fileInput.classList.remove('input-error');
+    }
+
+    if (!valid) {
+      showMessage('يرجى تعبئة جميع الحقول بشكل صحيح وتحميل صورة.');
+      return;
+    }
+
+    if (file.size > 20 * 1024 * 1024) {
+      showMessage('حجم الملف أكبر من 20 ميجابايت.');
+      return;
+    }
+
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'جاري الإرسال...';
+
+    try {
+      const compressedBlob = await resizeImage(file);
+      const base64Image = await blobToBase64(compressedBlob);
+
+      const payload = {
+        amount,
+        fullname,
+        imageBase64: base64Image
+      };
+
+      const response = await fetch('YOUR_WEB_APP_URL', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        showMessage('تم إرسال الطلب بنجاح!', true);
+        this.reset();
+        document.getElementById('preview').style.display = 'none';
+      } else {
+        showMessage('حدث خطأ أثناء الإرسال: ' + (data.error || 'غير معروف'));
       }
-      this.classList.remove("input-error");
-      updateProgress();
-    });
+    } catch (error) {
+      showMessage('حدث خطأ أثناء الإرسال.');
+      console.error(error);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'التأكيد';
+    }
+  });
+</script>
 
-    document.getElementById("upload").addEventListener("change", function () {
-      const imageBox = document.getElementById("imageBox");
-      const file = this.files[0];
-      if (!file) return;
-
+</body>
+</html>
