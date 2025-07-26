@@ -238,6 +238,13 @@
       border: 2px solid #e53935 !important;
       background-color: #ffe5e5 !important;
     }
+    #formMessage {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: #e53935;
+      min-height: 20px;
+    }
   </style>
 </head>
 <body>
@@ -250,7 +257,7 @@
   <div class="container">
     <div class="modal">
       <div class="modal-header">
-        <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus Logo">
+        <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus Logo" />
       </div>
 
       <div class="modal-body">
@@ -273,9 +280,19 @@
             <span>1</span>
             <span id="accountNumber">0723492945</span>
             <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a9e33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#6a9e33"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
               </svg>
             </span>
             <div class="copy-tooltip">تم النسخ</div>
@@ -284,9 +301,19 @@
             <b>Motif:</b>
             <span id="motifText">FORMATION</span>
             <span class="copy-icon" onclick="copyWithTooltip('motifText', this)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a9e33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#6a9e33"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
               </svg>
             </span>
             <div class="copy-tooltip">تم النسخ</div>
@@ -295,25 +322,42 @@
 
         <div class="amount-section">
           <div class="amount-label">Amount (Min 100.00 MAD / Max 5000.00 MAD)</div>
-          <input type="number" class="amount-input" id="amount" placeholder="100.00" min="100" max="5000" step="0.01">
+          <input
+            type="number"
+            class="amount-input"
+            id="amount"
+            placeholder="100.00"
+            min="100"
+            max="5000"
+            step="0.01"
+          />
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
-
+        <div
+          style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;"
+        >
           <label class="form-label" style="font-size: 12px;">
-            Screen shot of transaction:<br>
+            Screen shot of transaction:<br />
             <span style="color: #777;">(.jpg, .jpeg, .png, .pdf. The maximum file size is 20 MB)</span>
           </label>
           <div class="upload-box" id="imageBox">
             +
-            <input type="file" id="upload" accept=".jpg,.jpeg,.png,.pdf">
+            <input type="file" id="upload" accept=".jpg,.jpeg,.png,.pdf" />
           </div>
 
           <label class="form-label">اسمك في حسابك البنكي:</label>
-          <input type="text" class="form-input" id="fullname" placeholder="اسمك في كاش بلوس" pattern="[A-Za-z\s]+" title="يرجى إدخال حروف فقط">
+          <input
+            type="text"
+            class="form-input"
+            id="fullname"
+            placeholder="اسمك في كاش بلوس"
+            pattern="[A-Za-z\s]+"
+            title="يرجى إدخال حروف فقط"
+          />
         </div>
 
         <button class="deposit-button" onclick="validateForm()">Confirm</button>
+        <div id="formMessage"></div>
       </div>
     </div>
   </div>
@@ -360,66 +404,85 @@
       });
     }
 
+    function showMessage(msg, isSuccess = false) {
+      const messageDiv = document.getElementById("formMessage");
+      messageDiv.textContent = msg;
+      messageDiv.style.color = isSuccess ? "#4caf50" : "#e53935";
+    }
+
+    function clearMessage() {
+      const messageDiv = document.getElementById("formMessage");
+      messageDiv.textContent = "";
+    }
+
     function validateForm() {
+      clearMessage();
+
       const amountInput = document.getElementById("amount");
       const fullnameInput = document.getElementById("fullname");
       const fileInput = document.getElementById("upload");
       const imageBox = document.getElementById("imageBox");
 
-      const isAmountEmpty = amountInput.value.trim() === "" || parseFloat(amountInput.value) < 100 || parseFloat(amountInput.value) > 5000;
-      const isFullnameEmpty = fullnameInput.value.trim() === "";
-      const isFileEmpty = fileInput.files.length === 0;
+      const amountVal = amountInput.value.trim();
+      const fullnameVal = fullnameInput.value.trim();
+      const isAmountValid =
+        amountVal !== "" && !isNaN(amountVal) && +amountVal >= 100 && +amountVal <= 5000;
+      const isFullnameValid = fullnameVal !== "";
+      const isFileSelected = fileInput.files.length > 0;
 
-      amountInput.classList.toggle("input-error", isAmountEmpty);
-      fullnameInput.classList.toggle("input-error", isFullnameEmpty);
-      imageBox.classList.toggle("input-error", isFileEmpty);
+      amountInput.classList.toggle("input-error", !isAmountValid);
+      fullnameInput.classList.toggle("input-error", !isFullnameValid);
+      imageBox.classList.toggle("input-error", !isFileSelected);
 
       updateProgress();
 
-      if (isAmountEmpty || isFullnameEmpty || isFileEmpty) {
-        alert("يرجى ملء جميع الحقول بشكل صحيح وتحميل صورة.");
+      if (!isAmountValid || !isFullnameValid || !isFileSelected) {
+        showMessage("يرجى تعبئة جميع الحقول بشكل صحيح وتحميل صورة.");
         return;
       }
 
       const file = fileInput.files[0];
 
       if (file.size > 20 * 1024 * 1024) {
-        alert("حجم الملف أكبر من 20 ميجابايت.");
+        showMessage("حجم الملف أكبر من 20 ميجابايت.");
         return;
       }
 
       const reader = new FileReader();
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         const base64Image = e.target.result;
 
         const payload = {
-          amount: amountInput.value.trim(),
-          fullname: fullnameInput.value.trim(),
-          imageBase64: base64Image
+          amount: amountVal,
+          fullname: fullnameVal,
+          imageBase64: base64Image,
         };
 
-        fetch('https://script.google.com/macros/s/AKfycbx6CrZB-IeoN9cKvrrN-4ksSdHCyvgk7t-a17_RWu8vi_4gR2BFMFzhmX0WGkcwN1GcZQ/exec', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            alert("تم إرسال الطلب بنجاح!");
-            amountInput.value = "";
-            fullnameInput.value = "";
-            fileInput.value = "";
-            const img = imageBox.querySelector("img");
-            const delBtn = imageBox.querySelector(".delete-image-btn");
-            if (img) img.remove();
-            if (delBtn) delBtn.remove();
-            updateProgress();
-          } else {
-            alert("حدث خطأ أثناء الإرسال: " + (data.error || "غير معروف"));
+        fetch(
+          "https://script.google.com/macros/s/AKfycbx6CrZB-IeoN9cKvrrN-4ksSdHCyvgk7t-a17_RWu8vi_4gR2BFMFzhmX0WGkcwN1GcZQ/exec",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
           }
-        })
-        .catch(err => alert("فشل الاتصال بالخادم: " + err.message));
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              showMessage("تم إرسال الطلب بنجاح!", true);
+              amountInput.value = "";
+              fullnameInput.value = "";
+              fileInput.value = "";
+              const img = imageBox.querySelector("img");
+              const delBtn = imageBox.querySelector(".delete-image-btn");
+              if (img) img.remove();
+              if (delBtn) delBtn.remove();
+              updateProgress();
+            } else {
+              showMessage("حدث خطأ أثناء الإرسال: " + (data.error || "غير معروف"));
+            }
+          })
+          .catch((err) => showMessage("فشل الاتصال بالخادم: " + err.message));
       };
       reader.readAsDataURL(file);
     }
@@ -443,34 +506,3 @@
       const file = this.files[0];
       if (!file) return;
 
-      const oldImg = imageBox.querySelector("img");
-      if (oldImg) oldImg.remove();
-
-      const oldDelBtn = imageBox.querySelector(".delete-image-btn");
-      if (oldDelBtn) oldDelBtn.remove();
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const img = document.createElement("img");
-        img.src = e.target.result;
-        imageBox.appendChild(img);
-
-        const delBtn = document.createElement("button");
-        delBtn.className = "delete-image-btn";
-        delBtn.innerHTML = "×";
-        delBtn.onclick = function () {
-          img.remove();
-          delBtn.remove();
-          document.getElementById("upload").value = "";
-          updateProgress();
-        };
-        imageBox.appendChild(delBtn);
-        updateProgress();
-      };
-      reader.readAsDataURL(file);
-
-      imageBox.classList.remove("input-error");
-    });
-  </script>
-</body>
-</html>
