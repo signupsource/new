@@ -76,12 +76,7 @@
       border: 2px solid #7bb33d;
       transition: all 0.3s ease;
     }
-    .step-dot.active {
-      background: #7bb33d;
-    }
-    .step-dot.active::after {
-      content: none;
-    }
+    .step-dot.active { background: #7bb33d; }
     .step-line {
       width: 40px;
       height: 3px;
@@ -93,7 +88,7 @@
       color: #e53935;
       font-size: 13px;
       text-align: center;
-      margin-top: -10px;
+      margin: 0;
     }
     .copy-info {
       font-size: 14px;
@@ -109,9 +104,7 @@
       flex-wrap: wrap;
       position: relative;
     }
-    .copy-icon {
-      cursor: pointer;
-    }
+    .copy-icon { cursor: pointer; }
     .copy-tooltip {
       position: absolute;
       top: -25px;
@@ -126,10 +119,7 @@
       transform: translateY(5px);
       white-space: nowrap;
     }
-    .copy-tooltip.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .copy-tooltip.show { opacity: 1; transform: translateY(0); }
     .amount-section {
       display: flex;
       justify-content: space-between;
@@ -155,13 +145,8 @@
       -webkit-appearance: none;
       margin: 0;
     }
-    input[type=number] {
-      -moz-appearance: textfield;
-    }
-    .form-label {
-      font-size: 13px;
-      color: #333;
-    }
+    input[type=number] { -moz-appearance: textfield; }
+    .form-label { font-size: 13px; color: #333; }
     .form-input {
       height: 32px;
       padding: 4px 8px;
@@ -193,9 +178,7 @@
       z-index: 1;
     }
     .upload-box input,
-    .upload-box img {
-      z-index: 2;
-    }
+    .upload-box img { z-index: 2; }
     .upload-box input {
       position: absolute;
       opacity: 0;
@@ -297,17 +280,17 @@
           <div class="step-dot" id="dot3"></div>
         </div>
 
-<div class="instruction-text">  
-قبل أن تقدم طلبك، قم بالتحويل خلال 10 دقائق باستخدام البيانات التالية خارج كاش بلوس cash plus :  
-</div>  
-  
-<div style="text-align:center; margin-top:15px;">  
-  <a href="https://postimg.cc/zLWtyFxg" target="_blank">  
-    <img src="https://i.postimg.cc/Xv1TD2FQ/IMG-20250902-WA0003-1.jpg"   
-         alt="تحذير"   
-         style="max-width:95%; max-height:250px; height:auto; border:1px solid #ddd; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.15);">  
-  </a>  
-</div>
+        <div class="instruction-text">  
+          قبل أن تقدم طلبك، قم بالتحويل خلال 10 دقائق باستخدام البيانات التالية خارج كاش بلوس cash plus :  
+        </div>  
+        <div style="text-align:center;">  
+          <a href="https://postimg.cc/zLWtyFxg" target="_blank">  
+            <img src="https://i.postimg.cc/Xv1TD2FQ/IMG-20250902-WA0003-1.jpg"   
+                 alt="تحذير"   
+                 style="max-width:95%; max-height:250px; height:auto; border:1px solid #ddd; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.15);">  
+          </a>  
+        </div>
+        
         <div class="copy-info">
           <div class="copy-wrapper">
             <b>رقم الحساب:</b>
