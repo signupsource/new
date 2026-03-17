@@ -79,9 +79,6 @@
     .step-dot.active {
       background: #7bb33d;
     }
-    .step-dot.active::after {
-      content: none;
-    }
     .step-line {
       width: 40px;
       height: 3px;
@@ -90,13 +87,22 @@
     }
     .step-line.active { background: #7bb33d; }
     .instruction-text {
-  color: #e53935;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: -10px;
-  line-height: 1.5;
-}
+      color: #e53935;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: -10px;
+      line-height: 1.5;
+    }
+    
+    /* تنسيق الصورة التوضيحية الجديدة */
+    .tutorial-image {
+      width: 100%;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
     .copy-info {
       font-size: 14px;
       display: flex;
@@ -272,10 +278,6 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
     }
-    .input-error {
-      border: 2px solid #e53935 !important;
-      background-color: #ffe5e5 !important;
-    }
   </style>
 </head>
 <body>
@@ -300,9 +302,10 @@
         </div>
 
         <div class="instruction-text">
-        ❗❗ يرجى إدخال المبلغ بدون فاصلة (،)، أي استخدام للفاصلة سيؤدي إلى رفض الطلب فورًا. ❗❗
-  يجب إتمام التحويل خلال 10 دقائق باستخدام البيانات أدناه.
+        ❗❗ ملاحظة هامة: يُرجى تنفيذ عملية التحويل مباشرةً من حساب بريد بنك إلى حساب بنكي آخر، مع اختيار خدمة التحويل الكلاسيكي حصريًا. أي استخدام لطريقة مختلفة قد يؤدي إلى عدم قبول العملية
         </div>
+
+        <img src="https://i.ibb.co/3y3TQYJ8/IMG-4904.jpg" alt="طريقة التحويل" class="tutorial-image">
 
         <div class="copy-info">
           <div class="copy-wrapper">
@@ -331,6 +334,7 @@
             <div class="copy-tooltip">تم النسخ</div>
           </div>
         </div>
+        
         <div class="amount-section">
           <div class="amount-label">Amount (Min 100.00 MAD / Max 5000.00 MAD)</div>
           <input type="number" class="amount-input" id="amount" name="amount" placeholder="100.00" min="100" max="5000" required>
@@ -364,6 +368,7 @@
     </form>
   </div>
 <script>
+  // (نفس السكربت السابق الخاص بك يعمل هنا بدون تغييرات)
   document.getElementById("fullname").addEventListener("input", function () {
     this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
   });
