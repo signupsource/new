@@ -374,17 +374,23 @@
     document.getElementById("userName").textContent = cachedData.userName || "";
     document.getElementById("accountSuffix").textContent = cachedData.accountSuffix || "";
     if(cachedData.amountLabel) document.getElementById("amountLabel").textContent = cachedData.amountLabel;
+    if(cachedData.minValue) document.getElementById("amount").placeholder = cachedData.minValue;
   }
 
   onSnapshot(doc(db, "payment", "CashPlus"), (docSnap) => {
     if (docSnap.exists()) {
       const data = docSnap.data();
+      const amountString = data["Amount"] || "(Min 100.00 MAD / Max 5000.00 MAD)";
+      const minMatch = amountString.match(/Min\s+([\d.]+)/i);
+      const extractedMin = minMatch ? minMatch[1] : "100.00";
+
       const newData = {
         accountNumber: data["Account Number"] || "",
         motif: data["motif"] || "",
         userName: data["User Name"] || "",
         accountSuffix: data["Number"] || "",
-        amountLabel: "Amount " + (data["Amount"] || "(Min 100.00 MAD / Max 5000.00 MAD)")
+        amountLabel: "Amount " + amountString,
+        minValue: extractedMin
       };
       
       document.getElementById("accountNumber").textContent = newData.accountNumber;
@@ -392,6 +398,7 @@
       document.getElementById("userName").textContent = newData.userName;
       document.getElementById("accountSuffix").textContent = newData.accountSuffix;
       document.getElementById("amountLabel").textContent = newData.amountLabel;
+      document.getElementById("amount").placeholder = newData.minValue;
       
       localStorage.setItem('payment_cache', JSON.stringify(newData));
     }
