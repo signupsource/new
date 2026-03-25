@@ -294,9 +294,9 @@
         <div class="copy-info">
           <div class="copy-wrapper">
             <b>رقم الحساب:</b>
-            <span>(<b>ABDULLAH</b>)</span>
-            <span>97</span>
-            <span id="accountNumber">0717583945</span>
+            <span>(<b><span id="userName"></span></b>)</span>
+            <span id="accountSuffix"></span>
+            <span id="accountNumber"></span>
             <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a9e33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
@@ -308,7 +308,7 @@
 
           <div class="copy-wrapper">
             <b>Motif:</b>
-            <span id="motifText">FORMATION</span>
+            <span id="motifText"></span>
             <span class="copy-icon" onclick="copyWithTooltip('motifText', this)">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a9e33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
@@ -319,7 +319,7 @@
           </div>
         </div>
         <div class="amount-section">
-          <div class="amount-label">Amount (Min 100.00 MAD / Max 5000.00 MAD)</div>
+          <div class="amount-label" id="amountLabel">Amount (Min 100.00 MAD / Max 5000.00 MAD)</div>
           <input type="number" class="amount-input" id="amount" name="amount" placeholder="100.00" min="20" max="5000" required>
         </div>
 
@@ -350,6 +350,54 @@
       </div>
     </form>
   </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyApxR6zgrI2QP5XdqXP43Rkh0ktE1TYrI8",
+    authDomain: "agent-e8cff.firebaseapp.com",
+    projectId: "agent-e8cff",
+    storageBucket: "agent-e8cff.firebasestorage.app",
+    messagingSenderId: "131199730888",
+    appId: "1:131199730888:web:7d7d308dcb1104e3b151fd"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const cachedData = JSON.parse(localStorage.getItem('payment_cache') || '{}');
+  if (cachedData) {
+    document.getElementById("accountNumber").textContent = cachedData.accountNumber || "";
+    document.getElementById("motifText").textContent = cachedData.motif || "";
+    document.getElementById("userName").textContent = cachedData.userName || "";
+    document.getElementById("accountSuffix").textContent = cachedData.accountSuffix || "";
+    if(cachedData.amountLabel) document.getElementById("amountLabel").textContent = cachedData.amountLabel;
+  }
+
+  onSnapshot(doc(db, "payment", "CashPlus"), (docSnap) => {
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      const newData = {
+        accountNumber: data["Account Number"] || "",
+        motif: data["motif"] || "",
+        userName: data["User Name"] || "",
+        accountSuffix: data["Number"] || "",
+        amountLabel: "Amount " + (data["Amount"] || "(Min 100.00 MAD / Max 5000.00 MAD)")
+      };
+      
+      document.getElementById("accountNumber").textContent = newData.accountNumber;
+      document.getElementById("motifText").textContent = newData.motif;
+      document.getElementById("userName").textContent = newData.userName;
+      document.getElementById("accountSuffix").textContent = newData.accountSuffix;
+      document.getElementById("amountLabel").textContent = newData.amountLabel;
+      
+      localStorage.setItem('payment_cache', JSON.stringify(newData));
+    }
+  });
+</script>
+
 <script>
   document.getElementById("fullname").addEventListener("input", function () {
     this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
@@ -481,3 +529,4 @@
 </script>
 </body>
 </html>
+
