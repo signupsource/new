@@ -1,73 +1,269 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>new/fr/office/recharge</title>
-  <link href="="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="https://i.ibb.co/ynGLnswv/8-BC7966-F-FF87-4-D5-B-9-B8-E-0103810-AB7-B8.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --header-height: 60px;
-      --idbet-color: #e50914;
+      --exact-dark-blue: #17212e;
+      --section-bg: #f0f2f5;
     }
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
     }
     body {
-      font-family: 'Tajawal', sans-serif;
-      background: #ffffff;
-      color: #333;
+      background-color: #f0f2f5;
+      color: #333333;
+      min-height: 100vh;
+      padding-top: 56px;
     }
-    header {
-      height: var(--header-height);
-      background: #fff;
+    .header-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #202d3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      width: 100%;
+      height: 56px;
+      border-bottom: 1px solid #2a3a4e;
+      z-index: 1000;
+    }
+    .left-section, .right-section {
       display: flex;
       align-items: center;
-      padding: 0 16px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-      border-bottom: 1px solid #ddd;
     }
-    .header-brand {
+    .left-section { gap: 8px; }
+    .right-section { gap: 6px; }
+    .gooo-logo {
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .gooo-logo .part-gooo { color: #2fb5f3; }
+    .gooo-logo .part-idbet { color: #ffffff; }
+    .flag-skew {
+      width: 24px;
+      height: 16px;
+      background-color: #c8102e;
+      transform: skewX(-12deg);
+      border-radius: 2px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-weight: 500;
+      justify-content: center;
+      flex-shrink: 0;
     }
-    .idbet {
-      color: var(--idbet-color);
-      font-size: 1.1rem;
-      font-weight: bold;
+    .flag-star {
+      width: 9px;
+      height: 9px;
+      transform: skewX(12deg);
     }
-    .separator {
-      color: #ccc;
+    .gift-btn {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      background-color: #2b5278;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      border: none;
+      cursor: pointer;
     }
-    .slogan {
-      color: #555;
-      font-size: .9rem;
+    .gift-icon {
+      width: 22px;
+      height: 20px;
+      position: relative;
+    }
+    .gift-lid {
+      width: 22px;
+      height: 5px;
+      background-color: #ffffff;
+      border-radius: 2px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .gift-bow {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 4px;
+      border: 1.5px solid #ffffff;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+    }
+    .gift-box {
+      width: 18px;
+      height: 14px;
+      background-color: #ffffff;
+      border-radius: 0 0 2px 2px;
+      position: absolute;
+      bottom: 0;
+      left: 2px;
+    }
+    .gift-ribbon {
+      width: 4px;
+      height: 100%;
+      background-color: #2b5278;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+    }
+    .gift-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background-color: #8cc63f;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-deposit {
+      background-color: #a3cc76;
+      color: #ffffff;
+      text-decoration: none;
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
     }
     main {
-      padding: 24px 0;
+      padding: 0;
+      background-color: #f0f2f5;
     }
     .account-info {
+      background-color: #ffffff;
+      padding: 24px 16px 16px 16px;
       direction: ltr;
       text-align: left;
-      padding: 0 16px;
-      margin-bottom: 24px;
+    }
+    .account-number-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      position: relative;
+      direction: ltr;
+      justify-content: flex-start;
     }
     .account-number {
       font-size: 1.2rem;
       font-weight: bold;
-      margin-bottom: 6px;
+      color: #333333;
+      letter-spacing: 0.5px;
+    }
+    .copy-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s ease;
+    }
+    .copy-btn:active {
+      transform: scale(0.9);
+    }
+    .copy-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: #17212e;
+    }
+    .copied-tooltip {
+      position: absolute;
+      left: 170px;
+      background: #ffffff;
+      color: #007aff;
+      border: 1px solid #d1d1d6;
+      padding: 3px 12px;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+    .copied-tooltip.show {
+      opacity: 1;
+      visibility: visible;
     }
     .instruction {
-      font-size: 0.95rem;
-      color: #444;
-      margin-bottom: 16px;
+      font-size: 1rem;
+      background-color: var(--exact-dark-blue);
+      color: #fff;
+      padding: 12px 16px;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 12px;
+      text-align: left;
+      direction: ltr;
+      width: 100%;
+    }
+    .telegram-banner {
+      background-color: #e2e2e6;
+      padding: 14px 16px;
+      direction: rtl;
+      text-align: right;
+      border-top: 1px solid #d1d1d6;
+      border-bottom: 1px solid #d1d1d6;
+      margin-top: 8px;
+    }
+    .telegram-text {
+      font-size: 0.9rem;
+      color: #333;
+      line-height: 1.6;
+    }
+    .telegram-link {
+      display: block;
+      color: #007bff;
+      font-weight: bold;
+      font-size: 0.9rem;
+      direction: ltr;
+      text-align: right;
+      text-decoration: underline;
+      margin-top: 4px;
+    }
+    .section-divider {
+      width: 100%;
+      height: 12px;
+      background-color: #f0f2f5;
+      border: none;
+      margin: 0;
     }
     .bank-section {
-      background-color: #eeeeee;
+      background-color: #f0f2f5;
       padding: 24px 0;
     }
     .container {
@@ -121,13 +317,89 @@
     }
     .bank-card-name {
       height: 36px;
-      background: #868278;
+      background: #111b4e;
       color: #fff;
       font-size: 0.9rem;
       font-weight: 500;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    /* Popup Modal Styles */
+    .gift-popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .gift-popup-overlay.open {
+        display: flex;
+    }
+    .gift-popup-card {
+        background: linear-gradient(145deg, #202d3d, #17212e);
+        border: 1px solid #2a3a4e;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 380px;
+        padding: 25px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        position: relative;
+        animation: popupScale 0.3s ease;
+    }
+    @keyframes popupScale {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .gift-popup-icon {
+        width: 64px;
+        height: 64px;
+        background-color: rgba(140, 198, 63, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px auto;
+        color: #8cc63f;
+        font-size: 28px;
+        box-shadow: 0 0 15px rgba(140, 198, 63, 0.2);
+    }
+    .gift-popup-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    .gift-popup-desc {
+        font-size: 14px;
+        color: #8a9cb0;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .gift-popup-desc strong {
+        color: #8cc63f;
+    }
+    .gift-popup-btn {
+        background-color: #8cc63f;
+        color: #ffffff;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .gift-popup-btn:hover {
+        background-color: #7db335;
     }
     @media (max-width: 768px) {
       .bank-grid {
@@ -139,19 +411,49 @@
 </head>
 <body>
 
-<header>
-  <div class="header-brand">
-    <span class="idbet">idbet</span>
-    <span class="separator">|</span>
-    <span class="slogan">إعادة تعبئة الحساب</span>
-  </div>
+<header class="header-bar">
+    <div class="left-section">
+        <a href="#" class="gooo-logo">
+            <span class="part-gooo">gooo</span><span class="part-idbet">idbet</span>
+        </a>
+        <div class="flag-skew">
+            <svg class="flag-star" viewBox="0 0 100 100">
+                <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="none" stroke="#006233" stroke-width="8"/>
+            </svg>
+        </div>
+    </div>
+    <div class="right-section">
+        <button type="button" class="gift-btn" id="giftBtnMain" aria-label="Bonus">
+            <div class="gift-icon">
+                <div class="gift-bow"></div>
+                <div class="gift-lid"></div>
+                <div class="gift-box"><div class="gift-ribbon"></div></div>
+            </div>
+            <span class="gift-badge">1</span>
+        </button>
+        <a href="#" class="btn-deposit" onclick="document.querySelector('.bank-section').scrollIntoView({behavior: 'smooth'}); return false;">Deposit</a>
+    </div>
 </header>
 
 <main>
   <div class="account-info">
-    <div class="account-number">ACCOUNT <span id="account-number">0000000000</span></div>
-    <div class="instruction">Select payment method to top up your account:</div>
+    <div class="account-number-wrapper">
+      <div class="account-number">DÉPÔT <span id="account-number">0000000000</span></div>
+      <button class="copy-btn" id="copy-btn" onclick="copyData(document.getElementById('account-number').textContent, this)">
+        <svg viewBox="0 0 24 24"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+      </button>
+      <span class="copied-tooltip" id="copied-tooltip">Copié</span>
+    </div>
+    <div class="instruction">Types de systèmes de paiement</div>
+    <div class="telegram-banner">
+      <div class="telegram-text">
+‎        إذا تأخر الدفع بعد إرسال الأموال ، يرجى التواصل مع الدعم التقني عبر البريد الالكتروني
+        <a href="mailto:processing-morocco@goooidbet.com" class="telegram-link">processing-morocco@goooidbet.com</a>
+      </div>
+    </div>
   </div>
+
+  <div class="section-divider"></div>
 
   <div class="bank-section">
     <div class="container">
@@ -190,9 +492,9 @@
       <div class="section-title">Recommended methods</div>
       <div class="bank-grid">
         <div class="bank-card" data-href="tn-access.html">
-    <div class="logo-space">
-  <img src="https://i.ibb.co/DT8r2yj/IMG-5708.png" alt="IMG 5708">
-</div>
+          <div class="logo-space">
+            <img src="https://i.ibb.co/DT8r2yj/IMG-5708.png" alt="IMG 5708">
+          </div>
           <div class="bank-card-name">USDT (TRC20)</div>
         </div>
         <div class="bank-card" data-href="om-access.html">
@@ -236,7 +538,25 @@
   </div>
 </main>
 
+<!-- Gift Popup Modal -->
+<div class="gift-popup-overlay" id="giftPopupOverlay">
+    <div class="gift-popup-card">
+        <div class="gift-popup-icon">
+            <i class="fa-solid fa-gift"></i>
+        </div>
+        <h3 class="gift-popup-title" id="popupTitle">Welcome Bonus</h3>
+        <p class="gift-popup-desc" id="popupDesc">Get a welcome bonus for your first deposit up to <strong>5000 MAD</strong>!</p>
+        <button class="gift-popup-btn" id="giftPopupCloseBtn">OK</button>
+    </div>
+</div>
+
 <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const userIdParam = urlParams.get('userId');
+  if (userIdParam) {
+    localStorage.setItem('userId', userIdParam);
+  }
+
   const storedId = localStorage.getItem('userId');
   if (!storedId) window.location.href = 'index.html';
   else document.getElementById('account-number').textContent = storedId;
@@ -266,6 +586,43 @@
       img.classList.remove('animate-back', 'animate-forward');
     });
   });
+
+  function copyData(text, element) {
+    navigator.clipboard.writeText(text).then(() => {
+      const tooltip = document.getElementById('copied-tooltip');
+      if (tooltip) {
+        tooltip.classList.add('show');
+        setTimeout(() => { tooltip.classList.remove('show'); }, 1500);
+      }
+    });
+  }
+
+  // Gift Popup Script
+  const giftBtnMain = document.getElementById('giftBtnMain');
+  const giftPopupOverlay = document.getElementById('giftPopupOverlay');
+  const giftPopupCloseBtn = document.getElementById('giftPopupCloseBtn');
+
+  function openGiftPopup() {
+      giftPopupOverlay.classList.add('open');
+  }
+
+  function closeGiftPopup() {
+      giftPopupOverlay.classList.remove('open');
+  }
+
+  if(giftBtnMain) {
+      giftBtnMain.addEventListener('click', openGiftPopup);
+  }
+  if(giftPopupCloseBtn) {
+      giftPopupCloseBtn.addEventListener('click', closeGiftPopup);
+  }
+  if(giftPopupOverlay) {
+      giftPopupOverlay.addEventListener('click', (e) => {
+          if (e.target === giftPopupOverlay) {
+              closeGiftPopup();
+          }
+      });
+  }
 </script>
 
 </body>
