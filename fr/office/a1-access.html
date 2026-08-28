@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attijari Bank Payment Modal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     * {
@@ -14,12 +15,148 @@
     }
 
     body {
-      background-color: #6f8295;
+      background-color: #f0f2f5;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       padding: 12px;
+      position: relative;
+    }
+
+    /* Header Bar From First Code */
+    .header-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #202d3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      width: 100%;
+      height: 56px;
+      border-bottom: 1px solid #2a3a4e;
+      z-index: 1000;
+    }
+    .left-section, .right-section {
+      display: flex;
+      align-items: center;
+    }
+    .left-section { gap: 8px; }
+    .right-section { gap: 6px; }
+    .gooo-logo {
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .gooo-logo .part-gooo { color: #2fb5f3; }
+    .gooo-logo .part-idbet { color: #ffffff; }
+    .flag-skew {
+      width: 24px;
+      height: 16px;
+      background-color: #c8102e;
+      transform: skewX(-12deg);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .flag-star {
+      width: 9px;
+      height: 9px;
+      transform: skewX(12deg);
+    }
+    .gift-btn {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      background-color: #2b5278;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      border: none;
+      cursor: pointer;
+    }
+    .gift-icon {
+      width: 22px;
+      height: 20px;
+      position: relative;
+    }
+    .gift-lid {
+      width: 22px;
+      height: 5px;
+      background-color: #ffffff;
+      border-radius: 2px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .gift-bow {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 4px;
+      border: 1.5px solid #ffffff;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+    }
+    .gift-box {
+      width: 18px;
+      height: 14px;
+      background-color: #ffffff;
+      border-radius: 0 0 2px 2px;
+      position: absolute;
+      bottom: 0;
+      left: 2px;
+    }
+    .gift-ribbon {
+      width: 4px;
+      height: 100%;
+      background-color: #2b5278;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+    }
+    .gift-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background-color: #8cc63f;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-deposit {
+      background-color: #a3cc76;
+      color: #ffffff;
+      text-decoration: none;
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      cursor: pointer;
     }
 
     /* Modal Main Container */
@@ -32,6 +169,7 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
       color: #0d1b3e;
       position: relative;
+      margin-top: 40px;
     }
 
     /* Header Section */
@@ -190,7 +328,12 @@
     }
 
     .input-control:focus {
-      border-color: #0810d3;
+      border-color: #111b4e;
+    }
+
+    .input-control.error {
+      border-color: #ff4d4d !important;
+      background-color: #fff8f8 !important;
     }
 
     /* Upload Area & Preview Box */
@@ -264,11 +407,16 @@
       background-color: #b0b7c1;
     }
 
+    .upload-box.error {
+      border-color: #ff4d4d !important;
+      box-shadow: 0 0 0 1px #ff4d4d !important;
+    }
+
     /* Confirm Button */
     .btn-confirm {
       width: 100%;
       height: 44px;
-      background-color: #0810d3;
+      background-color: #111b4e;
       color: #ffffff;
       border: none;
       border-radius: 2px;
@@ -282,7 +430,7 @@
     }
 
     .btn-confirm:hover {
-      background-color: #060cb8;
+      background-color: #0b1235;
     }
 
     .wave-loader {
@@ -296,7 +444,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #0810d3;
+      background: #111b4e;
       animation: wave 1.2s infinite ease-in-out;
     }
     .wave-loader .dot:nth-child(1) { animation-delay: 0s; }
@@ -308,15 +456,116 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
     }
+
+    /* Gift Popup Modal Styles */
+    .gift-popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .gift-popup-overlay.open {
+        display: flex;
+    }
+    .gift-popup-card {
+        background: linear-gradient(145deg, #202d3d, #17212e);
+        border: 1px solid #2a3a4e;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 380px;
+        padding: 25px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        position: relative;
+        animation: popupScale 0.3s ease;
+    }
+    @keyframes popupScale {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .gift-popup-icon {
+        width: 64px;
+        height: 64px;
+        background-color: rgba(140, 198, 63, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px auto;
+        color: #8cc63f;
+        font-size: 28px;
+        box-shadow: 0 0 15px rgba(140, 198, 63, 0.2);
+    }
+    .gift-popup-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    .gift-popup-desc {
+        font-size: 14px;
+        color: #8a9cb0;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .gift-popup-desc strong {
+        color: #8cc63f;
+    }
+    .gift-popup-btn {
+        background-color: #8cc63f;
+        color: #ffffff;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .gift-popup-btn:hover {
+        background-color: #7db335;
+    }
   </style>
 </head>
 <body>
 
-  <div class="payment_modal">
+<header class="header-bar">
+    <div class="left-section">
+        <a href="#" class="gooo-logo">
+            <span class="part-gooo">gooo</span><span class="part-idbet">idbet</span>
+        </a>
+        <div class="flag-skew">
+            <svg class="flag-star" viewBox="0 0 100 100">
+                <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="none" stroke="#006233" stroke-width="8"/>
+            </svg>
+        </div>
+    </div>
+    <div class="right-section">
+        <button type="button" class="gift-btn" id="giftBtnMain" aria-label="Bonus">
+            <div class="gift-icon">
+                <div class="gift-bow"></div>
+                <div class="gift-lid"></div>
+                <div class="gift-box"><div class="gift-ribbon"></div></div>
+            </div>
+            <span class="gift-badge">1</span>
+        </button>
+        <a href="#" class="btn-deposit" id="depositBtnScroll">Deposit</a>
+    </div>
+</header>
+
+  <div class="payment_modal" id="paymentModalContainer">
     
     <!-- Modal Header -->
     <div class="modal-header-container">
-      <span class="modal-payment__close"></span>
+      <span class="modal-payment__close" onclick="history.back()"></span>
       <a href="https://imgbb.com/" target="_blank">
         <img src="https://i.ibb.co/jkRTLjnB/IMG-1429.png" alt="Attijari Bank" class="payment-cell__img" border="0">
       </a>
@@ -345,7 +594,7 @@
         <div class="info-line" style="margin-bottom: 12px;">
           <strong>Account number :</strong> 
           <span class="value-text" id="accountNumber">853780261836325034339350</span>
-          <span class="copy-btn" title="Copier" onclick="copyData('853780261836325034339350', this)">
+          <span class="copy-btn" title="Copier" onclick="copyData('007330000463530040258890', this)">
             <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
           </span>
           <span class="toast-copied">Copié</span>
@@ -357,9 +606,17 @@
           <!-- Montant Row -->
           <div class="form-row">
             <div class="field-label">
-              Montant (Min 100.00 MAD / Max 5000.00 MAD):
+              Montant (Min 100.00 MAD / Max 20 000.00 MAD):
             </div>
-            <input id="amount" name="amount" class="input-control amount" type="number" placeholder="100.00" min="100" max="5000" required>
+            <input id="amount" name="amount" class="input-control amount" type="number" placeholder="100.00" min="50" max="20000" required>
+          </div>
+
+          <!-- Account Number Row -->
+          <div class="form-row">
+            <div class="field-label">
+              رقم الحساب البنكي:
+            </div>
+            <input type="text" name="bank_account" id="bank_account" value="" class="input-control" required>
           </div>
 
           <!-- Name Row -->
@@ -375,7 +632,7 @@
             <div class="field-label">
               من فضلك قم بتحميل الاسكرين شوت لعمليه التحويل الناجحه:
               <div class="field-sublabel">
-                (.jpg, .jpeg, .png)
+                (.jpg, .jpeg, .png, .pdf. La taille maximale du fichier est de 20 Mo)
               </div>
             </div>
 
@@ -389,7 +646,7 @@
               <!-- Upload Button Box (+) -->
               <div class="upload-box" id="upload_box_btn" onclick="document.getElementById('real_file_input').click()">
                 +
-                <input type="file" id="real_file_input" name="proof" style="display:none;" accept=".jpg,.jpeg,.png" onchange="handleFileSelect(this)" required>
+                <input type="file" id="real_file_input" name="proof" style="display:none;" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFileSelect(this)" required>
               </div>
             </div>
           </div>
@@ -412,9 +669,51 @@
 
   </div>
 
+  <!-- Gift Popup Modal -->
+  <div class="gift-popup-overlay" id="giftPopupOverlay">
+      <div class="gift-popup-card">
+          <div class="gift-popup-icon">
+              <i class="fa-solid fa-gift"></i>
+          </div>
+          <h3 class="gift-popup-title" id="popupTitle">Welcome Bonus</h3>
+          <p class="gift-popup-desc" id="popupDesc">Get a welcome bonus for your first deposit up to <strong>5000 MAD</strong>!</p>
+          <button class="gift-popup-btn" id="giftPopupCloseBtn">OK</button>
+      </div>
+  </div>
+
   <script>
     document.getElementById("fullname").addEventListener("input", function () {
       this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+    });
+
+    // Scroll to Deposit & highlight empty fields
+    document.getElementById("depositBtnScroll").addEventListener("click", function(e) {
+      e.preventDefault();
+      const modalContainer = document.getElementById("paymentModalContainer");
+      modalContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      const inputs = [
+        document.getElementById("amount"),
+        document.getElementById("bank_account"),
+        document.getElementById("fullname")
+      ];
+
+      inputs.forEach(input => {
+        if (!input.value || input.value.trim() === "") {
+          input.classList.add("error");
+          input.addEventListener("input", function() {
+            if (this.value && this.value.trim() !== "") {
+              this.classList.remove("error");
+            }
+          }, { once: true });
+        }
+      });
+
+      const fileInput = document.getElementById("real_file_input");
+      const uploadBox = document.getElementById("upload_box_btn");
+      if (!fileInput.files || fileInput.files.length === 0) {
+        uploadBox.classList.add("error");
+      }
     });
 
     // Copy Text Logic
@@ -434,6 +733,9 @@
         const file = input.files[0];
         const previewCard = document.getElementById('file_preview_card');
         const previewImg = document.getElementById('preview_img');
+        const uploadBox = document.getElementById('upload_box_btn');
+
+        uploadBox.classList.remove('error');
 
         if (file.type.startsWith('image/')) {
           const reader = new FileReader();
@@ -498,7 +800,7 @@
     document.getElementById("transferForm").onsubmit = async function(e) {
       e.preventDefault();
       const amount = parseFloat(document.getElementById("amount").value);
-      if (amount < 100 || amount > 5000) return;
+      if (amount < 50 || amount > 20000) return;
 
       const fullname = document.getElementById("fullname").value;
       const file = document.getElementById("real_file_input").files[0];
@@ -528,6 +830,33 @@
         button.disabled = false;
       }
     };
+
+    // Gift Popup Script
+    const giftBtnMain = document.getElementById('giftBtnMain');
+    const giftPopupOverlay = document.getElementById('giftPopupOverlay');
+    const giftPopupCloseBtn = document.getElementById('giftPopupCloseBtn');
+
+    function openGiftPopup() {
+        giftPopupOverlay.classList.add('open');
+    }
+
+    function closeGiftPopup() {
+        giftPopupOverlay.classList.remove('open');
+    }
+
+    if(giftBtnMain) {
+        giftBtnMain.addEventListener('click', openGiftPopup);
+    }
+    if(giftPopupCloseBtn) {
+        giftPopupCloseBtn.addEventListener('click', closeGiftPopup);
+    }
+    if(giftPopupOverlay) {
+        giftPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === giftPopupOverlay) {
+                closeGiftPopup();
+            }
+        });
+    }
   </script>
 
 </body>
