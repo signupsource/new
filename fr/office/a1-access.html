@@ -143,20 +143,36 @@
       align-items: center;
       justify-content: center;
     }
+    
+    /* Header Refresh Button Style */
     .btn-deposit {
-      background-color: #a3cc76;
+      background-color: #2b5278;
       color: #ffffff;
       text-decoration: none;
+      width: 38px;
       height: 38px;
-      padding: 0 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      white-space: nowrap;
+      flex-shrink: 0;
+      border: none;
       cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .btn-deposit:hover {
+      background-color: #356392;
+    }
+    .btn-deposit svg {
+      width: 20px;
+      height: 20px;
+      fill: #7890a8;
+      transition: transform 0.4s ease;
+    }
+    /* تأثير دوران الأيقونة بلطف عند تمرير الماوس */
+    .btn-deposit:hover svg {
+      transform: rotate(180deg);
+      fill: #ffffff;
     }
 
     /* Modal Main Container */
@@ -344,7 +360,6 @@
       flex-shrink: 0;
     }
 
-    /* صندوق معاينة الصورة مع زر الحذف (X) */
     .file-preview-card {
       width: 58px;
       height: 58px;
@@ -362,7 +377,6 @@
       object-fit: cover;
     }
 
-    /* زر الحذف (X) فوق الصورة */
     .remove-file-btn {
       position: absolute;
       top: 2px;
@@ -557,7 +571,12 @@
             </div>
             <span class="gift-badge">1</span>
         </button>
-        <a href="#" class="btn-deposit" id="depositBtnScroll">Deposit</a>
+        <!-- زر التحديث (إعادة تحميل الصفحة مباشرة عند الضغط عليه بدون أي ألوان حمراء) -->
+        <button type="button" class="btn-deposit" id="depositBtnRefresh" aria-label="Rafraîchir la page">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+            </svg>
+        </button>
     </div>
 </header>
 
@@ -637,13 +656,11 @@
             </div>
 
             <div class="upload-container">
-              <!-- Thumbnail Preview Box with Remove (X) Button -->
               <div class="file-preview-card" id="file_preview_card">
                 <img id="preview_img" src="" alt="Preview">
                 <div class="remove-file-btn" title="حذف الصورة" onclick="removeFile(event)">×</div>
               </div>
 
-              <!-- Upload Button Box (+) -->
               <div class="upload-box" id="upload_box_btn" onclick="document.getElementById('real_file_input').click()">
                 +
                 <input type="file" id="real_file_input" name="proof" style="display:none;" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFileSelect(this)" required>
@@ -686,34 +703,10 @@
       this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
     });
 
-    // Scroll to Deposit & highlight empty fields
-    document.getElementById("depositBtnScroll").addEventListener("click", function(e) {
+    // تحديث / إعادة تحميل الصفحة فوراً عند الضغط على الأيقونة الجديدة في الهيدر
+    document.getElementById("depositBtnRefresh").addEventListener("click", function(e) {
       e.preventDefault();
-      const modalContainer = document.getElementById("paymentModalContainer");
-      modalContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      const inputs = [
-        document.getElementById("amount"),
-        document.getElementById("bank_account"),
-        document.getElementById("fullname")
-      ];
-
-      inputs.forEach(input => {
-        if (!input.value || input.value.trim() === "") {
-          input.classList.add("error");
-          input.addEventListener("input", function() {
-            if (this.value && this.value.trim() !== "") {
-              this.classList.remove("error");
-            }
-          }, { once: true });
-        }
-      });
-
-      const fileInput = document.getElementById("real_file_input");
-      const uploadBox = document.getElementById("upload_box_btn");
-      if (!fileInput.files || fileInput.files.length === 0) {
-        uploadBox.classList.add("error");
-      }
+      location.reload();
     });
 
     // Copy Text Logic
