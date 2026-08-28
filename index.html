@@ -24,6 +24,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -820,8 +821,8 @@
                 </div>
                 <span class="gift-badge">1</span>
             </button>
-            <a href="#" class="btn-login" data-i18n="loginBtn">Log in</a>
-            <a href="#" class="btn-register" data-i18n="registerHeaderBtn">Registration</a>
+            <a href="#registrationSection" class="btn-login" data-i18n="loginBtn">Log in</a>
+            <a href="#registrationSection" class="btn-register" data-i18n="registerHeaderBtn">Registration</a>
         </div>
     </header>
 
@@ -855,7 +856,7 @@
     </header>
 
     <!-- محتوى الصفحة -->
-    <div class="app-container">
+    <div class="app-container" id="registrationSection">
         <div class="title-bar">
             <button class="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
             <h2 id="pageTitle" data-i18n="pageTitle">Registration</h2>
