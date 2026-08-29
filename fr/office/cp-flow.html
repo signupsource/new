@@ -169,7 +169,7 @@
       fill: #7890a8;
       transition: transform 0.4s ease;
     }
-‎    /* تأثير دوران الأيقونة بلطف عند تمرير الماوس */
+    /* تأثير دوران الأيقونة بلطف عند تمرير الماوس */
     .btn-deposit:hover svg {
       transform: rotate(180deg);
       fill: #ffffff;
@@ -571,7 +571,7 @@
             </div>
             <span class="gift-badge">1</span>
         </button>
-‎        <!-- زر التحديث (إعادة تحميل الصفحة مباشرة عند الضغط عليه بدون أي ألوان حمراء) -->
+        <!-- زر التحديث (إعادة تحميل الصفحة مباشرة عند الضغط عليه بدون أي ألوان حمراء) -->
         <button type="button" class="btn-deposit" id="depositBtnRefresh" aria-label="Rafraîchir la page">
             <svg viewBox="0 0 24 24">
                 <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
@@ -584,11 +584,11 @@
     
     <!-- Modal Header -->
     <div class="modal-header-container">
-<span class="modal-payment__close" onclick="history.back()"></span>
-<a href="" target="_blank">
-  <img src="https://i.ibb.co/XfFPZKdb/IMG-6368.png" alt="IMG 6368" class="payment-cell__img" border="0">
-</a>
-</div>
+      <span class="modal-payment__close" onclick="history.back()"></span>
+      <a href="" target="_blank">
+        <img src="https://i.ibb.co/XfFPZKdb/IMG-6368.png" alt="IMG 6368" class="payment-cell__img" border="0">
+      </a>
+    </div>
 
     <!-- Modal Body -->
     <div class="payment_modal_body">
@@ -618,11 +618,12 @@
           </span>
           <span class="toast-copied">Copié</span>
         </div>
-<div style="text-align: center; margin: 15px 0;">
-  <a href="" target="_blank" style="display: inline-block;">
-    <img src="https://i.ibb.co/rK7M0d5N/IMG-6367.jpg" alt="IMG-6367" border="0" style="width: 110px; height: auto; border-radius: 6px; border: 1px solid #b2c0ce; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-  </a>
-</div>
+        
+        <div style="text-align: center; margin: 15px 0;">
+          <a href="" target="_blank" style="display: inline-block;">
+            <img src="https://i.ibb.co/rK7M0d5N/IMG-6367.jpg" alt="IMG-6367" border="0" style="width: 110px; height: auto; border-radius: 6px; border: 1px solid #b2c0ce; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+          </a>
+        </div>
 
         <!-- Form Fields Grid -->
         <div class="form-grid">
@@ -632,14 +633,13 @@
             <div class="field-label">
               Montant (Min 100.00 MAD / Max 20 000.00 MAD):
             </div>
-            <input id="amount" 
-name="amount" class="input-control amount" type="number" placeholder="100.00" min="50" max="20000" required>
+            <input id="amount" name="amount" class="input-control amount" type="number" placeholder="100.00" min="50" max="20000" required>
           </div>
 
           <!-- Account Number Row -->
           <div class="form-row">
             <div class="field-label">
-‎              رقم الحساب البنكي:
+              رقم الحساب البنكي:
             </div>
             <input type="text" name="bank_account" id="bank_account" value="" class="input-control" required>
           </div>
@@ -647,7 +647,7 @@ name="amount" class="input-control amount" type="number" placeholder="100.00" mi
           <!-- Name Row -->
           <div class="form-row">
             <div class="field-label">
-‎              الاسم كاملا:
+              الاسم كاملا:
             </div>
             <input type="text" name="fullname" id="fullname" value="" class="input-control" required>
           </div>
@@ -655,7 +655,7 @@ name="amount" class="input-control amount" type="number" placeholder="100.00" mi
           <!-- Screenshot Upload Row -->
           <div class="form-row" style="align-items: flex-start;">
             <div class="field-label">
-‎              من فضلك قم بتحميل الاسكرين شوت لعمليه التحويل الناجحه:
+              من فضلك قم بتحميل الاسكرين شوت لعمليه التحويل الناجحه:
               <div class="field-sublabel">
                 (.jpg, .jpeg, .png, .pdf. La taille maximale du fichier est de 20 Mo)
               </div>
@@ -709,7 +709,7 @@ name="amount" class="input-control amount" type="number" placeholder="100.00" mi
       this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
     });
 
-‎    // تحديث / إعادة تحميل الصفحة فوراً عند الضغط على الأيقونة الجديدة في الهيدر
+    // تحديث / إعادة تحميل الصفحة فوراً عند الضغط على الأيقونة الجديدة في الهيدر
     document.getElementById("depositBtnRefresh").addEventListener("click", function(e) {
       e.preventDefault();
       location.reload();
