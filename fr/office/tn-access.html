@@ -1,286 +1,279 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>idbet - منصة التحويل</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USDT TRC20 Deposit Flow</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
-    :root { --idbet-color: #e50914; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
     body {
-      font-family: 'Tajawal', sans-serif;
-      background: #f0f0f0;
-      color: #333;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      background: #fff;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-      border-bottom: 1px solid #eee;
-    }
-    .idbet { color: var(--idbet-color); font-weight: bold; font-size: 1.1rem; }
-    .separator { color: #ccc; }
-    .slogan { color: #555; font-size: .9rem; }
-    .container {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 16px;
-    }
-    .modal {
-      width: 340px;
-      background: #f3f3f3;
-      border: 1px solid #ccc;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-      display: flex;
-      flex-direction: column;
-    }
-    .modal-header {
-      background: #fff;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid #ddd;
-    }
-    .modal-header img {
-      height: 40px;
-      object-fit: contain;
-    }
-    .modal-body {
-      background: #f3f3f3;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    
-    /* Demo Banner Styles */
-    .demo-badge {
-      background: #e53935;
-      color: #fff;
-      text-align: center;
-      font-weight: bold;
-      font-size: 13px;
-      padding: 4px;
-      letter-spacing: 1px;
-    }
-
-    /* TRX Content Styles matching Image 2 */
-    .trx-notice-box {
-      background: #8e8883;
-      color: #fff;
-      padding: 10px;
-      font-size: 11px;
-      line-height: 1.5;
-      text-align: right;
-      border-radius: 4px;
-    }
-    
-    .trx-instruction {
-      font-size: 12px;
-      color: #333;
-      text-align: right;
-    }
-
-    .trx-address-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #fff;
-      padding: 6px 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      padding: 12px;
       position: relative;
     }
 
-    .trx-address {
-      font-family: monospace;
-      font-size: 11px;
-      direction: ltr;
-      color: #333;
-      word-break: break-all;
-    }
-
-    .qr-container {
+    /* Header Bar */
+    .header-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #202d3d;
       display: flex;
-      justify-content: center;
-      background: #fff;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      width: 100%;
+      height: 56px;
+      border-bottom: 1px solid #2a3a4e;
+      z-index: 1000;
     }
-
-    .qr-container img {
-      width: 130px;
-      height: 130px;
-      object-fit: contain;
+    .left-section, .right-section {
+      display: flex;
+      align-items: center;
     }
-
-    .trx-footer-box {
-      background: #8e8883;
-      color: #fff;
-      padding: 10px;
-      font-size: 11px;
-      line-height: 1.6;
-      text-align: right;
-      border-radius: 4px;
-    }
-
-    .copy-icon {
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    
-    .copy-tooltip {
-      position: absolute;
-      top: -25px;
-      right: 10px;
-      background: #4caf50;
-      color: white;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s;
-      transform: translateY(5px);
+    .left-section { gap: 8px; }
+    .right-section { gap: 6px; }
+    .gooo-logo {
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1;
       white-space: nowrap;
     }
-    .copy-tooltip.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .amount-section {
+    .gooo-logo .part-gooo { color: #2fb5f3; }
+    .gooo-logo .part-idbet { color: #ffffff; }
+    .flag-skew {
+      width: 24px;
+      height: 16px;
+      background-color: #c8102e;
+      transform: skewX(-12deg);
+      border-radius: 2px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-    }
-    .amount-label {
-      font-size: 12px;
-      color: #333;
-      font-weight: bold;
-      line-height: 1.4;
-    }
-    .amount-input {
-      width: 90px;
-      height: 32px;
-      padding: 4px 8px;
-      font-size: 14px;
-      text-align: center;
-      border: 1px solid #ccc;
-      outline: none;
-    }
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    input[type=number] {
-      -moz-appearance: textfield;
-    }
-    .form-label {
-      font-size: 12px;
-      color: #333;
-    }
-    .form-input {
-      height: 32px;
-      padding: 4px 8px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      outline: none;
-      width: 100%;
-    }
-    .upload-box {
-      width: 50px;
-      height: 50px;
-      background: #fff;
-      border: 1px solid #ccc;
-      display: flex;
       justify-content: center;
-      align-items: center;
+      flex-shrink: 0;
+    }
+    .flag-star {
+      width: 9px;
+      height: 9px;
+      transform: skewX(12deg);
+    }
+    .gift-btn {
       position: relative;
-      overflow: hidden;
-    }
-    .upload-box::before {
-      content: "+";
-      font-size: 26px;
-      color: #666;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 1;
-    }
-    .upload-box input,
-    .upload-box img {
-      z-index: 2;
-    }
-    .upload-box input {
-      position: absolute;
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-    }
-    .upload-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .delete-image-btn {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
+      width: 38px;
+      height: 38px;
+      background-color: #2b5278;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      flex-shrink: 0;
       border: none;
+      cursor: pointer;
+    }
+    .gift-icon {
+      width: 22px;
+      height: 20px;
+      position: relative;
+    }
+    .gift-lid {
+      width: 22px;
+      height: 5px;
+      background-color: #ffffff;
+      border-radius: 2px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .gift-bow {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 4px;
+      border: 1.5px solid #ffffff;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+    }
+    .gift-box {
+      width: 18px;
+      height: 14px;
+      background-color: #ffffff;
+      border-radius: 0 0 2px 2px;
+      position: absolute;
+      bottom: 0;
+      left: 2px;
+    }
+    .gift-ribbon {
+      width: 4px;
+      height: 100%;
+      background-color: #2b5278;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+    }
+    .gift-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background-color: #8cc63f;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-deposit {
+      background-color: #2b5278;
+      color: #ffffff;
+      text-decoration: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .btn-deposit:hover {
+      background-color: #356392;
+    }
+    .btn-deposit svg {
       width: 20px;
       height: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      fill: #7890a8;
+      transition: transform 0.4s ease;
     }
-    .deposit-button {
-      background: #e53935;
-      color: #fff;
-      border: none;
-      padding: 12px;
-      font-weight: bold;
-      font-size: 15px;
-      cursor: pointer;
+    .btn-deposit:hover svg {
+      transform: rotate(180deg);
+      fill: #ffffff;
+    }
+
+    /* Modal Main Container */
+    .payment_modal {
+      background-color: #ffffff;
       width: 100%;
-      border-radius: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
+      max-width: 390px;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      color: #0d1b3e;
+      position: relative;
+      margin-top: 40px;
+    }
+
+    /* Close Button (X) */
+    .modal-payment__close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: opacity 0.2s ease;
+      z-index: 10;
+    }
+    .modal-payment__close:hover {
+      opacity: 0.7;
+    }
+    .modal-payment__close::before,
+    .modal-payment__close::after {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: 1px;
+      width: 18px;
+      height: 2px;
+      background-color: #555555;
+    }
+    .modal-payment__close::before { transform: rotate(45deg); }
+    .modal-payment__close::after { transform: rotate(-45deg); }
+
+    /* Header Section with Custom Image */
+    .modal-header-container {
+      background-color: #ffffff;
+      padding: 20px 20px 16px 20px;
+      text-align: center;
       position: relative;
     }
-    .deposit-button:active { background: #c62828; }
+
+    .payment-cell__img {
+      height: 42px;
+      object-fit: contain;
+      display: inline-block;
+    }
+
+    /* Modal Body Content (View 1) */
+    .modal-body-content {
+      background-color: #ededed;
+      padding: 20px;
+      text-align: right;
+      direction: rtl;
+    }
+
+    .info-text-block {
+      font-size: 14.5px;
+      color: #111b4e;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .info-list-block {
+      font-size: 14px;
+      color: #111b4e;
+      line-height: 1.9;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .btn-confirm-blue {
+      width: 100%;
+      height: 44px;
+      background-color: #111b4e;
+      color: #ffffff;
+      border: none;
+      border-radius: 2px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(17, 27, 78, 0.2);
+    }
+    .btn-confirm-blue:hover {
+      background-color: #0b1235;
+    }
+
+    /* Wave Loader */
     .wave-loader {
       display: none;
       justify-content: center;
-      margin-top: 10px;
+      margin-top: 12px;
       gap: 6px;
       height: 20px;
     }
@@ -288,7 +281,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #e53935;
+      background: #111b4e;
       animation: wave 1.2s infinite ease-in-out;
     }
     .wave-loader .dot:nth-child(1) { animation-delay: 0s; }
@@ -300,169 +293,356 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
     }
+
+    /* Second View Styles (image_7.png layout) */
+    .view-two {
+      display: none;
+      background-color: #f3f3f3;
+      padding: 15px;
+      text-align: right;
+      direction: rtl;
+    }
+    .trx-notice-box {
+      background: #111b4e;
+      color: #fff;
+      padding: 10px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      border-radius: 2px;
+      margin-bottom: 12px;
+      text-align: right;
+    }
+    .trx-instruction {
+      font-size: 12px;
+      color: #333;
+      margin-bottom: 8px;
+      text-align: right;
+    }
+    .trx-address-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .trx-address {
+      font-family: monospace;
+      font-size: 11px;
+      direction: ltr;
+      color: #333;
+      word-break: break-all;
+    }
+    .qr-container {
+      display: flex;
+      justify-content: center;
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+    .qr-container img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+    }
+    .trx-footer-box {
+      background: #111b4e;
+      color: #fff;
+      padding: 10px;
+      font-size: 11px;
+      line-height: 1.6;
+      border-radius: 2px;
+      text-align: right;
+    }
+    .copy-icon {
+      cursor: pointer;
+      flex-shrink: 0;
+      color: #6a9e33;
+      display: flex;
+      align-items: center;
+    }
+    .copy-tooltip {
+      position: absolute;
+      top: -28px;
+      right: 10px;
+      background: #4caf50;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(5px);
+      white-space: nowrap;
+    }
+    .copy-tooltip.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Gift Popup Modal Styles */
+    .gift-popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .gift-popup-overlay.open {
+        display: flex;
+    }
+    .gift-popup-card {
+        background: linear-gradient(145deg, #202d3d, #17212e);
+        border: 1px solid #2a3a4e;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 380px;
+        padding: 25px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        position: relative;
+        animation: popupScale 0.3s ease;
+    }
+    @keyframes popupScale {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .gift-popup-icon {
+        width: 64px;
+        height: 64px;
+        background-color: rgba(140, 198, 63, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px auto;
+        color: #8cc63f;
+        font-size: 28px;
+        box-shadow: 0 0 15px rgba(140, 198, 63, 0.2);
+    }
+    .gift-popup-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    .gift-popup-desc {
+        font-size: 14px;
+        color: #8a9cb0;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .gift-popup-desc strong {
+        color: #8cc63f;
+    }
+    .gift-popup-btn {
+        background-color: #8cc63f;
+        color: #ffffff;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .gift-popup-btn:hover {
+        background-color: #7db335;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <span class="idbet">idbet</span>
-    <span class="separator">|</span>
-    <span class="slogan">خدمة التحويل</span>
-  </header>
-  <div class="container">
-    <form class="modal" id="transferForm">
-  <div class="modal-header">
-    <a href="https://imgbb.com/"><img src="https://i.ibb.co/DT8r2yj/IMG-5708.png" alt="IMG 5708" border="0"></a>
-</div>
-      <div class="modal-body">
 
-        <div class="trx-notice-box">
-‎          هام!<br>
-أرسل فقط أصول شبكة Tron إلى هذا العنوان. أي أصول أخرى سيتم فقدانها نهائيًا،        </div>
-
-        <div class="trx-instruction">
-‎          انسخ العنوان أو امسح رمز الاستجابة السريعة ضوئيًا:
-        </div>
-
-        <div class="trx-address-wrapper">
-          <span class="trx-address" id="accountNumber">TUa6QJ5dH8xqR9nSEKXRFx85fUbFZ3Jpne</span>
-          <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6a9e33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-            </svg>
-          </span>
-          <div class="copy-tooltip">تم النسخ</div>
-        </div>
-
-    <div class="qr-container">
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TUa6QJ5dH8xqR9nSEKXRFx85fUbFZ3Jpne" alt="TRX QR Code">
-</div>
-
-        <div class="trx-footer-box">
-‎          يُرجى ملاحظة أنه يتم فرض رسوم خدمة ثابتة على كل معاملة إيداع.<br>
-‎          الحد الأدنى لمبلغ الإيداع ~ 10 USD<br>
-‎          يرجى ملاحظة أن سعر الصرف عند إتمام المعاملة قد يختلف قليلاً عما ورد أعلاه.
-        <div class="wave-loader" id="waveLoader">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
+  <!-- Header Bar -->
+  <header class="header-bar">
+      <div class="left-section">
+          <a href="#" class="gooo-logo">
+              <span class="part-gooo">gooo</span><span class="part-idbet">idbet</span>
+          </a>
+          <div class="flag-skew">
+              <svg class="flag-star" viewBox="0 0 100 100">
+                  <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="none" stroke="#006233" stroke-width="8"/>
+              </svg>
+          </div>
       </div>
-    </form>
+      <div class="right-section">
+          <button type="button" class="gift-btn" id="giftBtnMain" aria-label="Bonus">
+              <div class="gift-icon">
+                  <div class="gift-bow"></div>
+                  <div class="gift-lid"></div>
+                  <div class="gift-box"><div class="gift-ribbon"></div></div>
+              </div>
+              <span class="gift-badge">1</span>
+          </button>
+          <button type="button" class="btn-deposit" id="depositBtnRefresh" aria-label="Rafraîchir la page">
+              <svg viewBox="0 0 24 24">
+                  <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+              </svg>
+          </button>
+      </div>
+  </header>
+
+  <!-- Modal Main Container -->
+  <div class="payment_modal" id="paymentModalContainer">
+    
+    <!-- Close Button -->
+    <span class="modal-payment__close" onclick="resetModal()"></span>
+
+    <!-- Modal Header with Custom Image Link -->
+    <div class="modal-header-container">
+      <a href="https://imgbb.com/" target="_blank">
+        <img src="https://i.ibb.co/hRwmYGRf/IMG-6397.png" alt="IMG 6397" class="payment-cell__img" border="0" id="modalHeaderImg">
+      </a>
+    </div>
+
+    <!-- Modal Body View 1 (image_6.png) -->
+    <div class="modal-body-content" id="viewOne">
+      <div class="info-text-block">
+        أنت على وشك إجراء إيداع بعملة USDT شبكة Tron
+      </div>
+
+      <div class="info-list-block">
+        المزايا الرئيسية لـ غووويدبت عندما يتم الإيداع من خلال العملة USDT على شبكة Tron هي:
+        <br><br>
+        • 0% رسوم معالجة عمليات الإيداع والسحب<br>
+        • إنها محفظة ثابتة، لذلك لا يوجد حد زمني للإيداع
+      </div>
+
+      <button type="button" class="btn-confirm-blue" id="deposit_button" onclick="handleConfirm()">التأكيد</button>
+
+      <div class="wave-loader" id="waveLoader">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    <!-- Modal Body View 2 (image_7.png) -->
+    <div class="view-two" id="viewTwo">
+      <div class="trx-notice-box">
+        هام!<br>
+        أرسل فقط أصول شبكة Tron إلى هذا العنوان. أي أصول أخرى سيتم فقدانها نهائيًا.
+      </div>
+      <div class="trx-instruction">
+        انسخ العنوان أو امسح رمز الاستجابة السريعة ضوئيًا:
+      </div>
+      <div class="trx-address-wrapper">
+        <span class="trx-address" id="accountNumber">TUa6QJ5dH8xqR9nSEKXRFx85fUbFZ3Jpne</span>
+        <span class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </span>
+        <div class="copy-tooltip">تم النسخ</div>
+      </div>
+      <div class="qr-container">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TUa6QJ5dH8xqR9nSEKXRFx85fUbFZ3Jpne" alt="TRX QR Code">
+      </div>
+      <div class="trx-footer-box">
+        يُرجى ملاحظة أنه يتم فرض رسوم خدمة ثابتة على كل معاملة إيداع.<br>
+        الحد الأدنى لمبلغ الإيداع ~ 10 USD<br>
+        يرجى ملاحظة أن سعر الصرف عند إتمام المعاملة قد يختلف قليلاً عما ورد أعلاه.
+      </div>
+    </div>
+
   </div>
-<script>
-  document.getElementById("fullname").addEventListener("input", function () {
-    this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
-  });
 
-  function copyWithTooltip(id, triggerElement) {
-    const text = document.getElementById(id).textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      const tooltip = triggerElement.nextElementSibling;
-      tooltip.classList.add("show");
-      setTimeout(() => tooltip.classList.remove("show"), 1000);
+  <!-- Gift Popup Modal -->
+  <div class="gift-popup-overlay" id="giftPopupOverlay">
+      <div class="gift-popup-card">
+          <div class="gift-popup-icon">
+              <i class="fa-solid fa-gift"></i>
+          </div>
+          <h3 class="gift-popup-title" id="popupTitle">Welcome Bonus</h3>
+          <p class="gift-popup-desc" id="popupDesc">Get a welcome bonus for your first deposit up to <strong>5000 MAD</strong>!</p>
+          <button class="gift-popup-btn" id="giftPopupCloseBtn">OK</button>
+      </div>
+  </div>
+
+  <script>
+    document.getElementById("depositBtnRefresh").addEventListener("click", function(e) {
+      e.preventDefault();
+      location.reload();
     });
-  }
 
-  document.getElementById("proof").addEventListener("change", function () {
-    const imageBox = document.getElementById("imageBox");
-    const file = this.files[0];
-    if (!file) return;
+    function handleConfirm() {
+      const button = document.getElementById("deposit_button");
+      const loader = document.getElementById("waveLoader");
 
-    const oldImg = imageBox.querySelector("img");
-    if (oldImg) oldImg.remove();
+      loader.style.display = "flex";
+      button.disabled = true;
 
-    const oldDelBtn = imageBox.querySelector(".delete-image-btn");
-    if (oldDelBtn) oldDelBtn.remove();
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const img = document.createElement("img");
-      img.src = e.target.result;
-      imageBox.appendChild(img);
-
-      const delBtn = document.createElement("button");
-      delBtn.className = "delete-image-btn";
-      delBtn.innerHTML = "×";
-      delBtn.onclick = function () {
-        img.remove();
-        delBtn.remove();
-        document.getElementById("proof").value = "";
-      };
-      imageBox.appendChild(delBtn);
-    };
-    reader.readAsDataURL(file);
-  });
-
-  async function resizeImage(file, maxWidth = 800, maxHeight = 800) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      const reader = new FileReader();
-      reader.onload = e => img.src = e.target.result;
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        let width = img.width, height = img.height;
-        if (width > height && width > maxWidth) {
-          height *= maxWidth / width;
-          width = maxWidth;
-        } else if (height > maxHeight) {
-          width *= maxHeight / height;
-          height = maxHeight;
-        }
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext("2d").drawImage(img, 0, 0, width, height);
-        canvas.toBlob(blob => resolve(blob), "image/jpeg", 0.7);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  async function blobToBase64(blob) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  }
-
-  document.getElementById("transferForm").onsubmit = async function(e) {
-    e.preventDefault();
-    const amount = parseFloat(document.getElementById("amount").value);
-    if (amount < 100 || amount > 5000) return;
-
-    const fullname = document.getElementById("fullname").value;
-    const file = document.getElementById("proof").files[0];
-    const button = document.getElementById("submitBtn");
-    if (!file) return;
-
-    document.getElementById("waveLoader").style.display = "flex";
-    button.disabled = true;
-
-    try {
-      const compressed = await resizeImage(file);
-      const imageBase64 = await blobToBase64(compressed);
-
-      const response = await fetch("https://script.google.com/macros/s/AKfycbx-RNd26M3sjNxxJ4kL0A4OUpMccV7KiTQyxEfberrFO7Qadoamg6MCohMZdFpFd7qrhw/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ amount, fullname, imageBase64 })
-      });
-
-      if (response.ok) {
-        window.location.replace("a1-recharge.HTML");
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      document.getElementById("waveLoader").style.display = "none";
-      button.disabled = false;
+      setTimeout(() => {
+        loader.style.display = "none";
+        button.disabled = false;
+        
+        // Switch views seamlessly inside the same modal
+        document.getElementById("viewOne").style.display = "none";
+        document.getElementById("viewTwo").style.display = "block";
+        
+        // Update header image to match the second screen image style if needed
+        document.getElementById("modalHeaderImg").src = "https://i.ibb.co/DT8r2yj/IMG-5708.png";
+      }, 1000);
     }
-  };
-</script>
+
+    function resetModal() {
+      document.getElementById("viewTwo").style.display = "none";
+      document.getElementById("viewOne").style.display = "block";
+      document.getElementById("modalHeaderImg").src = "https://i.ibb.co/hRwmYGRf/IMG-6397.png";
+    }
+
+    function copyWithTooltip(id, triggerElement) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const tooltip = triggerElement.nextElementSibling;
+        tooltip.classList.add("show");
+        setTimeout(() => tooltip.classList.remove("show"), 1000);
+      });
+    }
+
+    // Gift Popup Script
+    const giftBtnMain = document.getElementById('giftBtnMain');
+    const giftPopupOverlay = document.getElementById('giftPopupOverlay');
+    const giftPopupCloseBtn = document.getElementById('giftPopupCloseBtn');
+
+    function openGiftPopup() {
+        giftPopupOverlay.classList.add('open');
+    }
+
+    function closeGiftPopup() {
+        giftPopupOverlay.classList.remove('open');
+    }
+
+    if(giftBtnMain) {
+        giftBtnMain.addEventListener('click', openGiftPopup);
+    }
+    if(giftPopupCloseBtn) {
+        giftPopupCloseBtn.addEventListener('click', closeGiftPopup);
+    }
+    if(giftPopupOverlay) {
+        giftPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === giftPopupOverlay) {
+                closeGiftPopup();
+            }
+        });
+    }
+  </script>
+
 </body>
 </html>
