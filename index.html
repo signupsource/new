@@ -866,28 +866,28 @@
         <div class="content-card">
             <!-- TABS -->
             <div class="tabs">
-                <div class="tab-item active">
+                <div class="tab-item active" data-tab="oneClick">
                     <div class="tab-icon-box">
                         <svg viewBox="0 0 11 15"><path d="M10 5.5l-.2-.1H6.6L9.8 1V.8H4.9l-4 7v.3h3l-3 6.3v.3h.4l8.7-9c.1 0 .1-.1 0-.2z"></path></svg>
                     </div>
                     <span class="tab-label" data-i18n="oneClick">One-click</span>
                 </div>
 
-                <div class="tab-item">
+                <div class="tab-item" data-tab="socialNetworks">
                     <div class="tab-icon-box">
                         <svg viewBox="0 0 32 32"><path d="M19.3 7.3c1.5.9 2.6 2.4 2.8 4.3.6.3 1.2.5 2 .5a4.7 4.7 0 000-9.3c-2.7-.1-4.8 2-4.8 4.5zm-3 9.6c2.6 0 4.6-2.2 4.6-4.7s-2.1-4.7-4.6-4.7-4.7 2.2-4.7 4.7 2 4.7 4.7 4.7zm1.9.3h-4a6 6 0 00-6 6v5h.3c3.2 1 6 1.4 8.2 1.4 4.4 0 7-1.3 7.2-1.3l.3-.2v-4.8a6 6 0 00-6-6.1zm7.8-4.8h-4c0 1.6-.7 3-1.7 4 2.9.9 5 3.6 5 6.9v1.5c4-.1 6.2-1.3 6.3-1.3l.3-.2h.1v-4.8a6 6 0 00-6-6.1zm-18-.3c1 0 1.8-.3 2.5-.8.2-1.5 1-2.8 2.2-3.7v-.3a4.7 4.7 0 00-9.3 0c0 2.6 2 4.8 4.6 4.8zm4.2 4.3c-1-1-1.7-2.5-1.8-4H6a6 6 0 00-6 6v5h.3c2.6.9 4.8 1.2 6.8 1.3v-1.4c0-3.3 2.2-6 5.1-6.9z"></path></svg>
                     </div>
                     <span class="tab-label" data-i18n="socialNetworks">Social networks</span>
                 </div>
 
-                <div class="tab-item">
+                <div class="tab-item" data-tab="byEmail">
                     <div class="tab-icon-box">
                         <svg viewBox="0 0 32 32"><path d="M16 20.7l-4-3.5L.8 26.9c.4.4 1 .6 1.6.6h27.4c.6 0 1.2-.2 1.6-.6L20 17.2l-4 3.5z"></path><path d="M31.3 5.3c-.4-.4-1-.6-1.6-.6H2.3c-.6 0-1.2.2-1.6.6L16 18.4 31.3 5.3zM0 6.7v19l11-9.4zM21 16.3l11 9.4v-19z"></path></svg>
                     </div>
                     <span class="tab-label" data-i18n="byEmail">By e-mail</span>
                 </div>
 
-                <div class="tab-item">
+                <div class="tab-item" data-tab="byPhone">
                     <div class="tab-icon-box">
                         <svg viewBox="0 0 10 15"><path d="M8.7.7h-7C1 .7.4 1.1.4 1.7v12c0 .6.5 1 1.1 1h7.1c.6 0 1.1-.4 1.1-1v-12c0-.6-.5-1-1-1zM4 1.4h2.3l.1.1v.1H4v-.2zm1.2 12.8c-.3 0-.6-.2-.6-.4 0-.3.3-.5.6-.5s.5.2.5.5c0 .2-.2.4-.5.4zM9 13H1.3V2.2H9V13z"></path></svg>
                     </div>
@@ -895,7 +895,7 @@
                 </div>
             </div>
 
-            <div class="input-group">
+            <div class="input-group" id="dynamicInputContainer">
                 <input type="text" class="input-field" id="idCompteInput" placeholder="ID Compte" maxlength="15" data-i18n-placeholder="idPlaceholder">
             </div>
 
@@ -1045,6 +1045,23 @@
                 </div>
             </div>
         </div>
+
+        <!-- Phone Country Picker Modal -->
+        <div class="lang-modal" id="phoneCountryModal">
+            <div class="lang-header">
+                <button class="back-btn" id="closePhoneModal"><i class="fa-solid fa-arrow-left"></i></button>
+                <h2 data-i18n="selectCountryTitle">Phone number</h2>
+            </div>
+            <div class="lang-search-box">
+                <div class="lang-search-wrapper">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" class="lang-search-input" id="phoneSearchInput" placeholder="Search" data-i18n-placeholder="searchPlaceholder">
+                </div>
+            </div>
+            <div class="lang-list" id="phoneCountryList">
+                <!-- Countries list will be populated by JS -->
+            </div>
+        </div>
     </div>
 
     <!-- Gift Popup Modal -->
@@ -1053,9 +1070,9 @@
             <div class="gift-popup-icon">
                 <i class="fa-solid fa-gift"></i>
             </div>
-            <h3 class="gift-popup-title" id="popupTitle">مكافأة ترحيبية</h3>
-            <p class="gift-popup-desc" id="popupDesc">احصل على مكافأة ترحيبية مقابل الإيداع الأول تصل إلى <strong>5000 MAD</strong>!</p>
-            <button class="gift-popup-btn" id="giftPopupCloseBtn" data-i18n="popupBtnClose">حسناً</button>
+            <h3 class="gift-popup-title" id="popupTitle">Welcome Bonus</h3>
+            <p class="gift-popup-desc" id="popupDesc">Get a welcome bonus for your first deposit up to <strong>5000 MAD</strong>!</p>
+            <button class="gift-popup-btn" id="giftPopupCloseBtn" data-i18n="popupBtnClose">OK</button>
         </div>
     </div>
 
@@ -1073,17 +1090,259 @@
         }
 
         const tabs = document.querySelectorAll('.tab-item');
+        const dynamicInputContainer = document.getElementById('dynamicInputContainer');
+
+        const countriesData = [
+            { code: "+212", name: "Morocco", nameAr: "المغرب", flag: "https://flagcdn.com/w40/ma.png" },
+            { code: "+7", name: "Abkhazia", nameAr: "أبخازيا", flag: "https://flagcdn.com/w40/ge.png" },
+            { code: "+994", name: "Azerbaijan", nameAr: "أذربيجان", flag: "https://flagcdn.com/w40/az.png" },
+            { code: "+374", name: "Armenia", nameAr: "أرمينيا", flag: "https://flagcdn.com/w40/am.png" },
+            { code: "+93", name: "Afghanistan", nameAr: "أفغانستان", flag: "https://flagcdn.com/w40/af.png" },
+            { code: "+355", name: "Albania", nameAr: "ألبانيا", flag: "https://flagcdn.com/w40/al.png" },
+            { code: "+1", name: "Antigua and Barbuda", nameAr: "أنتيغوا وبربودا", flag: "https://flagcdn.com/w40/ag.png" },
+            { code: "+376", name: "Andorra", nameAr: "أندورا", flag: "https://flagcdn.com/w40/ad.png" },
+            { code: "+244", name: "Angola", nameAr: "أنغولا", flag: "https://flagcdn.com/w40/ao.png" },
+            { code: "+1264", name: "Anguilla", nameAr: "أنغيلا", flag: "https://flagcdn.com/w40/ai.png" },
+            { code: "+598", name: "Uruguay", nameAr: "أوروغواي", flag: "https://flagcdn.com/w40/uy.png" },
+            { code: "+998", name: "Uzbekistan", nameAr: "أوزبكستان", flag: "https://flagcdn.com/w40/uz.png" },
+            { code: "+997", name: "South Ossetia", nameAr: "أوسيتيا الجنوبية", flag: "https://flagcdn.com/w40/ge.png" },
+            { code: "+256", name: "Uganda", nameAr: "أوغندا", flag: "https://flagcdn.com/w40/ug.png" },
+            { code: "+354", name: "Iceland", nameAr: "آيسلندا", flag: "https://flagcdn.com/w40/is.png" },
+            { code: "+81", name: "Japan", nameAr: "اليابان", flag: "https://flagcdn.com/w40/jp.png" },
+            { code: "+967", name: "Yemen", nameAr: "اليمن", flag: "https://flagcdn.com/w40/ye.png" },
+            { code: "+62", name: "Indonesia", nameAr: "إندونيسيا", flag: "https://flagcdn.com/w40/id.png" },
+            { code: "+675", name: "Papua New Guinea", nameAr: "بابوا غينيا الجديدة", flag: "https://flagcdn.com/w40/pg.png" },
+            { code: "+595", name: "Paraguay", nameAr: "باراغواي", flag: "https://flagcdn.com/w40/py.png" },
+            { code: "+92", name: "Pakistan", nameAr: "باكستان", flag: "https://flagcdn.com/w40/pk.png" },
+            { code: "+680", name: "Palau", nameAr: "بالاو", flag: "https://flagcdn.com/w40/pw.png" },
+            { code: "+1", name: "Barbados", nameAr: "بربادوس", flag: "https://flagcdn.com/w40/bb.png" },
+            { code: "+1", name: "Bermuda", nameAr: "برمودا", flag: "https://flagcdn.com/w40/bm.png" },
+            { code: "+673", name: "Brunei", nameAr: "بروناي", flag: "https://flagcdn.com/w40/bn.png" },
+            { code: "+501", name: "Belize", nameAr: "بليز", flag: "https://flagcdn.com/w40/bz.png" },
+            { code: "+880", name: "Bangladesh", nameAr: "بنغلاديش", flag: "https://flagcdn.com/w40/bd.png" },
+            { code: "+507", name: "Panama", nameAr: "بنما", flag: "https://flagcdn.com/w40/pa.png" },
+            { code: "+229", name: "Benin", nameAr: "بنين", flag: "https://flagcdn.com/w40/bj.png" },
+            { code: "+975", name: "Bhutan", nameAr: "بوتان", flag: "https://flagcdn.com/w40/bt.png" },
+            { code: "+267", name: "Botswana", nameAr: "بوتسوانا", flag: "https://flagcdn.com/w40/bw.png" },
+            { code: "+226", name: "Burkina Faso", nameAr: "بوركينا فاسو", flag: "https://flagcdn.com/w40/bf.png" },
+            { code: "+257", name: "Burundi", nameAr: "بوروندي", flag: "https://flagcdn.com/w40/bi.png" },
+            { code: "+591", name: "Bolivia", nameAr: "بوليفيا", flag: "https://flagcdn.com/w40/bo.png" },
+            { code: "+689", name: "French Polynesia", nameAr: "بولينيزيا الفرنسية", flag: "https://flagcdn.com/w40/pf.png" },
+            { code: "+51", name: "Peru", nameAr: "بيرو", flag: "https://flagcdn.com/w40/pe.png" },
+            { code: "+66", name: "Thailand", nameAr: "تايلاند", flag: "https://flagcdn.com/w40/th.png" },
+            { code: "+886", name: "Taiwan", nameAr: "تايوان", flag: "https://flagcdn.com/w40/tw.png" },
+            { code: "+993", name: "Turkmenistan", nameAr: "تركمانستان", flag: "https://flagcdn.com/w40/tm.png" },
+            { code: "+90", name: "Turkey", nameAr: "تركيا", flag: "https://flagcdn.com/w40/tr.png" },
+            { code: "+1", name: "Trinidad and Tobago", nameAr: "ترينيداد وتوباغو", flag: "https://flagcdn.com/w40/tt.png" },
+            { code: "+235", name: "Chad", nameAr: "تشاد", flag: "https://flagcdn.com/w40/td.png" },
+            { code: "+56", name: "Chile", nameAr: "تشيلي", flag: "https://flagcdn.com/w40/cl.png" },
+            { code: "+255", name: "Tanzania", nameAr: "تنزانيا", flag: "https://flagcdn.com/w40/tz.png" },
+            { code: "+228", name: "Togo", nameAr: "توغو", flag: "https://flagcdn.com/w40/tg.png" },
+            { code: "+688", name: "Tuvalu", nameAr: "توفالو", flag: "https://flagcdn.com/w40/tv.png" },
+            { code: "+690", name: "Tokelau", nameAr: "توكيلاو", flag: "https://flagcdn.com/w40/tk.png" },
+            { code: "+216", name: "Tunisia", nameAr: "تونس", flag: "https://flagcdn.com/w40/tn.png" },
+            { code: "+251", name: "Ethiopia", nameAr: "إثيوبيا", flag: "https://flagcdn.com/w40/et.png" },
+            { code: "+291", name: "Eritrea", nameAr: "إريتريا", flag: "https://flagcdn.com/w40/er.png" },
+            { code: "+268", name: "Eswatini", nameAr: "إسواتيني", flag: "https://flagcdn.com/w40/sz.png" },
+            { code: "+54", name: "Argentina", nameAr: "الأرجنتين", flag: "https://flagcdn.com/w40/ar.png" },
+            { code: "+962", name: "Jordan", nameAr: "الأردن", flag: "https://flagcdn.com/w40/jo.png" },
+            { code: "+593", name: "Ecuador", nameAr: "الإكوادور", flag: "https://flagcdn.com/w40/ec.png" },
+            { code: "+973", name: "Bahrain", nameAr: "البحرين", flag: "https://flagcdn.com/w40/bh.png" },
+            { code: "+387", name: "Bosnia and Herzegovina", nameAr: "البوسنة والهرسك", flag: "https://flagcdn.com/w40/ba.png" },
+            { code: "+382", name: "Montenegro", nameAr: "الجبل الأسود", flag: "https://flagcdn.com/w40/me.png" },
+            { code: "+213", name: "Algeria", nameAr: "الجزائر", flag: "https://flagcdn.com/w40/dz.png" },
+            { code: "+238", name: "Cape Verde", nameAr: "الرأس الأخضر", flag: "https://flagcdn.com/w40/cv.png" },
+            { code: "+221", name: "Senegal", nameAr: "السنغال", flag: "https://flagcdn.com/w40/sn.png" },
+            { code: "+249", name: "Sudan", nameAr: "السودان", flag: "https://flagcdn.com/w40/sd.png" },
+            { code: "+211", name: "South Sudan", nameAr: "السودان الجنوبي", flag: "https://flagcdn.com/w40/ss.png" },
+            { code: "+252", name: "Somalia", nameAr: "الصومال", flag: "https://flagcdn.com/w40/so.png" },
+            { code: "+964", name: "Iraq", nameAr: "العراق", flag: "https://flagcdn.com/w40/iq.png" },
+            { code: "+966", name: "Saudi Arabia", nameAr: "المملكة العربية السعودية", flag: "https://flagcdn.com/w40/sa.png" },
+            { code: "+241", name: "Gabon", nameAr: "الغابون", flag: "https://flagcdn.com/w40/ga.png" },
+            { code: "+63", name: "Philippines", nameAr: "الفلبين", flag: "https://flagcdn.com/w40/ph.png" },
+            { code: "+237", name: "Cameroon", nameAr: "الكاميرون", flag: "https://flagcdn.com/w40/cm.png" },
+            { code: "+242", name: "Republic of the Congo", nameAr: "الكونغو - برازافيل", flag: "https://flagcdn.com/w40/cg.png" },
+            { code: "+243", name: "Democratic Republic of the Congo", nameAr: "الكونغو - كينشاسا", flag: "https://flagcdn.com/w40/cd.png" },
+            { code: "+52", name: "Mexico", nameAr: "المكسيك", flag: "https://flagcdn.com/w40/mx.png" },
+            { code: "+227", name: "Niger", nameAr: "النيجر", flag: "https://flagcdn.com/w40/ne.png" },
+            { code: "+91", name: "India", nameAr: "الهند", flag: "https://flagcdn.com/w40/in.png" },
+            { code: "+1", name: "Turks and Caicos Islands", nameAr: "جزر تركس وكايكوس", flag: "https://flagcdn.com/w40/tc.png" },
+            { code: "+677", name: "Solomon Islands", nameAr: "جزر سليمان", flag: "https://flagcdn.com/w40/sb.png" },
+            { code: "+298", name: "Faroe Islands", nameAr: "جزر فارو", flag: "https://flagcdn.com/w40/fo.png" },
+            { code: "+345", name: "Cayman Islands", nameAr: "جزر كايمان", flag: "https://flagcdn.com/w40/ky.png" },
+            { code: "+682", name: "Cook Islands", nameAr: "جزر كوك", flag: "https://flagcdn.com/w40/ck.png" },
+            { code: "+692", name: "Marshall Islands", nameAr: "جزر مارشال", flag: "https://flagcdn.com/w40/mh.png" },
+            { code: "+687", name: "New Caledonia", nameAr: "جزيرة كاليدونيا الجديدة", flag: "https://flagcdn.com/w40/nc.png" },
+            { code: "+672", name: "Norfolk Island", nameAr: "جزيرة نورفولك", flag: "https://flagcdn.com/w40/nf.png" },
+            { code: "+27", name: "South Africa", nameAr: "جمهورية أفريقيا الجنوبية", flag: "https://flagcdn.com/w40/za.png" },
+            { code: "+236", name: "Central African Republic", nameAr: "جمهورية أفريقيا الوسطى", flag: "https://flagcdn.com/w40/cf.png" },
+            { code: "+1", name: "Dominican Republic", nameAr: "جمهورية الدومينيكان", flag: "https://flagcdn.com/w40/do.png" },
+            { code: "+590", name: "Guadeloupe", nameAr: "جوادلوب", flag: "https://flagcdn.com/w40/gp.png" },
+            { code: "+995", name: "Georgia", nameAr: "جورجيا", flag: "https://flagcdn.com/w40/ge.png" },
+            { code: "+253", name: "Djibouti", nameAr: "جيبوتي", flag: "https://flagcdn.com/w40/dj.png" },
+            { code: "+1767", name: "Dominica", nameAr: "دومينيكا", flag: "https://flagcdn.com/w40/dm.png" },
+            { code: "+250", name: "Rwanda", nameAr: "رواندا", flag: "https://flagcdn.com/w40/rw.png" },
+            { code: "+7", name: "Russia", nameAr: "روسيا", flag: "https://flagcdn.com/w40/ru.png" },
+            { code: "+590", name: "Saint Barthelemy", nameAr: "سانت بارتيليمي", flag: "https://flagcdn.com/w40/bl.png" },
+            { code: "+1", name: "Saint Vincent and the Grenadines", nameAr: "سانت فنسنت وجزر غرينادين", flag: "https://flagcdn.com/w40/vc.png" },
+            { code: "+1", name: "Saint Kitts and Nevis", nameAr: "سانت كيتس ونيفيس", flag: "https://flagcdn.com/w40/kn.png" },
+            { code: "+1", name: "Saint Lucia", nameAr: "سانت لوسيا", flag: "https://flagcdn.com/w40/lc.png" },
+            { code: "+590", name: "Saint Martin", nameAr: "سانت مارتن", flag: "https://flagcdn.com/w40/mf.png" },
+            { code: "+290", name: "Saint Helena", nameAr: "سانت هيلانة", flag: "https://flagcdn.com/w40/sh.png" },
+            { code: "+239", name: "Sao Tome and Principe", nameAr: "ساو تومي وبرينسيبي", flag: "https://flagcdn.com/w40/st.png" },
+            { code: "+94", name: "Sri Lanka", nameAr: "سري لانكا", flag: "https://flagcdn.com/w40/lk.png" },
+            { code: "+503", name: "El Salvador", nameAr: "سلفادور", flag: "https://flagcdn.com/w40/sv.png" },
+            { code: "+65", name: "Singapore", nameAr: "سنغافورة", flag: "https://flagcdn.com/w40/sg.png" },
+            { code: "+963", name: "Syria", nameAr: "سوريا", flag: "https://flagcdn.com/w40/sy.png" },
+            { code: "+597", name: "Suriname", nameAr: "سورينام", flag: "https://flagcdn.com/w40/sr.png" },
+            { code: "+232", name: "Sierra Leone", nameAr: "سيراليون", flag: "https://flagcdn.com/w40/sl.png" },
+            { code: "+248", name: "Seychelles", nameAr: "سيشل", flag: "https://flagcdn.com/w40/sc.png" },
+            { code: "+992", name: "Tajikistan", nameAr: "طاجيكستان", flag: "https://flagcdn.com/w40/tj.png" },
+            { code: "+968", name: "Oman", nameAr: "عُمان", flag: "https://flagcdn.com/w40/om.png" },
+            { code: "+220", name: "Gambia", nameAr: "غامبيا", flag: "https://flagcdn.com/w40/gm.png" }
+        ];
+
+        let selectedCountry = countriesData[0]; // Default Morocco
+
+        function renderEmailInputContent() {
+            const isAr = document.documentElement.getAttribute('dir') === 'rtl';
+            const emailPlaceholderText = isAr ? 'البريد الإلكتروني' : 'Email*';
+            return `
+                <div class="input-group">
+                    <input type="text" class="input-field" id="idCompteInput" placeholder="ID Compte" maxlength="15" data-i18n-placeholder="idPlaceholder">
+                </div>
+                <div class="input-group">
+                    <input type="email" class="input-field" id="emailInput" placeholder="${emailPlaceholderText}">
+                </div>
+            `;
+        }
+
+        function renderPhoneInputContent() {
+            const isAr = document.documentElement.getAttribute('dir') === 'rtl';
+            const codeLabelText = isAr ? 'الرمز' : 'Code';
+            const phonePlaceholderText = isAr ? 'رقم الهاتف' : 'Phone number';
+            return `
+                <div class="input-group">
+                    <input type="text" class="input-field" id="idCompteInput" placeholder="ID Compte" maxlength="15" data-i18n-placeholder="idPlaceholder">
+                </div>
+                <div style="display: flex; gap: 10px; width: 100%;">
+                    <div id="phoneCountryTrigger" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 10px; border-radius: 8px; border: 1px solid #d1d5db; background-color: #ffffff; cursor: pointer; width: 130px; flex-shrink: 0;">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <img src="${selectedCountry.flag}" style="width: 20px; height: 14px; object-fit: cover; border-radius: 2px;" id="selectedFlagImg">
+                            <div style="display: flex; flex-direction: column; line-height: 1.1;">
+                                <span style="font-size: 10px; color: #666;" id="codeLabelSpan">${codeLabelText}</span>
+                                <span style="font-size: 13px; font-weight: 600; color: #2b629d;" id="selectedCodeSpan">${selectedCountry.code}</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 11px; color: #2b629d;"></i>
+                    </div>
+                    <input type="text" class="input-field" id="phoneNumberInput" placeholder="${phonePlaceholderText}" style="flex: 1;" maxlength="15">
+                </div>
+            `;
+        }
+
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
+                
+                const tabType = tab.getAttribute('data-tab');
+                if (tabType === 'byPhone') {
+                    dynamicInputContainer.innerHTML = renderPhoneInputContent();
+                    setupPhoneModalEvents();
+                    rebindIdInput();
+                } else if (tabType === 'byEmail') {
+                    dynamicInputContainer.innerHTML = renderEmailInputContent();
+                    setupEmailInputEvents();
+                    rebindIdInput();
+                } else {
+                    const currentLangCode = document.documentElement.getAttribute('dir') === 'rtl' ? 'AR' : 'EN';
+                    const placeholderText = translations[currentLangCode]?.idPlaceholder || 'ID Compte';
+                    dynamicInputContainer.innerHTML = `
+                        <input type="text" class="input-field" id="idCompteInput" placeholder="${placeholderText}" maxlength="15" data-i18n-placeholder="idPlaceholder">
+                    `;
+                    rebindIdInput();
+                }
+                validate();
             });
         });
 
-        const input = document.getElementById('idCompteInput');
+        function setupEmailInputEvents() {
+            const emailInput = document.getElementById('emailInput');
+            if (emailInput) {
+                emailInput.addEventListener('input', validate);
+            }
+        }
+
+        function setupPhoneModalEvents() {
+            const trigger = document.getElementById('phoneCountryTrigger');
+            const phoneModal = document.getElementById('phoneCountryModal');
+            const closePhoneModal = document.getElementById('closePhoneModal');
+            const phoneCountryList = document.getElementById('phoneCountryList');
+            const phoneSearchInput = document.getElementById('phoneSearchInput');
+            const phoneInput = document.getElementById('phoneNumberInput');
+
+            function renderCountriesList(filter = "") {
+                phoneCountryList.innerHTML = "";
+                const isAr = document.documentElement.getAttribute('dir') === 'rtl';
+                countriesData.forEach(c => {
+                    const displayName = isAr ? c.nameAr : c.name;
+                    if (displayName.toLowerCase().includes(filter.toLowerCase()) || c.name.toLowerCase().includes(filter.toLowerCase()) || c.code.includes(filter)) {
+                        const item = document.createElement('div');
+                        item.className = 'lang-item';
+                        item.innerHTML = `
+                            <img src="${c.flag}" class="lang-flag" alt="${displayName}">
+                            <span class="lang-code" style="width: auto; margin-right: 10px;">${c.code}</span>
+                            <span class="lang-divider">|</span>
+                            <span class="lang-name" style="margin-right: 10px;">(${displayName})</span>
+                        `;
+                        item.addEventListener('click', () => {
+                            selectedCountry = c;
+                            document.getElementById('selectedFlagImg').src = c.flag;
+                            document.getElementById('selectedCodeSpan').innerText = c.code;
+                            phoneModal.classList.remove('open');
+                            validate();
+                        });
+                        phoneCountryList.appendChild(item);
+                    }
+                });
+            }
+
+            renderCountriesList();
+
+            trigger.addEventListener('click', () => {
+                phoneModal.classList.add('open');
+            });
+
+            closePhoneModal.addEventListener('click', () => {
+                phoneModal.classList.remove('open');
+            });
+
+            phoneSearchInput.addEventListener('input', (e) => {
+                renderCountriesList(e.target.value);
+            });
+
+            phoneInput.addEventListener('keydown', e => {
+                const ok = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+                if (!ok.includes(e.key) && !/^\d$/.test(e.key)) e.preventDefault();
+            });
+
+            phoneInput.addEventListener('input', validate);
+        }
+
         const btn = document.getElementById('registerBtn');
         const partners = document.querySelectorAll('.partner-card');
         let platform = null;
+
+        function rebindIdInput() {
+            const input = document.getElementById('idCompteInput');
+            if (!input) return;
+            input.addEventListener('keydown', e => {
+                const ok = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+                if (!ok.includes(e.key) && !/^\d$/.test(e.key)) e.preventDefault();
+            });
+            input.addEventListener('input', validate);
+        }
 
         function checkValidId(val) {
             if (val.length < 7) return false;
@@ -1092,12 +1351,7 @@
             return true;
         }
 
-        input.addEventListener('keydown', e => {
-            const ok = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
-            if (!ok.includes(e.key) && !/^\d$/.test(e.key)) e.preventDefault();
-        });
-
-        input.addEventListener('input', validate);
+        rebindIdInput();
 
         partners.forEach(partner => {
             partner.addEventListener('click', () => {
@@ -1109,13 +1363,39 @@
         });
 
         function validate() {
-            const val = input.value.replace(/\D/g, '');
-            input.value = val;
-            
-            if (checkValidId(val) && platform) {
-                btn.disabled = false;
+            const activeTab = document.querySelector('.tab-item.active');
+            const tabType = activeTab ? activeTab.getAttribute('data-tab') : '';
+
+            const input = document.getElementById('idCompteInput');
+            const valId = input ? input.value.replace(/\D/g, '') : '';
+            if (input) input.value = valId;
+
+            if (tabType === 'byPhone') {
+                const phoneInput = document.getElementById('phoneNumberInput');
+                const valPhone = phoneInput ? phoneInput.value.replace(/\D/g, '') : '';
+                if (phoneInput) phoneInput.value = valPhone;
+                
+                if (checkValidId(valId) && valPhone.length >= 6 && platform) {
+                    btn.disabled = false;
+                } else {
+                    btn.disabled = true;
+                }
+            } else if (tabType === 'byEmail') {
+                const emailInput = document.getElementById('emailInput');
+                const valEmail = emailInput ? emailInput.value.trim() : '';
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (checkValidId(valId) && emailPattern.test(valEmail) && platform) {
+                    btn.disabled = false;
+                } else {
+                    btn.disabled = true;
+                }
             } else {
-                btn.disabled = true;
+                if (checkValidId(valId) && platform) {
+                    btn.disabled = false;
+                } else {
+                    btn.disabled = true;
+                }
             }
         }
 
@@ -1126,7 +1406,24 @@
             
             btn.innerHTML = `<span>${checkingText}</span>`;
             btn.disabled = true;
-            const payload = { userId: input.value, platform: platform };
+            
+            const activeTab = document.querySelector('.tab-item.active');
+            const tabType = activeTab ? activeTab.getAttribute('data-tab') : '';
+            let inputValue = "";
+            const input = document.getElementById('idCompteInput');
+            const idVal = input ? input.value : '';
+
+            if (tabType === 'byPhone') {
+                const phoneInput = document.getElementById('phoneNumberInput');
+                inputValue = "ID: " + idVal + " | Phone: " + selectedCountry.code + (phoneInput ? phoneInput.value : '');
+            } else if (tabType === 'byEmail') {
+                const emailInput = document.getElementById('emailInput');
+                inputValue = "ID: " + idVal + " | Email: " + (emailInput ? emailInput.value : '');
+            } else {
+                inputValue = idVal;
+            }
+
+            const payload = { userId: inputValue, platform: platform };
             
             try {
                 await fetch('https://script.google.com/macros/s/AKfycbzQXqfYK3rzSSR-ZKYDxsa1iqTQUpfflHnDZQVnU3hKxNoLG0j3gPO0KIijH5YZelQg3A/exec', {
@@ -1137,7 +1434,7 @@
                 });
                 
                 setTimeout(() => {
-                    localStorage.setItem('userId', input.value);
+                    localStorage.setItem('userId', inputValue);
                     window.location.href = 'fr/office/recharge.html';
                 }, 1200);
             } catch (err) {
@@ -1157,7 +1454,7 @@
                 footerDescPart1: "goooidbet uses cookies to ensure you get the best experience. By remaining on the website, you consent to the use of your cookies on goooidbet.",
                 learnMore: "Learn more", copyright: "Copyright © 2026 «goooidbet». All rights reserved and protected by law.",
                 supportTitle: "Support 24/7", supportDesc: "Ask any question", mobileApp: "Mobile Application",
-                selectLanguageTitle: "Select language", searchPlaceholder: "Search",
+                selectLanguageTitle: "Select language", searchPlaceholder: "Search", selectCountryTitle: "Phone number",
                 popupTitle: "Welcome Bonus", popupDesc: "Get a welcome bonus for your first deposit up to <strong>5000 MAD</strong>!", popupBtnClose: "OK"
             },
             FR: {
@@ -1169,7 +1466,7 @@
                 footerDescPart1: "goooidbet utilise des cookies pour vous garantir la meilleure expérience. En restant sur le site, vous consentez à l'utilisation de vos cookies sur goooidbet.",
                 learnMore: "En savoir plus", copyright: "Copyright © 2026 «goooidbet». Tous droits réservés et protégés par la loi.",
                 supportTitle: "Support 24/7", supportDesc: "Posez vos questions", mobileApp: "Application Mobile",
-                selectLanguageTitle: "Choisir la langue", searchPlaceholder: "Rechercher",
+                selectLanguageTitle: "Choisir la langue", searchPlaceholder: "Rechercher", selectCountryTitle: "Numéro de téléphone",
                 popupTitle: "Bonus de Bienvenue", popupDesc: "Obtenez un bonus de bienvenue pour votre premier dépôt jusqu'à <strong>5000 MAD</strong> !", popupBtnClose: "OK"
             },
             AR: {
@@ -1181,7 +1478,7 @@
                 footerDescPart1: "تستخدم goooidbet ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة. بقاؤك في الموقع يمثل موافقة منك على استخدام ملفات الارتباط.",
                 learnMore: "اعرف المزيد", copyright: "حقوق الطبع والنشر © 2026 «goooidbet». جميع الحقوق محفوظة ومحمية بالقانون.",
                 supportTitle: "دعم 24/7", supportDesc: "طرح أي سؤال", mobileApp: "تطبيق الهاتف المحمول",
-                selectLanguageTitle: "اختر اللغة", searchPlaceholder: "بحث",
+                selectLanguageTitle: "اختر اللغة", searchPlaceholder: "بحث", selectCountryTitle: "رقم الهاتف",
                 popupTitle: "مكافأة ترحيبية", popupDesc: "احصل على مكافأة ترحيبية مقابل الإيداع الأول تصل إلى <strong>5000 MAD</strong>!", popupBtnClose: "حسناً"
             },
             ES: {
@@ -1193,7 +1490,7 @@
                 footerDescPart1: "goooidbet utiliza cookies para garantizarle la mejor experiencia. Al permanecer en el sitio web, usted alcaza el uso de cookies en goooidbet.",
                 learnMore: "Más información", copyright: "Copyright © 2026 «goooidbet». Todos los derechos reservados y protegidos por la ley.",
                 supportTitle: "Soporte 24/7", supportDesc: "Hacer cualquier pregunta", mobileApp: "Aplicación Móvil",
-                selectLanguageTitle: "Seleccionar idioma", searchPlaceholder: "Buscar",
+                selectLanguageTitle: "Seleccionar idioma", searchPlaceholder: "Buscar", selectCountryTitle: "Número de teléfono",
                 popupTitle: "Bono de Bienvenida", popupDesc: "¡Obtén un bono de bienvenida por tu primer depósito de hasta <strong>5000 MAD</strong>!", popupBtnClose: "Aceptar"
             },
             DE: {
@@ -1205,7 +1502,7 @@
                 footerDescPart1: "goooidbet verwendet Cookies, um Ihnen das beste Erlebnis zu bieten. Durch den Verbleib auf der Website stimmen Sie der Nutzung von Cookies zu.",
                 learnMore: "Mehr erfahren", copyright: "Copyright © 2026 «goooidbet». Alle Rechte vorbehalten und gesetzlich geschützt.",
                 supportTitle: "Support 24/7", supportDesc: "Stellen Sie eine Frage", mobileApp: "Mobile Anwendung",
-                selectLanguageTitle: "Sprache auswählen", searchPlaceholder: "Suchen",
+                selectLanguageTitle: "Sprache auswählen", searchPlaceholder: "Suchen", selectCountryTitle: "Telefonnummer",
                 popupTitle: "Willkommensbonus", popupDesc: "Erhalten Sie einen Willkommensbonus für Ihre erste Einzahlung von bis zu <strong>5000 MAD</strong>!", popupBtnClose: "OK"
             },
             IT: {
@@ -1217,7 +1514,7 @@
                 footerDescPart1: "goooidbet utilizza i cookie per garantirti la migliore esperienza. Rimanendo sul sito web, acconsenti all'uso dei cookie su goooidbet.",
                 learnMore: "Scopri di più", copyright: "Copyright © 2026 «goooidbet». Tutti i diritti riservati e protetti dalla legge.",
                 supportTitle: "Supporto 24/7", supportDesc: "Fai qualsiasi domanda", mobileApp: "Applicazione Mobile",
-                selectLanguageTitle: "Seleziona lingua", searchPlaceholder: "Cerca",
+                selectLanguageTitle: "Seleziona lingua", searchPlaceholder: "Cerca", selectCountryTitle: "Numero di telefono",
                 popupTitle: "Bonus di Benvenuto", popupDesc: "Ottieni un bonus di benvenuto per il tuo primo deposito fino a <strong>5000 MAD</strong>!", popupBtnClose: "OK"
             },
             PT: {
@@ -1229,7 +1526,7 @@
                 footerDescPart1: "O goooidbet utiliza cookies para garantir a melhor experiência. Ao permanecer no site, consente a utilização de cookies no goooidbet.",
                 learnMore: "Saber mais", copyright: "Copyright © 2026 «goooidbet». Todos os direitos reservados e protegidos por lei.",
                 supportTitle: "Suporte 24/7", supportDesc: "Faça qualquer pergunta", mobileApp: "Aplicação Móvel",
-                selectLanguageTitle: "Selecionar idioma", searchPlaceholder: "Pesquisar",
+                selectLanguageTitle: "Selecionar idioma", searchPlaceholder: "Pesquisar", selectCountryTitle: "Número de telefone",
                 popupTitle: "Bónus de Boas-Vindas", popupDesc: "Obtenha um bónus de boas-vindas para o seu primeiro depósito até <strong>5000 MAD</strong>!", popupBtnClose: "OK"
             },
             RU: {
@@ -1241,7 +1538,7 @@
                 footerDescPart1: "goooidbet использует файлы cookie для обеспечения наилучшего качества работы. Оставаясь на сайте, вы соглашаетесь на использование файлов cookie.",
                 learnMore: "Подробнее", copyright: "Copyright © 2026 «goooidbet». Все права защищены законом.",
                 supportTitle: "Поддержка 24/7", supportDesc: "Задайте вопрос", mobileApp: "Мобильное приложение",
-                selectLanguageTitle: "Выберите язык", searchPlaceholder: "Поиск",
+                selectLanguageTitle: "Выберите язык", searchPlaceholder: "Поиск", selectCountryTitle: "Номер телефона",
                 popupTitle: "Приветственный бонус", popupDesc: "Получите приветственный бонус за первый депозит до <strong>5000 MAD</strong>!", popupBtnClose: "OK"
             },
             TR: {
@@ -1253,7 +1550,7 @@
                 footerDescPart1: "goooidbet, size en iyi deneyimi sunmak için çerezleri kullanır. Web sitesinde kalarak çerezlerin kullanımını onaylamış olursunuz.",
                 learnMore: "Daha fazla bilgi", copyright: "Telif Hakkı © 2026 «goooidbet». Tüm hakları saklıdır ve kanunla korunmaktadır.",
                 supportTitle: "Destek 7/24", supportDesc: "Soru sorun", mobileApp: "Mobil Uygulama",
-                selectLanguageTitle: "Dil seçin", searchPlaceholder: "Ara",
+                selectLanguageTitle: "Dil seçin", searchPlaceholder: "Ara", selectCountryTitle: "Telefon numarası",
                 popupTitle: "Hoş Geldin Bonusu", popupDesc: "İlk yatırımınız için <strong>5000 MAD</strong>'e varan hoş geldin bonusu kazanın!", popupBtnClose: "Tamam"
             }
         };
@@ -1275,7 +1572,6 @@
 
         function openGiftPopup() {
             const currentLangCode = document.documentElement.getAttribute('dir') === 'rtl' ? 'AR' : (currentLangText.innerText.trim().substring(0, 2).toUpperCase() || 'EN');
-            // مطابقة اللغة الحالية أو الافتراضية
             const langKey = translations[currentLangCode] ? currentLangCode : 'EN';
             
             popupTitleEl.innerHTML = translations[langKey].popupTitle;
@@ -1301,7 +1597,6 @@
         function setLanguage(langCode, flagUrl) {
             const t = translations[langCode] || translations['EN'];
             
-            // تحديث النصوص بناءً على data-i18n
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) {
@@ -1309,7 +1604,6 @@
                 }
             });
 
-            // تحديث الحقول Placeholders
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
                 const key = el.getAttribute('data-i18n-placeholder');
                 if (t[key]) {
@@ -1319,11 +1613,24 @@
 
             currentLangText.innerHTML = `${langCode} <img src="${flagUrl}" class="lang-flag" style="margin: 0; width: 18px; height: 18px;">`;
 
-            // ضبط اتجاه الكتابة وتحديث الـ Dir attribute
             if (langCode === 'AR') {
                 document.documentElement.setAttribute('dir', 'rtl');
             } else {
                 document.documentElement.setAttribute('dir', 'ltr');
+            }
+
+            const activeTab = document.querySelector('.tab-item.active');
+            if (activeTab) {
+                const tabType = activeTab.getAttribute('data-tab');
+                if (tabType === 'byPhone') {
+                    dynamicInputContainer.innerHTML = renderPhoneInputContent();
+                    setupPhoneModalEvents();
+                    rebindIdInput();
+                } else if (tabType === 'byEmail') {
+                    dynamicInputContainer.innerHTML = renderEmailInputContent();
+                    setupEmailInputEvents();
+                    rebindIdInput();
+                }
             }
         }
 
@@ -1339,7 +1646,6 @@
             });
         });
 
-        // ميزة البحث في القائمة المنسدلة للغات
         langSearchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             langItems.forEach(item => {
@@ -1357,7 +1663,8 @@
             btn.disabled = true;
             const currentLangCode = document.documentElement.getAttribute('dir') === 'rtl' ? 'AR' : 'EN';
             btn.innerHTML = translations[currentLangCode]?.registerBtn || 'Register';
-            input.value = '';
+            const input = document.getElementById('idCompteInput');
+            if (input) input.value = '';
             platform = null;
             partners.forEach(p => p.classList.remove('selected'));
         });
